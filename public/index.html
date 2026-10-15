@@ -193,6 +193,14 @@ textarea:focus,input:focus{border-color:var(--ink);outline:none}
 
 <main id="app"></main>
 
+<!-- Netlify Forms: static copy so Netlify detects the form at deploy time -->
+<form name="encore-score" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input name="bot-field"><input name="first_name"><input name="email"><input name="consent">
+  <input name="building"><input name="urgency"><input name="score"><input name="band">
+  <input name="profile"><input name="strongest"><input name="constraint">
+  <input name="dimension_scores"><input name="answers">
+</form>
+
 <section class="proto wrap" aria-label="Prototype tools" id="proto" hidden>
   <div class="inner">
     <b>Prototype · preview a result</b>
@@ -436,7 +444,7 @@ function renderDetails(){
       <div class="field"><label for="em">Email</label><input type="email" id="em" autocomplete="email" value="${esc(S.email)}"></div>
       <label class="check"><input type="checkbox" id="cs" ${S.consent?"checked":""}><span>Send me occasional emails from Jo about building an expertise-led business. Unsubscribe any time.</span></label>
       <div class="err" id="err" role="alert"></div>
-      <div class="proto-note">Prototype: nothing you enter here is saved or sent.</div>
+      <p class="fine" style="margin-top:4px">We use your details to send your result and, if you tick the box, occasional emails from Jo. We never share them.</p>
       <div class="nav"><button type="button" class="btn btn-ghost" id="back">← Back</button><button class="btn btn-red" type="submit">Show my result →</button></div>
     </form>
   </div></div></section>`;
@@ -447,10 +455,30 @@ function renderDetails(){
     const err=document.getElementById('err');
     if(!fn){err.textContent="Please add your first name so we can personalise your result.";return;}
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){err.textContent="Please enter a valid email address, for example jo@example.com.";return;}
-    S.name=fn;S.email=em;S.consent=document.getElementById('cs').checked;S.step++;render();
+    S.name=fn;S.email=em;S.consent=document.getElementById('cs').checked;saveLead();S.step++;render();
   };
 }
 
+function outcome(){
+  const {d,overall}=score();
+  const pk=profile(d,S.ans.urg);
+  const st=strongest(d); let co=constraintOf(pk,d);
+  if(co===st){ co=Object.keys(DIMS).filter(k=>k!==st).sort((a,b)=>d[a]-d[b])[0]; }
+  return {d,overall,pk,st,co,band:band(overall)};
+}
+function saveLead(){
+  try{
+    const o=outcome();
+    const f={"form-name":"encore-score","bot-field":"",
+      first_name:S.name,email:S.email,consent:S.consent?"yes":"no",
+      building:S.ans.build||"",urgency:URG[S.ans.urg]??"",
+      score:String(o.overall),band:o.band,profile:PROFILES[o.pk].name,
+      strongest:DIMS[o.st].name,constraint:DIMS[o.co].name,
+      dimension_scores:Object.keys(DIMS).map(k=>DIMS[k].short+": "+o.d[k]).join("; "),
+      answers:Q.filter(q=>q.dim).map((q,i)=>"Q"+(i+1)+"="+S.ans[q.id]).join("; ")};
+    fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(f).toString()}).catch(()=>{});
+  }catch(e){}
+}
 function renderResult(){
   const {d,overall}=score();
   const pk=profile(d,S.ans.urg), P=PROFILES[pk];
