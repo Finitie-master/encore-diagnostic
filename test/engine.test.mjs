@@ -40,22 +40,26 @@ test("Urgency only changes the verdict when readiness is low", () => {
   assert.equal(evaluate({ dimensions: d, urgency: "12+ months" }).verdict.code, "VALIDATE_FIRST");
 });
 
-test("Question bank matches the harness: 43 scored items, 3 reverse-scored", () => {
+test("Question bank: 43 scored items, five options each, none reverse-scored", () => {
   assert.equal(QUESTIONS.length, 43);
-  assert.deepEqual(QUESTIONS.filter((q) => q.reverse).map((q) => q.code), ["C6", "D7", "H5"]);
+  assert.ok(QUESTIONS.every((q) => q.options.length === 5 && !q.reverse));
 });
 
-test("Reverse scoring: agreeing with a red-flag statement lowers the score", () => {
+test("Broad target market lowers customer clarity", () => {
   const base = Object.fromEntries(QUESTIONS.map((q) => [q.code, 4]));
-  const s1 = dimensionScores({ ...base, C6: 0 });
-  const s2 = dimensionScores({ ...base, C6: 4 });
+  const s1 = dimensionScores({ ...base, C6: 4 });
+  const s2 = dimensionScores({ ...base, C6: 0 });
   assert.equal(s1.C, 100);
   assert.ok(s2.C < s1.C);
 });
+test("New urgency wording counts as urgent", () => {
+  const d = { E: 85, C: 58, V: 42, P: 51, M: 32, R: 48, RD: 28, F: 73 };
+  assert.equal(evaluate({ dimensions: d, urgency: "In 3 to 6 months" }).verdict.code, "REVENUE_FIRST");
+});
 
 test("Question-level answers drive gates G6 and G7", () => {
-  const ans = Object.fromEntries(QUESTIONS.map((q) => [q.code, q.reverse ? 1 : 3]));
-  Object.assign(ans, { D1: 1, D2: 1, D3: 0, D4: 0, D5: 2, D6: 1, D7: 4, F6: 0 });
+  const ans = Object.fromEntries(QUESTIONS.map((q) => [q.code, 3]));
+  Object.assign(ans, { D1: 1, D2: 1, D3: 0, D4: 0, D5: 2, D6: 1, D7: 0, F6: 0 });
   const r = evaluate({ answers: ans, urgency: "6–12 months" });
   assert.ok(r.dimensions.V < 55);
   assert.ok(r.gates.includes("G6"));

@@ -43,7 +43,7 @@ export const VERDICTS = {
     note: "The critical commercial dimensions are sufficiently evidenced to move into disciplined implementation." },
 };
 
-const URGENT = new Set(["<3 months", "within 3 months", "3–6 months", "3-6 months"]);
+const URGENT = new Set(["<3 months", "within 3 months", "3–6 months", "3-6 months", "in 3 to 6 months"]);
 export const isUrgent = (urgency) => URGENT.has(String(urgency || "").trim().toLowerCase().replace("–", "–"))
   || URGENT.has(String(urgency || "").trim().toLowerCase());
 
