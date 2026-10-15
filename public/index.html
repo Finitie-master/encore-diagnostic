@@ -281,12 +281,13 @@ img{max-width:100%;display:block}
 
 <script>
 // Paste the Stripe Payment Link here when it's ready. Until then the buttons scroll to the offer and show a note.
-const CHECKOUT_URL = "";
+const CHECKOUT_URL = "https://buy.stripe.com/fZu9AM2hj3X98hf2sXgjC02";
 (function(){
   const src=new URLSearchParams(location.search).get("src")||new URLSearchParams(location.search).get("utm_source")||"";
   document.querySelectorAll(".buy").forEach(a=>{
     if(CHECKOUT_URL){
       const u=new URL(CHECKOUT_URL); if(src) u.searchParams.set("client_reference_id",src.replace(/[^\w-]/g,"").slice(0,200));
+      if(/^(webinar|workbook|nextmove)$/i.test(src)) u.searchParams.set("prefilled_promo_code","NEXTMOVE");
       a.href=u.toString();
     } else {
       a.addEventListener("click",()=>{const s=document.getElementById("soon"); s.hidden=false;});

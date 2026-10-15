@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { evaluate, dimensionScores } from "../src/engine/scoring.mjs";
-import { QUESTIONS } from "../src/engine/questions.mjs";
+import { evaluate, dimensionScores } from "../public/engine/scoring.mjs";
+import { QUESTIONS } from "../public/engine/questions.mjs";
 
 // Calibration personas from the harness (dimension-level targets).
 const P = (E, C, V, Pp, M, R, RD, F) => ({ E, C, V, P: Pp, M, R, RD, F });
