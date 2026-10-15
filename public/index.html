@@ -477,6 +477,10 @@ function saveLead(){
       dimension_scores:Object.keys(DIMS).map(k=>DIMS[k].short+": "+o.d[k]).join("; "),
       answers:Q.filter(q=>q.dim).map((q,i)=>"Q"+(i+1)+"="+S.ans[q.id]).join("; ")};
     fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(f).toString()}).catch(()=>{});
+    fetch("/api/subscribe",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+      first_name:S.name,email:S.email,consent:!!S.consent,building:f.building,urgency:f.urgency,
+      score:o.overall,band:o.band,profile:f.profile,strongest:f.strongest,constraint:f.constraint,
+      action:PROFILES[o.pk].action})}).catch(()=>{});
   }catch(e){}
 }
 function renderResult(){
