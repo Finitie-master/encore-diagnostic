@@ -66,3 +66,11 @@ test("Question-level answers drive gates G6 and G7", () => {
   assert.ok(r.gates.includes("G7"));
   assert.equal(r.verdict.code, "VALIDATE_FIRST");
 });
+
+test("Original (v1) question set still scores reverse items correctly", async () => {
+  const { QUESTIONS: V1 } = await import("../public/engine/questions_v1.mjs");
+  const base = Object.fromEntries(V1.map((q) => [q.code, 4]));
+  const agreeAnyone = dimensionScores({ ...base, C6: 4 }, V1);
+  const disagreeAnyone = dimensionScores({ ...base, C6: 0 }, V1);
+  assert.ok(agreeAnyone.C < disagreeAnyone.C);
+});

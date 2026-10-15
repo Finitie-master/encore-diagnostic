@@ -48,9 +48,9 @@ export const isUrgent = (urgency) => URGENT.has(String(urgency || "").trim().toL
   || URGENT.has(String(urgency || "").trim().toLowerCase());
 
 /** answers: { B1: 0..4, C6: 0..4, ... } keyed by question code. Returns 0–100 per dimension. */
-export function dimensionScores(answers) {
+export function dimensionScores(answers, questions = QUESTIONS) {
   const sums = {}, counts = {};
-  for (const q of QUESTIONS) {
+  for (const q of questions) {
     counts[q.dim] = (counts[q.dim] || 0) + 1;
     const raw = answers[q.code];
     if (raw === undefined || raw === null || raw === "") continue; // unanswered counts as 0, as in the harness
@@ -112,8 +112,8 @@ export function verdictCode(d, { urgency } = {}) {
 }
 
 /** Full evaluation from dimension scores (for calibration) or from raw answers. */
-export function evaluate({ answers, dimensions, urgency }) {
-  const d = dimensions ? { ...dimensions } : dimensionScores(answers);
+export function evaluate({ answers, dimensions, urgency, questions }) {
+  const d = dimensions ? { ...dimensions } : dimensionScores(answers, questions);
   const overall = weightedOverall(d);
   const code = verdictCode(d, { urgency });
   const g = gates(d, { urgency, raw: answers || {} });

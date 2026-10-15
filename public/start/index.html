@@ -50,11 +50,6 @@ h2.sec{font-family:var(--f-display);font-weight:400;font-size:clamp(34px,5vw,50p
 .scale button:hover{border-color:var(--ink)}
 .scale button[aria-checked="true"]{border-color:var(--red);background:#FDF3F2}
 .scale button[aria-checked="true"] b{color:var(--red)}
-.opts{display:grid;gap:8px}
-.opts .opt{appearance:none;border:1px solid var(--line);background:var(--paper);border-radius:0;padding:12px 16px;cursor:pointer;font:500 16px/1.35 var(--f-body);color:var(--ink);text-align:left}
-.opts .opt:hover{border-color:var(--ink)}
-.opts .opt[aria-checked="true"]{border-color:var(--red);background:#FDF3F2}
-.opts .opt:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .choices{display:flex;flex-wrap:wrap;gap:8px}
 .choices button{appearance:none;border:1px solid var(--line);background:var(--paper);border-radius:0;padding:10px 14px;cursor:pointer;font:500 15px/1.3 var(--f-body);color:var(--ink)}
 .choices button[aria-pressed="true"]{border-color:var(--red);background:#FDF3F2}
@@ -93,14 +88,111 @@ textarea:focus,input:focus{border-color:var(--ink);outline:none}
 </form>
 
 <script type="module">
-import { QUESTIONS, } from "/engine/questions.mjs";
+import { QUESTIONS, } from "/engine/questions_v1.mjs";
 import { evaluate, DIMENSIONS } from "/engine/scoring.mjs";
 
-// Sections and questions (v2 wording). Scored items take their wording and five options from the engine's QUESTIONS.
-const QMAP=Object.fromEntries(QUESTIONS.map(q=>[q.code,q]));
-const SECTIONS = [{"title": "About you and your next move", "intro": "First, a little about where you are and what you want this business to do for you.", "items": [{"c": "name", "type": "text", "q": "Your full name", "req": true}, {"c": "email", "type": "email", "q": "The email address you used at checkout", "hint": "We'll send your Encore Verdict here.", "req": true}, {"c": "situation", "q": "Where are you right now?", "type": "choice", "opts": ["I've been made redundant", "I'm still employed and planning my exit", "I've retired or semi-retired", "I've sold or closed a previous business", "I'm already doing some consulting or freelance work", "Something else"], "req": true}, {"c": "building", "q": "In a sentence or two, what are you thinking of building?", "type": "long", "hint": "If you came from the workshop, paste your next move statement.", "req": true}, {"c": "purpose", "q": "What do you need this business to do for you?", "type": "choice", "opts": ["Be my main income", "Top up my other income", "Be one part of a portfolio of work", "Fit around the life I want", "Build something I could sell one day", "I'm honestly not sure yet"], "req": true}, {"c": "income", "q": "In two or three years, what would you like it to pay you each year?", "type": "choice", "opts": ["Under £30k", "£30k–£60k", "£60k–£100k", "£100k–£150k", "£150k+"], "req": true}, {"c": "urgency", "q": "When do you need it to start bringing in real money?", "type": "choice", "opts": ["Within 3 months", "In 3 to 6 months", "In 6 to 12 months", "In a year or more", "There's no rush"], "req": true}, {"c": "days", "q": "How many days a week do you actually want to work on it?", "type": "choice", "opts": ["1", "2", "3", "4", "5 or more"], "req": true}]}, {"title": "What you know", "intro": "Your experience is the raw material. Let's see how clearly it translates into something people value.", "items": [{"s": "B1"}, {"s": "B2"}, {"s": "B3"}, {"s": "B4"}, {"s": "B5"}, {"c": "problems", "q": "What problems are you unusually good at solving? Up to three.", "type": "long"}, {"c": "evidence_expertise", "q": "What proves it? Results, achievements, credentials or stories.", "type": "long"}]}, {"title": "Who would buy", "intro": "A business needs a buyer with a problem they care about. Be as specific as you can.", "items": [{"s": "C1"}, {"s": "C2"}, {"s": "C3"}, {"s": "C4"}, {"s": "C5"}, {"s": "C6"}, {"c": "customer", "q": "Describe the customer you have in mind.", "type": "long"}, {"c": "do_nothing", "q": "What happens to them if they do nothing about the problem?", "type": "long"}]}, {"title": "What's actually happened", "intro": "This is the section that matters most. It's about what buyers have said and done, not what you believe. Honest answers here make your Verdict far more useful.", "items": [{"s": "D1"}, {"s": "D2"}, {"s": "D3"}, {"s": "D4"}, {"s": "D5"}, {"s": "D6"}, {"s": "D7"}, {"c": "best_evidence", "q": "What's the strongest evidence you have that someone will pay?", "type": "long"}]}, {"title": "Your offer", "intro": "How easily someone could understand what you sell, and why they'd choose you.", "items": [{"s": "E1"}, {"s": "E2"}, {"s": "E3"}, {"s": "E4"}, {"s": "E5"}, {"c": "offer", "q": "Write your offer in one sentence, even if it's rough.", "type": "long"}, {"c": "different", "q": "What makes your approach different, or particularly credible?", "type": "long"}]}, {"title": "The numbers", "intro": "Whether the business can pay you what you want, in the time you want to give it.", "items": [{"s": "F1"}, {"s": "F2"}, {"s": "F3"}, {"s": "F4"}, {"s": "F5"}, {"s": "F6"}, {"c": "first_sale", "q": "What do you expect to sell first, and at what price?", "type": "long"}, {"c": "sales_needed", "q": "Roughly how many clients or sales a year would you need to reach your income goal?", "type": "text", "hint": "A number, or 'don't know'."}]}, {"title": "Reaching buyers", "intro": "How you'll get in front of the right people, and whether they'll trust you.", "items": [{"s": "G1"}, {"s": "G2"}, {"s": "G3"}, {"s": "G4"}, {"s": "G5"}, {"c": "relationships", "q": "Roughly how many relevant people could you contact personally?", "type": "choice", "opts": ["0", "1–10", "11–30", "31–100", "100+"]}, {"c": "channels", "q": "Which routes to buyers feel most realistic for you? Choose any.", "type": "multi", "opts": ["My network", "Partnerships", "LinkedIn", "Speaking", "Direct outreach", "Referrals", "Paid advertising", "Other"]}]}, {"title": "Time and money", "intro": "Whether you can give this a fair test without putting yourself under pressure.", "items": [{"s": "H1"}, {"s": "H2"}, {"s": "H3"}, {"s": "H4"}, {"s": "H5"}, {"c": "funding", "q": "How will you fund the start-up period? Choose any.", "type": "multi", "opts": ["Current income", "Savings", "Redundancy payment", "Pension", "Partner or household income", "Loan", "Grant", "Investment", "Other"]}, {"c": "invest_max", "q": "What's the most you'd be comfortable investing before you see real evidence of demand?", "type": "choice", "opts": ["Under £1k", "£1k–£5k", "£5k–£15k", "£15k–£50k", "£50k+"]}]}, {"title": "You and this business", "intro": "Last section. Whether this business fits the life you actually want.", "items": [{"s": "I1"}, {"s": "I2"}, {"s": "I3"}, {"s": "I4"}, {"c": "success_beyond_money", "q": "What would make this next chapter feel successful, beyond the money?", "type": "long"}, {"c": "no_compromise", "q": "What are you least willing to compromise on?", "type": "long"}]}];
+// Full wording from the working blueprint, keyed by harness code.
+const TEXT = {
+  B1:"I can identify specific problems I have repeatedly solved during my career.",
+  B2:"Other people already seek my advice or expertise in these areas.",
+  B3:"I can point to measurable outcomes or results my work has created.",
+  B4:"My expertise is current enough to be commercially relevant now.",
+  B5:"I can explain my most valuable expertise without relying on my former job title.",
+  C1:"I can describe the specific type of person or organisation most likely to buy from me.",
+  C2:"I understand the situation or trigger that would make this customer look for help.",
+  C3:"The problem I intend to solve has meaningful financial, operational or personal consequences if left unresolved.",
+  C4:"My target customer already spends money trying to solve this problem or an adjacent one.",
+  C5:"I know who normally makes or influences the buying decision.",
+  C6:"My target market is currently best described as 'anyone who could benefit from my experience'.",
+  D1:"I have spoken directly to at least 10 plausible target customers about this problem.",
+  D2:"Those conversations confirmed the problem in the customers' own words, rather than simply positive reactions to my idea.",
+  D3:"I have evidence that people will pay, not merely that they like the concept.",
+  D4:"I have already generated revenue, a paid pilot, a deposit, a letter of intent or an equivalent commitment for this or a close version.",
+  D5:"I understand the alternatives customers currently use, including doing nothing.",
+  D6:"I have tested my assumptions with people outside my immediate friends and supportive professional network.",
+  D7:"Most of my confidence in the opportunity comes from my own experience and belief that the market should need it.",
+  E1:"I can explain what I sell in one or two sentences without giving my career history first.",
+  E2:"The proposition describes a customer outcome, not simply access to my expertise.",
+  E3:"A prospective customer could understand why they should choose me rather than a general consultant, coach or freelancer.",
+  E4:"The scope of the offer is specific enough to price and deliver consistently.",
+  E5:"I have a credible reason for the customer to act now rather than 'sometime'.",
+  F1:"I know how the business will make money and what customers will actually buy.",
+  F2:"My proposed price is based on customer value and market evidence rather than what feels comfortable to charge.",
+  F3:"The likely number of customers required to reach my income target is realistic.",
+  F4:"The model can be delivered within the number of days I want to work.",
+  F5:"I understand the direct costs and major overheads involved.",
+  F6:"The model does not depend on a large audience, team or technology build before I can make the first meaningful sale.",
+  G1:"I already have relationships with people who resemble my intended customers or can introduce me to them.",
+  G2:"I have a credible professional profile that supports the proposition I want to sell.",
+  G3:"I know where my target customers gather, learn, buy or seek recommendations.",
+  G4:"I am willing and able to have direct commercial conversations rather than relying entirely on content or referrals.",
+  G5:"I have at least one realistic route to my first 10 customers.",
+  H1:"I have protected time each week to develop and sell the business.",
+  H2:"I have sufficient financial runway to validate the idea without making desperate short-term decisions.",
+  H3:"I have identified how much I am prepared to invest before requiring evidence of traction.",
+  H4:"My household and personal financial commitments are compatible with the likely ramp-up period.",
+  H5:"I need the business to replace a substantial salary almost immediately.",
+  I1:"I genuinely want to run a business, rather than feeling self-employment is my only remaining option.",
+  I2:"The day-to-day work involved in this business is work I actually want to do.",
+  I3:"I am prepared to sell, test, adapt and hear that some of my assumptions are wrong.",
+  I4:"The business I am considering fits the life I want over the next five years.",
+};
+const SCALE = ["Not at all","Slightly","Partly","Mostly","Strongly"];
 
-const KEY="encore-diagnostic-v2";
+// Sections: context (c) and scored (s) items, in blueprint order.
+const SECTIONS = [
+ { title:"About you and your next move", intro:"First, the basics, and what you want this business to do for you.", items:[
+   {c:"name",type:"text",q:"Your full name",req:true},
+   {c:"email",type:"email",q:"The email address you used at checkout",hint:"We'll send your Encore Verdict here.",req:true},
+   {c:"situation",type:"choice",q:"Which best describes where you are now?",opts:["Redundant","Employed but planning to leave","Retired or semi-retired","Previous business ended or sold","Already consulting","Other"],req:true},
+   {c:"building",type:"long",q:"What are you considering building?",hint:"A rough description is fine. If you came from the workshop, paste your next move statement.",req:true},
+   {c:"purpose",type:"choice",q:"What do you want this business to do for you?",opts:["Primary income","Meaningful supplementary income","Portfolio career","Lifestyle business","Build an asset","Not sure"],req:true},
+   {c:"income",type:"choice",q:"What annual personal income would you ideally like it to provide within 2 to 3 years?",opts:["Under £30k","£30k–£60k","£60k–£100k","£100k–£150k","£150k+"],req:true},
+   {c:"urgency",type:"choice",q:"How quickly do you need it to start generating meaningful revenue?",opts:["<3 months","3–6 months","6–12 months","12+ months","No urgency"],req:true},
+   {c:"days",type:"choice",q:"How many days a week do you realistically want to work in the business?",opts:["1","2","3","4","5+"],req:true},
+ ]},
+ { title:"Expertise and transferable value", intro:"What you genuinely know, and why someone would value it.", items:[
+   {s:"B1"},{s:"B2"},{s:"B3"},{s:"B4"},{s:"B5"},
+   {c:"problems",type:"long",q:"List up to three problems you are unusually well equipped to solve."},
+   {c:"evidence_expertise",type:"long",q:"What evidence, achievements, credentials or experience support this?"},
+ ]},
+ { title:"Customer and problem", intro:"Who would buy, and why they would care.", items:[
+   {s:"C1"},{s:"C2"},{s:"C3"},{s:"C4"},{s:"C5"},{s:"C6"},
+   {c:"customer",type:"long",q:"Describe the customer you currently have in mind."},
+   {c:"do_nothing",type:"long",q:"What happens if they do nothing about the problem?"},
+ ]},
+ { title:"Evidence and validation", intro:"What has actually happened, as opposed to what you believe. Be honest here; it matters most.", items:[
+   {s:"D1"},{s:"D2"},{s:"D3"},{s:"D4"},{s:"D5"},{s:"D6"},{s:"D7"},
+   {c:"best_evidence",type:"long",q:"What is the strongest piece of evidence you currently have that somebody will pay?"},
+ ]},
+ { title:"Proposition and differentiation", intro:"How clearly your offer can be understood and bought.", items:[
+   {s:"E1"},{s:"E2"},{s:"E3"},{s:"E4"},{s:"E5"},
+   {c:"offer",type:"long",q:"Write your current offer in one sentence, even if it's rough."},
+   {c:"different",type:"long",q:"What makes your approach different or particularly credible?"},
+ ]},
+ { title:"Commercial model and economics", intro:"Whether the numbers can work for the life you want.", items:[
+   {s:"F1"},{s:"F2"},{s:"F3"},{s:"F4"},{s:"F5"},{s:"F6"},
+   {c:"first_sale",type:"long",q:"What do you expect to sell first, and at what price?"},
+   {c:"sales_needed",type:"text",q:"Roughly how many sales or clients a year would you need to reach your target income?",hint:"A number, or 'don't know'."},
+ ]},
+ { title:"Route to market and authority", intro:"How you'll reach and persuade the people you need.", items:[
+   {s:"G1"},{s:"G2"},{s:"G3"},{s:"G4"},{s:"G5"},
+   {c:"relationships",type:"choice",q:"Approximately how many relevant professional relationships could you contact personally?",opts:["0","1–10","11–30","31–100","100+"]},
+   {c:"channels",type:"multi",q:"Which channels are most realistic for you?",opts:["Network","Partnerships","LinkedIn","Speaking","Outbound","Referrals","Paid","Other"]},
+ ]},
+ { title:"Practical and financial readiness", intro:"Time, runway and what you can afford to test.", items:[
+   {s:"H1"},{s:"H2"},{s:"H3"},{s:"H4"},{s:"H5"},
+   {c:"funding",type:"multi",q:"How do you expect to fund the start-up period?",opts:["Current income","Savings","Redundancy","Pension release","Partner or household income","Loan","Grant","Investment","Other"]},
+   {c:"invest_max",type:"choice",q:"The most you'd be comfortable investing before seeing meaningful evidence of demand",opts:["Under £1k","£1k–£5k","£5k–£15k","£15k–£50k","£50k+"]},
+ ]},
+ { title:"Founder fit and commitment", intro:"Whether this business fits the life you actually want.", items:[
+   {s:"I1"},{s:"I2"},{s:"I3"},{s:"I4"},
+   {c:"success_beyond_money",type:"long",q:"What would make this next chapter feel successful, beyond the money?"},
+   {c:"no_compromise",type:"long",q:"What are you least willing to compromise on?"},
+ ]},
+];
+
+const KEY="encore-diagnostic-v1";
 let A={}, step=0;
 try{const s=JSON.parse(localStorage.getItem(KEY)||"null"); if(s){A=s.A||{};step=s.step||0;}}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify({A,step}));}catch(e){}};
@@ -111,11 +203,11 @@ function renderSection(){
   const S=SECTIONS[step], n=SECTIONS.length;
   let html=`<div class="progress"><div class="bar"><i style="width:${Math.round(step/n*100)}%"></i></div><span class="count">Section ${step+1} of ${n}</span></div>
   <div class="eyebrow red">Section ${step+1}</div><h2 class="sec">${esc(S.title)}</h2><p class="sec-intro">${esc(S.intro)}</p>`;
-  if(S.items.some(i=>i.s)) html+=`<p class="note">Choose the answer closest to how things are today, not how you hope they'll be.</p>`;
+  if(S.items.some(i=>i.s)) html+=`<p class="note">For each statement: how true is this for you today? 0 means not at all, 4 means strongly, with clear evidence.</p>`;
   S.items.forEach(it=>{
     if(it.s){
-      const v=A[it.s], Q=QMAP[it.s];
-      html+=`<div class="q"><span class="qt" id="l-${it.s}">${esc(Q.text)}</span><div class="opts" role="radiogroup" aria-labelledby="l-${it.s}">${Q.options.map((l,i)=>`<button type="button" class="opt" role="radio" aria-checked="${v===i}" data-s="${it.s}" data-v="${i}">${esc(l)}</button>`).join("")}</div></div>`;
+      const v=A[it.s];
+      html+=`<div class="q"><span class="qt" id="l-${it.s}">${esc(TEXT[it.s])}</span><div class="scale" role="radiogroup" aria-labelledby="l-${it.s}">${SCALE.map((l,i)=>`<button type="button" role="radio" aria-checked="${v===i}" data-s="${it.s}" data-v="${i}"><b>${i}</b>${l}</button>`).join("")}</div></div>`;
     } else if(it.type==="choice"||it.type==="multi"){
       const v=A[it.c]; const sel=o=>it.type==="multi"?(Array.isArray(v)&&v.includes(o)):v===o;
       html+=`<div class="q"><span class="qt">${esc(it.q)}${it.hint?`<span class="hint">${esc(it.hint)}</span>`:""}${it.type==="multi"?`<span class="hint">Choose any that apply.</span>`:""}</span><div class="choices">${it.opts.map(o=>`<button type="button" aria-pressed="${sel(o)}" data-c="${it.c}" data-o="${esc(o)}" data-m="${it.type==="multi"?1:0}">${esc(o)}</button>`).join("")}</div></div>`;
@@ -126,7 +218,7 @@ function renderSection(){
   });
   html+=`<div class="err" id="err" role="alert"></div><div class="nav">${step>0?`<button class="btn btn-ghost" id="back">← Back</button>`:"<span></span>"}<button class="btn btn-red" id="next">${step===n-1?"Submit my diagnostic":"Next section"} →</button></div>`;
   app.innerHTML=html; window.scrollTo({top:0});
-  app.querySelectorAll(".opts .opt").forEach(b=>b.onclick=()=>{A[b.dataset.s]=+b.dataset.v;save();b.parentElement.querySelectorAll("button").forEach(x=>x.setAttribute("aria-checked",x===b));});
+  app.querySelectorAll(".scale button").forEach(b=>b.onclick=()=>{A[b.dataset.s]=+b.dataset.v;save();b.parentElement.querySelectorAll("button").forEach(x=>x.setAttribute("aria-checked",x===b));});
   app.querySelectorAll(".choices button").forEach(b=>b.onclick=()=>{
     const c=b.dataset.c,o=b.dataset.o;
     if(b.dataset.m==="1"){const arr=Array.isArray(A[c])?A[c]:[];A[c]=arr.includes(o)?arr.filter(x=>x!==o):[...arr,o];b.setAttribute("aria-pressed",A[c].includes(o));}
@@ -138,7 +230,7 @@ function renderSection(){
   document.getElementById("next").onclick=()=>{
     const missing=S.items.filter(it=>it.s?A[it.s]===undefined:(it.req&&!String(A[it.c]||"").trim()));
     const err=document.getElementById("err");
-    if(missing.length){err.textContent=`Please answer every question${S.items.some(i=>i.req)?" and required questions":""} in this section before moving on (${missing.length} left).`;return;}
+    if(missing.length){err.textContent=`Please answer all the statements${S.items.some(i=>i.req)?" and required questions":""} in this section before moving on (${missing.length} left).`;return;}
     if(S.items.some(i=>i.c==="email")&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(A.email||"")){err.textContent="Please enter a valid email address, for example jo@example.com.";return;}
     if(step<n-1){step++;save();renderSection();} else submit();
   };
@@ -146,7 +238,7 @@ function renderSection(){
 
 async function submit(){
   const answers={}; QUESTIONS.forEach(q=>answers[q.code]=A[q.code]);
-  const r=evaluate({answers,urgency:A.urgency});
+  const r=evaluate({answers,urgency:A.urgency,questions:QUESTIONS});
   const context={}; SECTIONS.forEach(S=>S.items.forEach(it=>{if(it.c) context[it.c]=A[it.c];}));
   const f={"form-name":"encore-diagnostic","bot-field":"",name:A.name,email:A.email,proposed_business:A.building||"",
     verdict:r.verdict.label,overall:String(r.overall),
