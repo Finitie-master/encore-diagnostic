@@ -15,6 +15,7 @@ const FIELDS = {
   encore_action: "text",
   encore_building: "text",
   encore_urgency: "text",
+  encore_source: "text",
 };
 
 let cache = null; // group ids, kept while the function stays warm
@@ -81,6 +82,7 @@ export default async (req) => {
           encore_action: clip(d.action, 500),
           encore_building: clip(d.building, 300),
           encore_urgency: clip(d.urgency, 40),
+          encore_source: clip(d.source, 60),
         },
         groups,
       }),
