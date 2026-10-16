@@ -180,6 +180,17 @@ textarea:focus,input:focus{border-color:var(--ink);outline:none}
   .action .tag{justify-self:start}
   .scale-labels span{font-size:9px}
 }
+.privacy{margin-top:14px}.privacy a{color:inherit}
+.print-foot{display:none}
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .topbar,.no-print,#proto,.buy .btn{display:none!important}
+  .fade{animation:none!important;opacity:1!important;transform:none!important}
+  section{break-inside:avoid-page}
+  .print-foot{display:block;margin-top:28px;padding-top:14px;border-top:1px solid #ccc;font-size:12px;color:#555;line-height:1.6}
+  @page{margin:12mm}
+  html,body{background:#fff!important}
+}
 </style>
 </head>
 <body>
@@ -378,6 +389,7 @@ function renderIntro(){
       <div><div class="eyebrow label-red">Your next move</div><h3>One thing to do this week</h3><p>A specific action you can take straight away, based on how you answered.</p></div>
     </div>
     <p class="intro-note">Answer as things are today, not as you hope they will be. Evidence beats enthusiasm, and the result is only as useful as your honesty.</p>
+    <p class="fine privacy"><b>Your answers are private.</b> They're used to work out your result and are seen only by Jo Eckersley at The Encore Partnership. They're never shared or sold, and you can ask for them to be deleted at any time by emailing <a href="mailto:jo@theencorepartnership.com">jo@theencorepartnership.com</a>.</p>
   </div></section>`;
   document.getElementById('start').onclick=()=>{S.step=0;render();};
 }
@@ -445,7 +457,7 @@ function renderDetails(){
       <div class="field"><label for="em">Email</label><input type="email" id="em" autocomplete="email" value="${esc(S.email)}"></div>
       <label class="check"><input type="checkbox" id="cs" ${S.consent?"checked":""}><span>Send me occasional emails from Jo about building an expertise-led business. Unsubscribe any time.</span></label>
       <div class="err" id="err" role="alert"></div>
-      <p class="fine" style="margin-top:4px">We use your details to send your result and, if you tick the box, occasional emails from Jo. We never share them.</p>
+      <p class="fine" style="margin-top:4px">We use your details to send your result and, if you tick the box, occasional emails from Jo. Your answers are seen only by Jo, never shared or sold, and deleted on request.</p>
       <div class="nav"><button type="button" class="btn btn-ghost" id="back">← Back</button><button class="btn btn-red" type="submit">Show my result →</button></div>
     </form>
   </div></div></section>`;
@@ -524,7 +536,7 @@ function renderResult(){
   <section class="panel grey wrap teaser"><div class="inner">
     <div class="eyebrow label-red">The Encore Diagnostic™</div>
     <h2 class="display">Your score shows the pattern. The diagnostic shows the plan.</h2>
-    <p class="lede">The full diagnostic takes 20 to 30 minutes and produces The Encore Verdict: a 20 to 30 page personal report on whether this move stacks up, what is proven, what is assumed, and exactly what to do next.</p>
+    <p class="lede">The full diagnostic takes 30 to 40 minutes and produces The Encore Verdict: a 20 to 30 page personal report on whether this move stacks up, what is proven, what is assumed, and exactly what to do next.</p>
     <ul class="locked">
       <li><i class="lock"></i><div><b>Your Encore Verdict</b><span>A clear recommendation on your next move, with a confidence level.</span></div></li>
       <li><i class="lock"></i><div><b>All eight dimension scores</b><span>Including how much real evidence sits behind each one.</span></div></li>
@@ -538,9 +550,11 @@ function renderResult(){
       <a class="btn btn-red" href="/?src=${/^(webinar|workbook|nextmove)$/i.test(SOURCE)?"webinar":"encore-score"}" id="buy">Get my full diagnostic →</a>
       <small>Founding places: your Encore Verdict arrives within 24 hours. Credited in full if you join The Encore Programme™ within 14 days.</small>
     </div>
-        <div class="nav" style="justify-content:flex-start"><button class="btn btn-ghost" id="again">↺ Retake the Encore Score</button></div>
+        <div class="nav no-print" style="justify-content:flex-start;gap:12px;flex-wrap:wrap"><button class="btn btn-ghost" id="pdf">↓ Download my results (PDF)</button><button class="btn btn-ghost" id="again">↺ Retake the Encore Score</button></div>
+        <div class="print-foot">The Encore Score™ · The Encore Partnership™ · Experience wins<br>Retake it any time at diagnostic.theencorepartnership.com/score · Your full plan: diagnostic.theencorepartnership.com · jo@theencorepartnership.com</div>
   </div></section>`;
     document.getElementById('again').onclick=()=>{reset();render();};
+    document.getElementById('pdf').onclick=()=>{const t=document.title;document.title='Encore Score - '+(S.name||'my results');window.print();setTimeout(()=>{document.title=t;},1000);};
 }
 
 document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{
