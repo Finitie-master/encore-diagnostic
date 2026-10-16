@@ -535,7 +535,7 @@ function renderResult(){
     </ul>
     <div class="buy">
       <div class="price">£397</div>
-      <a class="btn btn-red" href="/?src=encore-score" id="buy">Get my full diagnostic →</a>
+      <a class="btn btn-red" href="/?src=${/^(webinar|workbook|nextmove)$/i.test(SOURCE)?"webinar":"encore-score"}" id="buy">Get my full diagnostic →</a>
       <small>Founding places: your Encore Verdict arrives within 24 hours. Credited in full if you join The Encore Programme™ within 14 days.</small>
     </div>
         <div class="nav" style="justify-content:flex-start"><button class="btn btn-ghost" id="again">↺ Retake the Encore Score</button></div>
