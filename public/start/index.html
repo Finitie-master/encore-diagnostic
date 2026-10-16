@@ -99,6 +99,7 @@ textarea:focus,input:focus{border-color:var(--ink);outline:none}
 .btn.small{font-size:13px;padding:6px 0}
 .cf .hint,.log .hint,.calc .hint{display:block;font-weight:400;font-size:14px;color:var(--stone);margin-top:4px;line-height:1.45}
 @media (max-width:760px){.welcome .grid3,.calc{grid-template-columns:minmax(0,1fr)}.cout{position:static}}
+.cf input::placeholder{color:#B5B0A8;opacity:1}
 </style>
 </head>
 <body>
@@ -179,13 +180,13 @@ function itemHTML(it){
 }
 
 function calcHTML(){
-  const f=(c,label,hint,pre)=>`<div class="cf"><label for="f-${c}">${label}${hint?`<span class="hint">${hint}</span>`:""}</label><div class="pre">${pre?`<span>${pre}</span>`:""}<input type="number" inputmode="decimal" min="0" step="any" id="f-${c}" data-c="${c}" value="${esc(A[c]??"")}"></div></div>`;
+  const f=(c,label,hint,pre,ex)=>`<div class="cf"><label for="f-${c}">${label}${hint?`<span class="hint">${hint}</span>`:""}</label><div class="pre">${pre?`<span>${pre}</span>`:""}<input type="number" inputmode="decimal" min="0" step="any" id="f-${c}" data-c="${c}" placeholder="${ex}" value="${esc(A[c]??"")}"></div></div>`;
   return `<div class="calc">
     <div class="cinputs">
-      ${f("econ_income","The annual income you want the business to pay you","Before personal tax. Your answer in section 1 was "+esc(A.income||"not given")+".","£")}
-      ${f("econ_costs","Your yearly business costs","Software, insurance, travel, accountant, marketing. A rough guess is fine.","£")}
-      ${f("econ_price","The price of your main offer, per client or project","What one sale would bring in.","£")}
-      ${f("econ_days","Delivery days each sale takes","Including preparation and follow-up.","")}
+      ${f("econ_income","The annual income you want the business to pay you","Before personal tax. Your answer in section 1 was "+esc(A.income||"not given")+".","£","e.g. 60000")}
+      ${f("econ_costs","Your yearly business costs","Software, insurance, travel, accountant, marketing. A rough guess is fine.","£","e.g. 8000")}
+      ${f("econ_price","The price of your main offer, per client or project","What one sale would bring in.","£","e.g. 6000")}
+      ${f("econ_days","Delivery days each sale takes","Including preparation and follow-up.","","e.g. 6")}
       <p class="hint">Working ${daysPerWeek()||"?"} day${daysPerWeek()===1?"":"s"} a week (from section 1), 44 weeks a year, with about 30% of your time going on selling and admin.</p>
       <label class="check"><input type="checkbox" id="econ_unknown" ${A.econ_unknown?"checked":""}> I can't estimate these yet</label>
     </div>
