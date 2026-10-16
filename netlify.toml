@@ -12,3 +12,9 @@
   for = "/engine/*"
   [headers.values]
     Content-Type = "text/javascript; charset=utf-8"
+
+# The premium diagnostic was reviewed at /preview/start before going live.
+[[redirects]]
+  from = "/preview/start/*"
+  to = "/start/"
+  status = 301
