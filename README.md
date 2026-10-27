@@ -24,3 +24,7 @@ Will be served at `diagnostic.theencorepartnership.com`.
 
 ## Hosting
 Netlify. Publish directory: `public` (set in `netlify.toml`).
+
+## Demo mode (for showing the diagnostic to people)
+
+Open `https://diagnostic.theencorepartnership.com/start/?demo=encore-show-jo`. A dark bar appears at the bottom of the page: nothing is required, you can jump to any section, "Fill sample answers" loads a worked example, and the last step shows what Jo would receive instead of submitting. Nothing is sent to Netlify Forms. Demo answers are stored separately from real ones, and demo mode lasts until "Exit demo" or the tab is closed. To change the code, edit `DEMO_CODE` in `public/start/index.html`. It hides the bar from ordinary visitors; it isn't a security control, as there's nothing private behind it.

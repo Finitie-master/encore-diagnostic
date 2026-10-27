@@ -100,6 +100,15 @@ textarea:focus,input:focus{border-color:var(--ink);outline:none}
 .cf .hint,.log .hint,.calc .hint{display:block;font-weight:400;font-size:14px;color:var(--stone);margin-top:4px;line-height:1.45}
 @media (max-width:760px){.welcome .grid3,.calc{grid-template-columns:minmax(0,1fr)}.cout{position:static}}
 .cf input::placeholder{color:#B5B0A8;opacity:1}
+.demo-bar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:10px 16px;background:#141414;color:#EDE7DE;font-size:14px;box-shadow:0 -4px 16px rgba(0,0,0,.2)}
+.demo-tag{background:var(--red);color:#fff;font:600 12px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;padding:6px 8px}
+.demo-txt{margin-right:auto}
+.demo-bar select,.demo-bar button{font:inherit;font-size:14px;padding:6px 10px;border:1px solid #555;background:#222;color:#EDE7DE;cursor:pointer}
+.demo-bar button:hover,.demo-bar select:hover{border-color:#aaa}
+body.is-demo{padding-bottom:72px}
+.demo-h{font-family:var(--f-display);font-weight:400;font-size:28px;margin:28px 0 10px}
+.demo-t{width:100%;border-collapse:collapse;font-size:15px}.demo-t th{text-align:left;vertical-align:top;width:180px;padding:10px 12px 10px 0;border-top:1px solid var(--line);font-weight:600}.demo-t td{padding:10px 0;border-top:1px solid var(--line)}
+@media (max-width:640px){.demo-txt{display:none}.demo-t th{width:110px}}
 </style>
 </head>
 <body>
@@ -136,7 +145,13 @@ const FORM_NAME="encore-diagnostic";
 const REL=["A friend or family member","A former colleague","Someone in my wider network","Someone I was introduced to","A stranger who fits my buyer"];
 const MONEY=["Money didn't come up","They asked what it would cost","They asked for a proposal","They agreed a price or committed","They paid"];
 
-const KEY="encore-diagnostic-v3";
+// Demo mode: open /start/?demo=encore-show-jo to click through freely. Nothing is required and nothing is submitted.
+const DEMO_CODE="encore-show-jo";
+(()=>{const q=new URLSearchParams(location.search),d=q.get("demo");
+  try{ if(d==="off") sessionStorage.removeItem("encore-demo"); else if(d===DEMO_CODE) sessionStorage.setItem("encore-demo","1"); }catch(e){}
+  if(d!==null){q.delete("demo");history.replaceState(null,"",location.pathname+(q.toString()?"?"+q:"")+location.hash);} })();
+let DEMO=false; try{DEMO=sessionStorage.getItem("encore-demo")==="1";}catch(e){}
+const KEY=DEMO?"encore-diagnostic-demo":"encore-diagnostic-v3";
 let A={}, step=-1;
 try{const s=JSON.parse(localStorage.getItem(KEY)||"null"); if(s){A=s.A||{};step=s.step??-1;}}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify({A,step}));}catch(e){}};
@@ -265,6 +280,7 @@ function bind(S){
   updateCalc();
   document.getElementById("back").onclick=()=>{step--;save();render();};
   document.getElementById("next").onclick=()=>{
+    if(DEMO){ if(step<N-1){step++;save();render();} else submit(); return; }
     const err=document.getElementById("err");
     const missing=S.items.filter(it=>it.s?A[it.s]===undefined:(it.req&&!String(A[it.c]||"").trim()));
     if(missing.length){err.textContent=`Please answer every question${S.items.some(i=>i.req)?" and required item":""} in this section before moving on (${missing.length} left).`;return;}
@@ -275,7 +291,7 @@ function bind(S){
   };
 }
 
-async function submit(){
+function computeAll(){
   const answers={}; QUESTIONS.forEach(q=>answers[q.code]=A[q.code]);
   const r=evaluate({answers,urgency:A.urgency});
   const econ=A.econ_unknown?{complete:false}:economics(econInputs());
@@ -294,6 +310,11 @@ async function submit(){
     answers_json:JSON.stringify(answers),context_answers:JSON.stringify(context),
     evidence_log:JSON.stringify((A.log||[]).filter(e=>e.who||e.problem)),
     profile_text:A.profile_text||"",offer_text:A.offer_text||""};
+  return {f,r,econText,ev,modelText};
+}
+async function submit(){
+  if(DEMO){ let o=null; try{o=computeAll();}catch(e){} return demoDone(o); }
+  const {f}=computeAll();
   const btn=document.getElementById("next"); btn.disabled=true; btn.textContent="Sending…";
   try{
     const res=await fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(f).toString()});
@@ -308,6 +329,61 @@ async function submit(){
     document.getElementById("err").textContent="Your answers didn't send. Your progress is saved on this device; please check your connection and try again. If it keeps failing, email jo@theencorepartnership.com.";
   }
 }
+
+// ---------- Demo mode ----------
+function demoDone(o){
+  const ok=o&&Number.isFinite(+o.f.overall)&&QUESTIONS.every(q=>A[q.code]!==undefined);
+  const row=(k,v)=>`<tr><th>${esc(k)}</th><td>${esc(v)}</td></tr>`;
+  app.innerHTML=`<div class="done"><div class="eyebrow red">Demo complete</div><h2>That's the end of the diagnostic.</h2>
+  <p>In demo mode nothing is submitted, so no email is sent and nothing reaches Jo's inbox. A real client would now see: <i>"Your Encore Verdict will arrive within 24 hours."</i></p>
+  ${ok?`<h3 class="demo-h">What Jo receives to write the Verdict</h3><table class="demo-t">
+    ${row("Verdict",o.f.verdict)}${row("Overall score",o.f.overall+" / 100")}${row("Dimension scores",o.f.dimension_scores)}
+    ${row("Gates triggered",o.f.gates||"None")}${row("Patterns",o.f.patterns||"None")}${row("Numbers",o.econText)}
+    ${row("Evidence log",o.ev.text)}${row("Business model fit",o.modelText)}</table>`
+    :`<p class="note">Some scored questions were left blank, so there's no computed summary to show. Use "Fill sample answers" in the demo bar to see a full example.</p>`}
+  <div class="nav"><button class="btn btn-ghost" id="d-back">← Back to the last section</button><button class="btn btn-red" id="d-new">Start a fresh demo</button></div></div>`;
+  window.scrollTo({top:0});
+  document.getElementById("d-back").onclick=()=>{step=N-1;save();render();};
+  document.getElementById("d-new").onclick=()=>{A={};step=-1;save();render();};
+}
+function demoSample(){
+  const pick=(c,i)=>{const it=SECTIONS.flatMap(S=>S.items).find(x=>x.c===c);return it&&it.opts?it.opts[Math.min(i,it.opts.length-1)]:undefined;};
+  A={name:"David Example",email:"david@example.com",
+    situation:pick("situation",1),purpose:pick("purpose",1),income:pick("income",2),urgency:pick("urgency",1),days:pick("days",2),
+    building:"An operations consultancy helping founders of growing B2B service firms stop losing clients between the sale and the delivery.",
+    problems:"Onboarding chaos after a big sale; handovers between sales and delivery; teams that have outgrown their processes.",
+    evidence_expertise:"22 years in operations across three companies. Cut client-onboarding errors by 40% and led two post-acquisition integrations.",
+    customer:"Founders and MDs of B2B service firms with 30 to 150 staff who are growing faster than their processes.",
+    do_nothing:"They keep losing clients in the first 90 days and burning out their best people.",
+    best_evidence:"Two former colleagues have asked me to look at their onboarding, and one offered to pay.",
+    offer:"A six-week onboarding fix: diagnose, redesign and embed a new client onboarding process.",
+    different:"I've done this inside three businesses, not just advised on it.",
+    first_sale:"A former colleague who is now MD of a 60-person agency.",
+    relationships:pick("relationships",2),channels:[pick("channels",0),pick("channels",1)],
+    funding:[pick("funding",0)],invest_max:pick("invest_max",1),
+    work_mode:pick("work_mode",0),engagement:pick("engagement",1),client_count:pick("client_count",1),groups:pick("groups",0),
+    delivery:pick("delivery",0),accountability:pick("accountability",1),selling:[pick("selling",0)],avoid:[pick("avoid",0)],
+    success_beyond_money:"Doing work I'm proud of, three days a week, with time for family.",
+    no_compromise:"I won't go back to a full-time role with a long commute.",
+    econ_income:60000,econ_costs:8000,econ_price:6000,econ_days:6,
+    log:[{who:"MD, 60-person digital agency",rel:REL[1],problem:"New clients churn because delivery doesn't match what sales promised.",money:MONEY[1]},
+         {who:"Founder, 40-person design studio",rel:REL[2],problem:"Onboarding takes six weeks and clients get nervous.",money:MONEY[0]}]};
+  const pattern=[3,2,3,2,3,2,2,3,1,2,3,2,2,1,2];
+  QUESTIONS.forEach((q,i)=>{A[q.code]=Math.min(pattern[i%pattern.length],(q.options||[1,2,3,4,5]).length-1);});
+}
+function demoBar(){
+  if(!DEMO) return;
+  const bar=document.createElement("div"); bar.className="demo-bar no-print";
+  bar.innerHTML=`<span class="demo-tag">Demo mode</span><span class="demo-txt">Nothing is required and nothing is submitted.</span>
+    <select id="d-jump" aria-label="Jump to section"><option value="">Jump to…</option><option value="-1">Welcome</option>${SECTIONS.map((S,i)=>`<option value="${i}">${i+1}. ${esc(S.title)}</option>`).join("")}</select>
+    <button type="button" id="d-fill">Fill sample answers</button><button type="button" id="d-clear">Clear answers</button><button type="button" id="d-exit">Exit demo</button>`;
+  document.body.appendChild(bar); document.body.classList.add("is-demo");
+  bar.querySelector("#d-jump").onchange=e=>{if(e.target.value==="")return;step=+e.target.value;save();render();e.target.value="";};
+  bar.querySelector("#d-fill").onclick=()=>{demoSample();save();render();};
+  bar.querySelector("#d-clear").onclick=()=>{A={};save();render();};
+  bar.querySelector("#d-exit").onclick=()=>{try{sessionStorage.removeItem("encore-demo");localStorage.removeItem("encore-diagnostic-demo");}catch(e){} location.href="/start/";};
+}
+demoBar();
 render();
 </script>
 </body>
