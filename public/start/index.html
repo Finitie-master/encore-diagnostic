@@ -349,27 +349,29 @@ function demoDone(o){
 function demoSample(){
   const pick=(c,i)=>{const it=SECTIONS.flatMap(S=>S.items).find(x=>x.c===c);return it&&it.opts?it.opts[Math.min(i,it.opts.length-1)]:undefined;};
   A={name:"David Example",email:"david@example.com",
-    situation:pick("situation",1),purpose:pick("purpose",1),income:pick("income",2),urgency:pick("urgency",1),days:pick("days",2),
+    situation:pick("situation",1),purpose:pick("purpose",0),income:pick("income",2),urgency:pick("urgency",1),days:pick("days",2),
     building:"An operations consultancy helping founders of growing B2B service firms stop losing clients between the sale and the delivery.",
     problems:"Onboarding chaos after a big sale; handovers between sales and delivery; teams that have outgrown their processes.",
     evidence_expertise:"22 years in operations across three companies. Cut client-onboarding errors by 40% and led two post-acquisition integrations.",
     customer:"Founders and MDs of B2B service firms with 30 to 150 staff who are growing faster than their processes.",
     do_nothing:"They keep losing clients in the first 90 days and burning out their best people.",
-    best_evidence:"Two former colleagues have asked me to look at their onboarding, and one offered to pay.",
+    best_evidence:"Two former colleagues said they would love help with their onboarding, but nobody has talked about paying yet.",
     offer:"A six-week onboarding fix: diagnose, redesign and embed a new client onboarding process.",
     different:"I've done this inside three businesses, not just advised on it.",
     first_sale:"A former colleague who is now MD of a 60-person agency.",
-    relationships:pick("relationships",2),channels:[pick("channels",0),pick("channels",1)],
-    funding:[pick("funding",0)],invest_max:pick("invest_max",1),
+    relationships:pick("relationships",3),channels:[pick("channels",0),pick("channels",5),pick("channels",2)],
+    funding:[pick("funding",1),pick("funding",0)],invest_max:pick("invest_max",1),
     work_mode:pick("work_mode",0),engagement:pick("engagement",1),client_count:pick("client_count",1),groups:pick("groups",0),
-    delivery:pick("delivery",0),accountability:pick("accountability",1),selling:[pick("selling",0)],avoid:[pick("avoid",0)],
+    delivery:pick("delivery",2),accountability:pick("accountability",2),selling:[pick("selling",0),pick("selling",1)],avoid:[pick("avoid",0),pick("avoid",5)],
     success_beyond_money:"Doing work I'm proud of, three days a week, with time for family.",
     no_compromise:"I won't go back to a full-time role with a long commute.",
     econ_income:60000,econ_costs:8000,econ_price:6000,econ_days:6,
-    log:[{who:"MD, 60-person digital agency",rel:REL[1],problem:"New clients churn because delivery doesn't match what sales promised.",money:MONEY[1]},
+    log:[{who:"MD, 60-person digital agency",rel:REL[1],problem:"New clients churn because delivery doesn't match what sales promised.",money:MONEY[0]},
          {who:"Founder, 40-person design studio",rel:REL[2],problem:"Onboarding takes six weeks and clients get nervous.",money:MONEY[0]}]};
-  const pattern=[3,2,3,2,3,2,2,3,1,2,3,2,2,1,2];
-  QUESTIONS.forEach((q,i)=>{A[q.code]=Math.min(pattern[i%pattern.length],(q.options||[1,2,3,4,5]).length-1);});
+  // A coherent example: strong expertise, thin evidence of willingness to pay (The Unproven Expert, verdict Validate First).
+  const SAMPLE={B1:3,B2:3,B3:3,B4:3,B5:3,C1:2,C2:3,C3:3,C4:1,C5:2,C6:3,D1:2,D2:2,D3:1,D4:0,D5:3,D6:2,D7:1,
+    E1:2,E2:3,E3:3,E4:2,E5:2,F1:2,F2:2,F3:3,F4:3,F5:2,F6:3,G1:3,G2:3,G3:2,G4:2,G5:2,H1:2,H2:3,H3:2,H4:3,H5:3,I1:3,I2:3,I3:2,I4:3};
+  QUESTIONS.forEach(q=>{A[q.code]=SAMPLE[q.code]??2;});
 }
 function demoBar(){
   if(!DEMO) return;
