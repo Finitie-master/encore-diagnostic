@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="The Encore Score™: 14 questions to show whether your next move stacks up commercially, practically and personally.">
+<meta name="description" content="The Encore Score: Idea. 14 questions to show whether your next move stacks up commercially, practically and personally.">
 <meta name="robots" content="noindex">
-<title>The Encore Score™</title>
+<title>The Encore Score: Idea</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&display=swap">
@@ -191,6 +191,9 @@ textarea:focus,input:focus{border-color:var(--ink);outline:none}
   @page{margin:12mm}
   html,body{background:#fff!important}
 }
+.display em{font-style:italic;text-transform:none;color:var(--red)}
+.hero h1 em{display:block;font-size:.62em;margin-top:.08em}
+.mettle-link{margin-top:22px;font-size:16px;color:var(--char)}.mettle-link a{color:var(--red);font-weight:600}
 .hero-photo .lede,.hero-photo .meta,.hero-photo .eyebrow,.hero-photo h1{text-shadow:0 1px 12px rgba(0,0,0,.55)}
 </style>
 </head>
@@ -378,7 +381,7 @@ function renderIntro(){
   <section class="hero hero-photo wrap"><div class="inner fade">
     <svg class="mark" viewBox="0 0 930 1236" aria-hidden="true"><rect x="2" y="1" width="926" height="165"/><path d="M146 291h652v155H326v212h434v154H326v268h472v155H146z"/></svg>
     <div class="eyebrow">Experience wins</div>
-    <h1 class="display">The Encore Score™</h1>
+    <h1 class="display">The Encore Score™ <em>Idea</em></h1>
     <p class="lede">Fourteen questions to show whether your next move stacks up commercially, practically and personally, and what to do about it.</p>
     <div class="meta"><span>14 questions</span><span>About 7 minutes</span><span>Instant result</span></div>
     <button class="btn btn-red" id="start">Find your Encore Score →</button>
@@ -411,7 +414,7 @@ function renderQ(){
   const help=q.help||(q.dim?"How true is this for you today?":"");
   app.innerHTML=`
   <section class="hero wrap" style="text-align:left"><div class="inner" style="padding-block:28px 96px">
-    <div class="narrow"><div class="eyebrow" style="color:#E2D9CC">The Encore Score™</div></div>
+    <div class="narrow"><div class="eyebrow" style="color:#E2D9CC">The Encore Score™ · Idea</div></div>
   </div></section>
   <section class="panel wrap"><div class="inner"><div class="narrow fade">
     <div class="progress"><div class="bar"><i style="width:${pct}%"></i></div><span class="count">${String(n).padStart(2,"0")} / ${TOTAL}</span></div>
@@ -446,7 +449,7 @@ document.addEventListener('keydown',e=>{
 function renderDetails(){
   app.innerHTML=`
   <section class="hero wrap" style="text-align:left"><div class="inner" style="padding-block:28px 96px">
-    <div class="narrow"><div class="eyebrow" style="color:#E2D9CC">The Encore Score™</div></div>
+    <div class="narrow"><div class="eyebrow" style="color:#E2D9CC">The Encore Score™ · Idea</div></div>
   </div></section>
   <section class="panel wrap"><div class="inner"><div class="narrow fade">
     <div class="progress"><div class="bar"><i style="width:100%"></i></div><span class="count">Done</span></div>
@@ -532,6 +535,7 @@ function renderResult(){
       <div><div class="eyebrow label-red">Your most important constraint</div><h4>${esc(DIMS[co].name)}</h4><p>${esc(DIMS[co].weak)}</p></div>
     </div>
     <div class="action"><span class="tag">Do this week</span><p>${esc(P.action)}</p></div>
+    <p class="mettle-link no-print">This score tests the idea. Its partner, the Encore Score: Mettle, tests you: whether you're built for working for yourself, and which route to your encore suits you best. <a href="/mettle?src=idea-score">Test your mettle →</a></p>
   </div></section>
 
   <section class="panel grey wrap teaser"><div class="inner">
@@ -551,8 +555,8 @@ function renderResult(){
       <a class="btn btn-red" href="/?src=${/^(webinar|workbook|nextmove)$/i.test(SOURCE)?"webinar":"encore-score"}" id="buy">Get my full diagnostic →</a>
       <small>Founding places: your Encore Verdict arrives within 24 hours. Credited in full if you join The Encore Programme™ within 14 days.</small>
     </div>
-        <div class="nav no-print" style="justify-content:flex-start;gap:12px;flex-wrap:wrap"><button class="btn btn-ghost" id="pdf">↓ Download my results (PDF)</button><button class="btn btn-ghost" id="again">↺ Retake the Encore Score</button></div>
-        <div class="print-foot">The Encore Score™ · The Encore Partnership™ · Experience wins<br>Retake it any time at diagnostic.theencorepartnership.com/score · Your full plan: diagnostic.theencorepartnership.com · jo@theencorepartnership.com</div>
+        <div class="nav no-print" style="justify-content:flex-start;gap:12px;flex-wrap:wrap"><button class="btn btn-ghost" id="pdf">↓ Download my results (PDF)</button><button class="btn btn-ghost" id="again">↺ Retake the Idea Score</button></div>
+        <div class="print-foot">The Encore Score™: Idea · The Encore Partnership™ · Experience wins<br>Retake it any time at diagnostic.theencorepartnership.com/score · Your full plan: diagnostic.theencorepartnership.com · jo@theencorepartnership.com</div>
   </div></section>`;
     document.getElementById('again').onclick=()=>{reset();render();};
     document.getElementById('pdf').onclick=()=>{const t=document.title;document.title='Encore Score - '+(S.name||'my results');window.print();setTimeout(()=>{document.title=t;},1000);};
