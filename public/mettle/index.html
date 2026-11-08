@@ -279,6 +279,7 @@ textarea:focus,input:focus{border-color:var(--ink);outline:none}
 </section>
 
 <script type="module">
+import { wirePdfButton } from "/engine/pdf.mjs";
 import { NAME, DIMS, PILLARS, SCALE, STAGES, Q, ROUTES, PROFILES, BANDS, SAMPLES, outcome } from "/engine/mettle.mjs";
 
 // Links for the close. Leave WEBINAR_URL empty to hide the webinar option.
@@ -494,10 +495,10 @@ function renderResult() {
     </div>
     <p class="prog">Ability is the most learnable part of your score. It's what The Encore Programme builds: a private accelerator for experienced professionals, 12 weeks, with Jo beside you from first idea to first paying clients.</p>
     <div class="nav no-print" style="justify-content:flex-start;gap:12px;flex-wrap:wrap"><button class="btn btn-ghost" id="pdf">↓ Download my results (PDF)</button><button class="btn btn-ghost" id="again">↺ Retake the Mettle score</button></div>
-    <div class="print-foot">The Encore Score™: ${NAME} · The Encore Partnership™ · Experience wins<br>Retake it any time at diagnostic.theencorepartnership.com/mettle · Test your idea: diagnostic.theencorepartnership.com/score · jo@theencorepartnership.com</div>
+    <div class="print-foot">The Encore Score™: ${NAME} · The Encore Partnership™ · Experience wins<br>Book onto The Encore Programme at theencorepartnership.com · Retake this score at diagnostic.theencorepartnership.com/mettle · Test your idea at diagnostic.theencorepartnership.com/score · jo@theencorepartnership.com</div>
   </div></section>`;
   document.getElementById("again").onclick = () => { reset(); render(); };
-  document.getElementById("pdf").onclick = () => { const t = document.title; document.title = "Encore Score Mettle - " + (S.name || "my results"); window.print(); setTimeout(() => { document.title = t; }, 1000); };
+  wirePdfButton(document.getElementById("pdf"), () => "Encore Score Mettle - " + (S.name || "my results"));
 }
 
 document.querySelectorAll(".chip").forEach((c) => c.onclick = () => {

@@ -556,10 +556,11 @@ function renderResult(){
       <small>Founding places: your Encore Verdict arrives within 24 hours. Credited in full if you join The Encore Programme™ within 14 days.</small>
     </div>
         <div class="nav no-print" style="justify-content:flex-start;gap:12px;flex-wrap:wrap"><button class="btn btn-ghost" id="pdf">↓ Download my results (PDF)</button><button class="btn btn-ghost" id="again">↺ Retake the Idea Score</button></div>
-        <div class="print-foot">The Encore Score™: Idea · The Encore Partnership™ · Experience wins<br>Retake it any time at diagnostic.theencorepartnership.com/score · Your full plan: diagnostic.theencorepartnership.com · jo@theencorepartnership.com</div>
+        <div class="print-foot">The Encore Score™: Idea · The Encore Partnership™ · Experience wins<br>Book onto The Encore Programme at theencorepartnership.com · Retake this score at diagnostic.theencorepartnership.com/score · Test yourself at diagnostic.theencorepartnership.com/mettle · jo@theencorepartnership.com</div>
   </div></section>`;
     document.getElementById('again').onclick=()=>{reset();render();};
-    document.getElementById('pdf').onclick=()=>{const t=document.title;document.title='Encore Score - '+(S.name||'my results');window.print();setTimeout(()=>{document.title=t;},1000);};
+    document.getElementById('pdf').onclick=()=>{const t=document.title;document.title='Encore Score Idea - '+(S.name||'my results');window.print();setTimeout(()=>{document.title=t;},1000);};
+    import('/engine/pdf.mjs').then(m=>m.wirePdfButton(document.getElementById('pdf'),()=>'Encore Score Idea - '+(S.name||'my results'))).catch(()=>{});
 }
 
 document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{
