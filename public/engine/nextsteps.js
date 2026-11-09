@@ -57,10 +57,10 @@
           '<div class="eyebrow label-red">The Encore Programme™</div>' +
           '<div class="price-tag">12 weeks</div>' +
           '<h3>Build it with Jo beside you</h3>' +
-          '<p>A private accelerator for experienced professionals. A small cohort, weekly workshops and monthly one-to-one time with Jo, from first idea to first paying clients.</p>' +
+          '<p>A private accelerator for experienced professionals. Weekly workshops in a small cohort plus monthly one-to-one time with Jo, from first idea to first paying clients.</p>' +
           '<ul>' +
             '<li><span><b>Evaluate.</b> Find what people will pay you for, and who.</span></li>' +
-            '<li><span><b>Build.</b> Your offer, your price, your route to market, with AI doing the heavy lifting.</span></li>' +
+            '<li><span><b>Build.</b> Your offer and price, and how you'll find buyers, with AI as your intern.</span></li>' +
             '<li><span><b>Grow.</b> Your first clients, your numbers and your next 90 days.</span></li>' +
             '<li><span><b>Diagnostic and Verdict included.</b></span></li>' +
           '</ul>' +
