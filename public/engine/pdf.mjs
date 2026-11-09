@@ -2,7 +2,8 @@
 // Used by both Encore Scores (Idea at /score, Mettle at /mettle).
 // The page is rendered at desktop width whatever device it's on, cut into A4 pages at
 // sensible points, and every page gets a footer with the website and booking links.
-// Links in the report (buttons) stay clickable in the PDF.
+// Links in the report (buttons) stay clickable in the PDF. The closing "Your next step"
+// block (Diagnostic and Programme) comes from the page itself, see nextsteps.js.
 
 export const SITE_URL = "https://theencorepartnership.com";
 export const SITE_LABEL = "theencorepartnership.com";
@@ -17,28 +18,9 @@ const NEXT_PX = Math.floor((MM_H - FOOT_MM - TOP_MM) * PX_PER_MM); // later page
 
 // Places it's tidy to start a new page.
 const BREAKS = "section, .topbar, .interp p, .pillars, .pair, .action, .routes .route, .callout, .qs li, .flags, .next, .prog, " +
-  ".dims-grid, .dim, .grid > *, .cards > *, .teaser ul, .teaser li, .res-grid, .scale, .sect-lede, .eyebrow, .print-foot, .pdf-end";
+  ".dims-grid, .dim, .grid > *, .cards > *, .teaser ul, .teaser li, .res-grid, .scale, .sect-lede, .eyebrow, .print-foot, .nx-wrap";
 // Blocks that should never be split across two pages.
-const KEEP = ".pdf-end, .action, .route, .pair, .pillars, .next, .scorebox, .qs li, .flags, .res-grid, .callout";
-
-// Styles for the closing panel that appears only in the PDF.
-const PDF_CSS = ".pdf-end{background:#000;color:#fff;padding:56px 64px 60px;margin:0}" +
-  ".pdf-end .eyebrow{color:#DD1D13}" +
-  ".pdf-end h2{font-family:var(--f-display);font-weight:400;text-transform:uppercase;font-size:56px;line-height:.95;margin:14px 0 18px;color:#fff}" +
-  ".pdf-end h2 em{font-style:italic;text-transform:none;color:#DD1D13}" +
-  ".pdf-end p{font-size:18px;line-height:1.55;color:#D8D4CE;max-width:760px;margin:0 0 26px}" +
-  ".pdf-end .pdf-links{display:flex;gap:16px;flex-wrap:wrap}" +
-  ".pdf-end .pdf-links a{display:inline-block;font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.08em;font-size:15px;padding:16px 22px;text-decoration:none}" +
-  ".pdf-end .pdf-links a.main{background:#DD1D13;color:#fff}" +
-  ".pdf-end .pdf-links a.alt{border:1px solid #5F5C57;color:#fff}";
-
-// The closing panel, added to the end of the report in the PDF only.
-export const PDF_END_HTML = `<section class="pdf-end">
-  <div class="eyebrow">The Encore Programme™</div>
-  <h2>Ready to turn this <em>into a business?</em></h2>
-  <p>The Encore Programme is a private accelerator for experienced professionals: 12 weeks in a small cohort, with Jo beside you from first idea to first paying clients. Find out more and book your place at theencorepartnership.com.</p>
-  <div class="pdf-links"><a class="main" href="${SITE_URL}">theencorepartnership.com →</a><a class="alt" href="${CALL_URL}">Book a free half hour →</a></div>
-</section>`;
+const KEEP = ".nx-wrap, .action, .route, .pair, .pillars, .next, .scorebox, .qs li, .flags, .res-grid, .callout";
 
 function loadScript(src) {
   return new Promise((ok, fail) => {
@@ -62,11 +44,8 @@ export async function downloadPdf({ filename, root = document.body }) {
       st.textContent = "*{animation:none!important;transition:none!important}" +
         ".no-print,#proto,form[hidden],.proto{display:none!important}" +
         ".print-foot{display:block!important;margin-top:28px;padding-top:14px;border-top:1px solid #ccc;font-size:12px;color:#555;line-height:1.6}" +
-        PDF_CSS +
         "html,body{width:" + W + "px!important;overflow:visible!important}";
       doc.head.appendChild(st);
-      const app = doc.getElementById("app") || doc.body;
-      app.insertAdjacentHTML("beforeend", PDF_END_HTML);
       const body = doc.body, top0 = body.getBoundingClientRect().top;
       totalH = Math.ceil(body.scrollHeight);
       breaks = [...new Set([...body.querySelectorAll(BREAKS)]
@@ -91,7 +70,7 @@ export async function downloadPdf({ filename, root = document.body }) {
   const room = () => (starts.length === 1 ? PAGE_PX : NEXT_PX);
   while (starts[starts.length - 1] + room() < H) {
     const s = starts[starts.length - 1], limit = s + room();
-    const ok = breaks.filter((y) => y > s + room() * 0.45 && y <= limit);
+    const ok = breaks.filter((y) => y > s + room() * 0.25 && y <= limit);
     starts.push(ok.length ? ok[ok.length - 1] : limit);
   }
 

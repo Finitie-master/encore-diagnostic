@@ -228,6 +228,7 @@ textarea:focus,input:focus{border-color:var(--ink);outline:none}
   </div>
 </section>
 
+<script src="/engine/nextsteps.js"></script>
 <script>
 (function(){
 const DIMS={
@@ -539,22 +540,7 @@ function renderResult(){
   </div></section>
 
   <section class="panel grey wrap teaser"><div class="inner">
-    <div class="eyebrow label-red">The Encore Diagnostic™</div>
-    <h2 class="display">Your score shows the pattern. The diagnostic shows the plan.</h2>
-    <p class="lede">The full diagnostic takes 30 to 40 minutes and produces The Encore Verdict: a 20 to 30 page personal report on whether this move stacks up, what is proven, what is assumed, and exactly what to do next.</p>
-    <ul class="locked">
-      <li><i class="lock"></i><div><b>Your Encore Verdict</b><span>A clear recommendation on your next move, with a confidence level.</span></div></li>
-      <li><i class="lock"></i><div><b>All eight dimension scores</b><span>Including how much real evidence sits behind each one.</span></div></li>
-      <li><i class="lock"></i><div><b>Evidence versus assumption</b><span>What you know, what you're inferring, and what must be tested.</span></div></li>
-      <li><i class="lock"></i><div><b>The right business model</b><span>Consulting, fractional, advisory, productised or portfolio, and why.</span></div></li>
-      <li><i class="lock"></i><div><b>Your risk register</b><span>The three to five risks most likely to cost you time or money.</span></div></li>
-      <li><i class="lock"></i><div><b>Your 90-day priorities</b><span>Three phases with evidence targets, plus what not to do yet.</span></div></li>
-    </ul>
-    <div class="buy">
-      <div class="price">£397</div>
-      <a class="btn btn-red" href="/?src=${/^(webinar|workbook|nextmove)$/i.test(SOURCE)?"webinar":"encore-score"}" id="buy">Get my full diagnostic →</a>
-      <small>Founding places: your Encore Verdict arrives within 24 hours. Credited in full if you join The Encore Programme™ within 14 days.</small>
-    </div>
+    ${EncoreNext.html({ diagUrl: "/?src=" + (/^(webinar|workbook|nextmove)$/i.test(SOURCE) ? "webinar" : "encore-score") })}
         <div class="nav no-print" style="justify-content:flex-start;gap:12px;flex-wrap:wrap"><button class="btn btn-ghost" id="pdf">↓ Download my results (PDF)</button><button class="btn btn-ghost" id="again">↺ Retake the Idea Score</button></div>
         <div class="print-foot">The Encore Score™: Idea · The Encore Partnership™ · Experience wins<br>Book onto The Encore Programme at theencorepartnership.com · Retake this score at diagnostic.theencorepartnership.com/score · Test yourself at diagnostic.theencorepartnership.com/mettle · jo@theencorepartnership.com</div>
   </div></section>`;

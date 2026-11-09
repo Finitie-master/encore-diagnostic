@@ -236,6 +236,7 @@ textarea:focus,input:focus{border-color:var(--ink);outline:none}
 .next h4{font-family:var(--f-display);font-weight:400;font-size:32px;line-height:1.05;margin:4px 0 0}
 .next p{margin:0;font-size:16px;color:var(--char);flex:1}
 .next .btn{align-self:flex-start;margin-top:10px}
+.next.solo{grid-template-columns:minmax(0,1fr)}.next.solo p{max-width:720px}
 .prog{margin-top:30px;font-size:16px;color:var(--char);max-width:680px}
 @media (max-width:760px){
   .pillars,.next{grid-template-columns:minmax(0,1fr)}
@@ -278,6 +279,7 @@ textarea:focus,input:focus{border-color:var(--ink);outline:none}
   </div>
 </section>
 
+<script src="/engine/nextsteps.js"></script>
 <script type="module">
 import { wirePdfButton } from "/engine/pdf.mjs";
 import { NAME, DIMS, PILLARS, SCALE, STAGES, Q, ROUTES, PROFILES, BANDS, SAMPLES, outcome } from "/engine/mettle.mjs";
@@ -286,6 +288,7 @@ import { NAME, DIMS, PILLARS, SCALE, STAGES, Q, ROUTES, PROFILES, BANDS, SAMPLES
 const CALL_URL = "https://calendar.app.google/BFMnsuQPBoSExbSV6";
 const WEBINAR_URL = "";
 const IDEA_URL = "/score?src=mettle";
+const DIAG_URL = "/?src=mettle-score";
 
 const TOTAL = Q.length;
 const SOURCE = (() => { try { const u = new URLSearchParams(location.search); return (u.get("utm_source") || u.get("src") || u.get("ref") || (document.referrer ? new URL(document.referrer).hostname : "direct")).slice(0, 60); } catch (e) { return "direct"; } })();
@@ -486,14 +489,16 @@ function renderResult() {
   </div></section>
 
   <section class="panel grey wrap teaser"><div class="inner">
-    <div class="eyebrow label-red">Your next move</div>
+    <div class="eyebrow label-red">Start here · free</div>
     <h2 class="display">You've tested your mettle. <em>Now test the idea.</em></h2>
-    <div class="next">
-      <div><div class="eyebrow label-red">Free · 7 minutes</div><h4>The Encore Score: Idea</h4><p>Fourteen questions on whether the business you have in mind stacks up commercially, practically and personally, and the one constraint most likely to cost you time or money.</p><a class="btn btn-red" href="${IDEA_URL}">Score my idea →</a></div>
-      <div><div class="eyebrow label-red">Free · 30 minutes</div><h4>Talk it through with Jo</h4><p>A free half hour, just us, to look at your result and work out which route makes sense for you. No charge, and definitely no catch.</p><a class="btn btn-red" href="${CALL_URL}" target="_blank" rel="noopener">Book a free half hour →</a></div>
+    <div class="next${WEBINAR_URL ? "" : " solo"}">
+      <div><div class="eyebrow label-red">Free · 7 minutes</div><h4>The Encore Score: Idea</h4><p>Mettle tells you about you. The Idea Score tells you about the business you have in mind: fourteen questions on whether it stacks up commercially, practically and personally, and the one constraint most likely to cost you time or money.</p><a class="btn btn-red" href="${IDEA_URL}">Score my idea →</a></div>
       ${WEBINAR_URL ? `<div><div class="eyebrow label-red">Free webinar</div><h4>The Next Move™ webinar</h4><p>Six practical steps for setting up on your own, from finding what people already pay you for to getting found without shouting.</p><a class="btn btn-red" href="${WEBINAR_URL}" target="_blank" rel="noopener">Save my seat →</a></div>` : ""}
     </div>
-    <p class="prog">Ability is the most learnable part of your score. It's what The Encore Programme builds: a private accelerator for experienced professionals, 12 weeks, with Jo beside you from first idea to first paying clients.</p>
+  </div></section>
+
+  <section class="panel wrap"><div class="inner">
+    ${EncoreNext.html({ diagUrl: DIAG_URL })}
     <div class="nav no-print" style="justify-content:flex-start;gap:12px;flex-wrap:wrap"><button class="btn btn-ghost" id="pdf">↓ Download my results (PDF)</button><button class="btn btn-ghost" id="again">↺ Retake the Mettle score</button></div>
     <div class="print-foot">The Encore Score™: ${NAME} · The Encore Partnership™ · Experience wins<br>Book onto The Encore Programme at theencorepartnership.com · Retake this score at diagnostic.theencorepartnership.com/mettle · Test your idea at diagnostic.theencorepartnership.com/score · jo@theencorepartnership.com</div>
   </div></section>`;
