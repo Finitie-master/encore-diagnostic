@@ -12,8 +12,8 @@ test("nextsteps.js parses and builds the block", () => {
   assert.ok(html.includes("Get my full diagnostic") && html.includes("Book a free half hour"));
 });
 
-test("inline scripts on both pages parse", () => {
-  for (const page of ["score", "mettle"]) {
+test("inline scripts on every page parse", () => {
+  for (const page of ["score", "mettle", "start", "free"]) {
     const html = readFileSync(new URL(`../public/${page}/index.html`, import.meta.url), "utf8");
     const scripts = [...html.matchAll(/<script(?![^>]*src=)([^>]*)>([\s\S]*?)<\/script>/g)];
     assert.ok(scripts.length > 0, page);
