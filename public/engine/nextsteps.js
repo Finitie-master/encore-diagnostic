@@ -21,6 +21,8 @@
     ".nx small{display:block;margin-top:14px;font-size:13px;color:var(--stone);line-height:1.5}" +
     ".nx .on{background:#000}.nx .on h3,.nx .on .price-tag{color:#fff}.nx .on p,.nx .on li{color:#D8D4CE}.nx .on li b{color:#fff}" +
     ".nx .on .btn-line{border-color:#8a857e;color:#fff}.nx .on small{color:#A9A39B}" +
+    ".nx .on .nx-offer{color:#fff;font-size:15px;margin:auto 0 16px;padding-top:6px}.nx .on .nx-offer+.acts{margin-top:0}" +
+    ".nx-offer b{display:inline-block;background:var(--red);color:#fff;font:600 11px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;padding:5px 7px;margin-right:6px;vertical-align:1px}" +
     ".nx-h{font-size:clamp(38px,6vw,64px)!important;margin-top:12px}" +
     ".nx-intro{font-size:18px;color:var(--char);max-width:640px;margin:16px 0 0}" +
     "@media (max-width:760px){.nx{grid-template-columns:minmax(0,1fr)}.nx>div{padding:24px}}" +
@@ -64,6 +66,7 @@
             '<li><span><b>Grow.</b> Your first clients, your numbers and your next 90 days.</span></li>' +
             '<li><span><b>Diagnostic and Verdict included.</b></span></li>' +
           '</ul>' +
+          '<p class="nx-offer"><b>10% off</b> Book your free half hour from these results and, if you decide to join, you\'ll get 10% off The Encore Programme. Just mention your score when we talk.</p>' +
           '<div class="acts"><a class="btn btn-red" href="' + CALL_URL + '" target="_blank" rel="noopener">Book a free half hour →</a><a class="btn-line" href="' + PROGRAMME_URL + '" target="_blank" rel="noopener">About the Programme →</a></div>' +
           '<small>Start with a free half hour, just us, to see whether it\'s right for you. No charge, and definitely no catch.</small>' +
         '</div>' +
