@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="The Encore Score™: 14 questions to show whether your next move stacks up commercially, practically and personally.">
+<meta name="description" content="The Encore Score: Idea. 14 questions to show whether your next move stacks up commercially, practically and personally.">
 <meta name="robots" content="noindex">
-<title>The Encore Score™</title>
+<title>The Encore Score: Idea</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&display=swap">
@@ -191,6 +191,9 @@ textarea:focus,input:focus{border-color:var(--ink);outline:none}
   @page{margin:12mm}
   html,body{background:#fff!important}
 }
+.display em{font-style:italic;text-transform:none;color:var(--red)}
+.hero h1 em{display:block;font-size:.62em;margin-top:.08em}
+.mettle-link{margin-top:22px;font-size:16px;color:var(--char)}.mettle-link a{color:var(--red);font-weight:600}
 .hero-photo .lede,.hero-photo .meta,.hero-photo .eyebrow,.hero-photo h1{text-shadow:0 1px 12px rgba(0,0,0,.55)}
 </style>
 </head>
@@ -225,15 +228,16 @@ textarea:focus,input:focus{border-color:var(--ink);outline:none}
   </div>
 </section>
 
+<script src="/engine/nextsteps.js"></script>
 <script>
 (function(){
 const DIMS={
   E:{name:"Expertise & Transferable Value",short:"Expertise",w:.12,
-     strong:"Your experience is a genuine commercial asset. You can point to problems you have solved repeatedly.",
-     weak:"You haven't yet translated your experience into specific, valuable problems you solve for someone else."},
+     strong:"Your experience is a genuine commercial asset. You can point to problems you've solved again and again.",
+     weak:"You haven't yet turned your experience into specific, valuable problems you solve for someone else."},
   C:{name:"Customer & Problem Clarity",short:"Customer",w:.16,
      strong:"You know who is most likely to buy and what makes them go looking for help.",
-     weak:"The buyer and the moment they need you are not yet sharp enough to sell to."},
+     weak:"The buyer, and the moment they need you, aren't sharp enough to sell to yet."},
   V:{name:"Evidence & Market Validation",short:"Validation",w:.18,
      strong:"You have real evidence that buyers recognise the problem and will pay to solve it.",
      weak:"Your confidence in the opportunity is ahead of the evidence that buyers will pay."},
@@ -242,16 +246,16 @@ const DIMS={
      weak:"Buyers may struggle to see quickly what you sell and why they should choose you."},
   M:{name:"Commercial Model & Economics",short:"Commercial",w:.15,
      strong:"Your pricing and capacity look capable of producing the income you want.",
-     weak:"Price, capacity and income target do not yet add up to the business you want."},
+     weak:"Your price and your capacity don't yet add up to the income you want."},
   R:{name:"Route to Market & Authority",short:"Route to market",w:.12,
      strong:"You have credibility and a realistic route to your first ten customers.",
      weak:"You don't yet have a reliable way to reach enough of the right buyers."},
   RD:{name:"Practical & Financial Readiness",short:"Readiness",w:.08,
-     strong:"You have the time and runway to test properly before committing.",
+     strong:"You have the time and the runway to test properly before you commit.",
      weak:"Your runway and the pace you need revenue are pulling against each other."},
   F:{name:"Founder Fit & Commitment",short:"Founder fit",w:.05,
      strong:"This is a business you genuinely want to run, in a shape that suits your life.",
-     weak:"The business you are considering may not fit the life you actually want."}
+     weak:"The business you're considering may not fit the life you actually want."}
 };
 const URG=["Within 3 months","3–6 months","6–12 months","12 months or more","No particular urgency"];
 const SCALE=[["Not at all",""],["Slightly",""],["Partly",""],["Mostly",""],["Strongly","With clear evidence"]];
@@ -275,44 +279,44 @@ const TOTAL=Q.length;
 
 const PROFILES={
  unproven:{name:"The Unproven Expert",con:"V",
-  text:["You bring serious raw material. Your experience is real, it is relevant, and people already recognise it. That is a genuine advantage.","What your answers don't show yet is evidence that buyers will pay for this particular offer. Right now the opportunity rests mainly on your judgement of what the market should need. Experienced professionals are especially prone to this, because their judgement has usually been right. The risk is spending months polishing a website, a brand or a programme for a problem nobody has confirmed in their own words.","The good news is that your credibility makes validation faster for you than for most. You can open doors others can't, so the next step is structured conversations rather than more preparation."],
-  action:"Book five conversations in the next ten days with people who match your intended buyer. Ask about the problem and what they have already tried. Don't pitch your solution."},
+  text:["You bring serious raw material. Your experience is real and relevant, and people already recognise it, which is a proper head start.", "What your answers don't show yet is evidence that buyers will pay for this particular offer. At the moment the opportunity rests mostly on your judgement of what the market ought to need. Experienced people are especially prone to this, because their judgement has usually been right. The danger is spending months polishing a website and a programme for a problem nobody has confirmed in their own words.", "The good news is that your credibility makes testing faster for you than for most. You can open doors other people can't, so the next step is a handful of proper conversations, and the website can wait."],
+  action:"Book five conversations in the next ten days with people who match your intended buyer. Ask about the problem and what they've already tried, and resist the urge to pitch."},
  polished:{name:"The Polished Assumption",con:"V",
-  text:["You have done real thinking about your offer. You can explain what you do, and it sounds credible. That clarity is valuable, but it can also mislead, because a well-articulated offer feels validated even when it hasn't been tested with buyers.","Your answers suggest the proposition is ahead of the evidence. You know what you want to sell, but you don't yet have enough proof that buyers see the problem the same way, or will pay to solve it.","Before you invest further in packaging, pricing pages or content, find out whether the market agrees with you. A short burst of direct conversations will either confirm you're on track or save you months on the wrong version."],
-  action:"Show your one-sentence offer to three potential buyers and ask what problem they think it solves. If their answer doesn't match yours, the offer needs work before the marketing does."},
+  text:["You've done real thinking about your offer. You can explain what you do and it sounds credible. That clarity is valuable, and slightly dangerous, because a well-worded offer feels tested even when no buyer has seen it.", "Your answers suggest the offer is ahead of the evidence. You know what you want to sell, but you don't yet have enough proof that buyers see the problem the same way, or will pay to solve it.", "Before you spend more on pricing pages and content, find out whether the market agrees with you. A short burst of direct conversations will either confirm you're on track or save you months polishing the wrong version."],
+  action:"Show your one-sentence offer to three potential buyers and ask what problem they think it solves. If their answer doesn't match yours, fix the offer before you touch the marketing."},
  untested:{name:"The Untested Idea",con:"V",
-  text:["There is something here worth exploring, but at the moment it is mostly an idea rather than an opportunity. Your answers show gaps in the evidence that buyers have this problem and will pay to solve it.","That isn't a reason to stop. It is a reason to be careful about what you spend time and money on next. Most ventures don't fail because the founder lacked ability. They fail because the founder built first and asked later.","You have the chance to do it the other way round. A few weeks of focused discovery will tell you whether this idea deserves your next chapter, or whether a different angle on your experience would serve you better."],
+  text:["There's something here worth exploring, but for now it's an idea rather than an opportunity. Your answers show gaps in the evidence that buyers have this problem and will pay to solve it.", "Keep going, and be careful what you spend time and money on next. Most ventures don't fail because the founder lacked ability. They fail because the founder built first and asked later, which is a bit like printing the wedding invitations before the proposal.", "You can do it the other way round. A few weeks of focused discovery will tell you whether this idea deserves your next chapter, or whether a different angle on your experience would serve you better."],
   action:"Write down the three assumptions your idea depends on most. Then find two people outside your friends and former colleagues who could prove or disprove the first one."},
  revenue:{name:"Revenue Under Pressure",con:"RD",
-  text:["You have valuable expertise and a clear need for income soon. That combination changes the order you should do things in.","Your answers suggest your runway and the pace you need revenue are pulling against each other. This is the moment many people make expensive mistakes, such as building a platform, a course or a brand that takes a year to pay back.","The right move is probably simpler and faster. Lead with a narrow, high-value service that draws on what you already know, sell it to people who already trust you, and let paid work show you where the repeatable demand is. Your bigger ambitions may well be viable. They just shouldn't be funded from a runway that is already under pressure."],
+  text:["You have valuable expertise and you need income soon. That combination changes the order you should do things in.", "Your answers suggest your runway and the pace you need revenue are pulling against each other. This is where people make expensive mistakes, such as building a platform or a course that takes a year to pay back.", "The right move is probably simpler and faster. Lead with a narrow, high-value service built on what you already know, and sell it first to people who already trust you. Paid work will show you where the repeatable demand is. Your bigger plans may well work. They just shouldn't be funded from a runway that's already under pressure."],
   action:"List ten people who already know your work and could buy, or introduce you to a buyer, in the next 60 days. Contact three of them this week."},
  economics:{name:"The Economic Mismatch",con:"M",
-  text:["There may well be demand for what you do. The question is whether the business you're planning can deliver the life and income you want from it.","Your answers suggest the economics don't add up yet. That could be the price, the number of days you want to work, how the work is delivered, or the income target itself. When the maths doesn't work, more marketing makes things worse, because you end up busy and underpaid.","This is one of the most common patterns we see in experienced professionals, and one of the most fixable. It usually means changing the shape of the offer rather than the idea behind it: different packaging, a different price point, group or productised delivery, or a more realistic ramp-up."],
-  action:"Divide your target annual income by your planned price per client or project. If the number of sales needed doesn't fit the days you want to work, change the model before you start selling."},
+  text:["There may well be demand for what you do. The question is whether the business you're planning can give you the life and income you want from it.", "Your answers suggest the numbers don't add up yet. It could be the price, the days you want to work, how the work is delivered or the income target itself. When the maths doesn't work, more marketing makes it worse, because you end up very busy and still underpaid.", "This is one of the most common patterns in experienced professionals, and one of the most fixable. It usually means changing the shape of the offer and keeping the idea behind it: different packaging, a different price, group or productised delivery, or a more realistic ramp-up."],
+  action:"Divide your target annual income by your planned price per client or project. If the number of sales you'd need doesn't fit the days you want to work, change the model before you start selling."},
  chapter:{name:"The Wrong Next Chapter",con:"F",
-  text:["Commercially, there may be a lot to like here. But your answers suggest the business you're considering may not fit the life you actually want.","That matters more than most diagnostics admit. Plenty of experienced people build something that works on paper and then find they have recreated the job they wanted to leave: the hours, the responsibility and the pressure, with less security.","Before you commit, get clear on what this next chapter is for and what you won't compromise on. The right answer may be a different model built on the same expertise, such as advisory or portfolio work rather than a full operating role."],
-  action:"Write down three things you want your working week to include and three it must not include. Then check your current plan honestly against both lists."},
+  text:["Commercially, there may be a lot to like here. Your answers suggest, though, that the business you're considering may not fit the life you actually want.", "That matters more than most diagnostics admit. Plenty of experienced people build something that works on paper and then realise they've recreated the job they wanted to leave, with the same hours and pressure and less security. Only now they're also the IT department.", "Before you commit, get clear on what this next chapter is for and what you won't compromise on. The right answer may be a different model built on the same expertise, such as advisory or portfolio work instead of a full operating role."],
+  action:"Write down what you want your working week to include and what it must never include. Then check your current plan honestly against both lists."},
  rethink:{name:"Rethink Before Building",con:"C",
-  text:["Your answers suggest the current idea has too many open questions to build on safely. The customer isn't yet clear, buyers haven't confirmed the problem, and the offer isn't sharp enough to test.","That is an uncomfortable result, but a useful one, and it says nothing about your ability. It means that pushing ahead now would probably spend time and money on a version of the business that isn't pointed at a real buyer with a real problem.","The better route is to start from what you know: which problems you have repeatedly solved, for whom, and which of those people feel the cost of leaving them unsolved. A clearer target usually emerges quickly once you start there."],
-  action:"Write down three problems you have solved repeatedly in your career and who paid the price when they went unsolved. Pick the one with the most obvious buyer."},
+  text:["Your answers suggest the current idea has too many open questions to build on safely. The customer isn't clear yet, and buyers haven't confirmed the problem.", "That's an uncomfortable result and a useful one, and it says nothing about your ability. Pushing ahead now would probably spend time and money on a version of the business that isn't pointed at a real buyer with a real problem.", "Start instead from what you know: the problems you've solved again and again, and who felt the cost when they went unsolved. A clearer target usually turns up quickly from there."],
+  action:"Write down three problems you've solved repeatedly in your career and who paid the price when they went unsolved. Pick the one with the most obvious buyer."},
  network:{name:"Network Without Focus",con:"C",
-  text:["You have something many new businesses lack: access. Your network and reputation give you a route to people who could buy.","The risk is that the offer isn't focused enough yet to use that access well. Broad offers get polite interest from warm contacts and little else, and each lukewarm conversation uses goodwill you can't easily get back.","Narrow down before you reach out widely: one type of buyer, one situation that makes them look for help, and one outcome you can deliver. Once that is sharp, your network becomes a real commercial advantage rather than a list of people who like you."],
+  text:["You have something many new businesses lack, which is access. Your network and reputation give you a route to people who could buy.", "The risk is that the offer isn't focused enough yet to use that access well. Broad offers get polite interest from warm contacts and not much else, and every lukewarm conversation spends goodwill you can't easily get back.", "Narrow down before you reach out widely, to one type of buyer and the moment that sends them looking for help. Once that's sharp, your network turns into a real commercial advantage instead of a long list of people who like you."],
   action:"Describe your ideal first client in one sentence, including the moment that makes them look for help. Hold off on wider outreach until you can."},
  target:{name:"Value Without a Target",con:"C",
-  text:["Your experience has real value, but it isn't yet pointed at a specific buyer with a specific problem.","This is very common when people move from a senior role into their own business, because a job title used to do the explaining. Without a clear target, everything downstream gets harder: pricing, messaging, finding prospects and standing out from generalist consultants and coaches.","The fix is to choose, for long enough to test. A narrow first focus doesn't limit your future business. It gives you the evidence to build one."],
+  text:["Your experience has real value, but it isn't yet pointed at a specific buyer with a specific problem.", "This is very common when people move from a senior role into their own business, because the job title used to do the explaining. Without a clear target everything downstream gets harder, from pricing and messaging to standing out from every other consultant and coach.", "So choose, at least for long enough to test. A narrow first focus won't box in your future business, and it gives you the evidence to build one."],
   action:"Pick one type of organisation or person and one problem they pay to fix. Find five real examples of that buyer, by name, this week."},
  trapped:{name:"Value Trapped in Packaging",con:"P",
-  text:["There is real substance here. You have strong expertise and signs that buyers want help with this problem. What's holding you back is how the offer is packaged.","Your answers suggest people may struggle to see quickly what you sell, what outcome they get and why they should choose you over a general consultant. When an offer is hard to buy, good conversations end in “let's keep in touch” rather than a decision.","Repackage what you already know into something specific: a defined outcome, a clear scope and a price that reflects the value. That work tends to pay back faster than anything else you could do right now."],
+  text:["There's real substance here. You have strong expertise and signs that buyers want help with this problem. What's holding you back is the packaging.", "Your answers suggest people may struggle to see quickly what you sell and why they should choose you over a general consultant. When an offer is hard to buy, good conversations end in “let's keep in touch”, which anyone who's heard it knows is a polite no.", "Repackage what you already know into something specific, with a defined outcome and a price that reflects the value. That work tends to pay back faster than anything else you could do right now."],
   action:"Rewrite your offer as one sentence that starts with the customer's outcome, not your background. Test it on two people who know nothing about your career."},
  distribution:{name:"Demand Without Distribution",con:"R",
-  text:["You have done the hardest part. Your answers show genuine evidence that buyers want what you offer, and that is rarer than most people think.","Your constraint is reach. You don't yet have a reliable way to get in front of enough of the right people, consistently.","Avoid changing a validated offer just because sales are slow. The offer isn't the problem; distribution is. That means partnerships, introducers, targeted outreach and visible authority in the places your buyers already pay attention."],
+  text:["You've done the hardest part. Your answers show genuine evidence that buyers want what you offer, and that's rarer than most people think.", "What's missing is reach. You don't yet have a reliable way to get in front of enough of the right people, often enough.", "So leave a validated offer alone, even when sales are slow, and put the effort into getting found: partnerships, introducers, targeted outreach and being visible where your buyers already pay attention."],
   action:"List 20 people or organisations who already serve your buyers and could introduce you. Approach the first five this week with a specific, mutually useful proposal."},
  evidenced:{name:"The Evidenced Opportunity",con:null,
-  text:["Your answers point to a business with real substance. You know who you serve, you have evidence they will pay, the offer is clear and the economics look sensible. That puts you ahead of most people at this stage.","The task now is disciplined execution rather than more research. Choose the few activities that turn evidence into revenue, and keep testing the assumptions that remain.","The biggest risk from here is usually distraction: building too much too early or chasing every adjacent opportunity. Your strongest area gives you momentum. Your weakest area is where the next round of attention should go."],
-  action:"Set a 90-day revenue target and the three activities most likely to hit it. Defer anything that doesn't serve one of them."},
+  text:["Your answers point to a business with real substance. You know who you serve, you have evidence they'll pay, the offer is clear and the economics look sensible, which puts you ahead of most people at this stage.", "The job now is disciplined execution, with less research. Choose the few activities that turn evidence into revenue, and keep testing the assumptions that remain.", "The biggest risk from here is usually distraction, whether that's building too much too early or chasing every shiny opportunity next door. Your strongest area gives you momentum. Your weakest area is where the next round of attention should go."],
+  action:"Set a 90-day revenue target and the three activities most likely to hit it. Park anything that doesn't serve one of them."},
  broad:{name:"The Broad Foundation",con:"commercial-min",
-  text:["You have a solid, balanced foundation with no single weakness that should stop you. That is a good position to be in.","The flip side is that nothing stands out strongly yet. Balanced profiles often mean the business is trying to serve too many people in too many ways.","The way forward is to narrow down. Choose the customer and problem where your evidence is strongest and build around that first. Focus lifts the scores that are currently just good enough, and makes everything from pricing to marketing easier. You can broaden later, once one part of the business is working and paying for the next."],
-  action:"Look at your last ten professional wins. Find the type of client and problem that appears most often, and make that your first focus."}
+  text:["You have a solid, balanced foundation with no single weakness that should stop you. That's a good position to be in.", "The flip side is that nothing stands out yet. Balanced profiles often mean the business is trying to serve too many people in too many ways, like a restaurant with a forty-page menu.", "The way forward is to narrow down. Choose the customer and problem where your evidence is strongest and build around that first. Focus lifts the scores that are only just good enough and makes everything from pricing to marketing easier. You can broaden later, once one part of the business is working and paying for the next."],
+  action:"Look at your last ten professional wins. Find the type of client and problem that comes up most often, and make that your first focus."}
 };
 
 const SAMPLES={
@@ -378,8 +382,8 @@ function renderIntro(){
   <section class="hero hero-photo wrap"><div class="inner fade">
     <svg class="mark" viewBox="0 0 930 1236" aria-hidden="true"><rect x="2" y="1" width="926" height="165"/><path d="M146 291h652v155H326v212h434v154H326v268h472v155H146z"/></svg>
     <div class="eyebrow">Experience wins</div>
-    <h1 class="display">The Encore Score™</h1>
-    <p class="lede">Fourteen questions to show whether your next move stacks up commercially, practically and personally, and what to do about it.</p>
+    <h1 class="display">The Encore Score™ <em>Idea</em></h1>
+    <p class="lede">Fourteen questions on whether the business you have in mind stacks up, and whether it fits the life you want. Then what to do about it.</p>
     <div class="meta"><span>14 questions</span><span>About 7 minutes</span><span>Instant result</span></div>
     <button class="btn btn-red" id="start">Find your Encore Score →</button>
   </div></section>
@@ -411,7 +415,7 @@ function renderQ(){
   const help=q.help||(q.dim?"How true is this for you today?":"");
   app.innerHTML=`
   <section class="hero wrap" style="text-align:left"><div class="inner" style="padding-block:28px 96px">
-    <div class="narrow"><div class="eyebrow" style="color:#E2D9CC">The Encore Score™</div></div>
+    <div class="narrow"><div class="eyebrow" style="color:#E2D9CC">The Encore Score™ · Idea</div></div>
   </div></section>
   <section class="panel wrap"><div class="inner"><div class="narrow fade">
     <div class="progress"><div class="bar"><i style="width:${pct}%"></i></div><span class="count">${String(n).padStart(2,"0")} / ${TOTAL}</span></div>
@@ -446,7 +450,7 @@ document.addEventListener('keydown',e=>{
 function renderDetails(){
   app.innerHTML=`
   <section class="hero wrap" style="text-align:left"><div class="inner" style="padding-block:28px 96px">
-    <div class="narrow"><div class="eyebrow" style="color:#E2D9CC">The Encore Score™</div></div>
+    <div class="narrow"><div class="eyebrow" style="color:#E2D9CC">The Encore Score™ · Idea</div></div>
   </div></section>
   <section class="panel wrap"><div class="inner"><div class="narrow fade">
     <div class="progress"><div class="bar"><i style="width:100%"></i></div><span class="count">Done</span></div>
@@ -532,30 +536,17 @@ function renderResult(){
       <div><div class="eyebrow label-red">Your most important constraint</div><h4>${esc(DIMS[co].name)}</h4><p>${esc(DIMS[co].weak)}</p></div>
     </div>
     <div class="action"><span class="tag">Do this week</span><p>${esc(P.action)}</p></div>
+    <p class="mettle-link no-print">This score tests the idea. Its partner, the Encore Score: Mettle, tests you: whether you're built for working for yourself, and which route to your encore suits you best. <a href="/mettle?src=idea-score">Test your mettle →</a></p>
   </div></section>
 
   <section class="panel grey wrap teaser"><div class="inner">
-    <div class="eyebrow label-red">The Encore Diagnostic™</div>
-    <h2 class="display">Your score shows the pattern. The diagnostic shows the plan.</h2>
-    <p class="lede">The full diagnostic takes 30 to 40 minutes and produces The Encore Verdict: a 20 to 30 page personal report on whether this move stacks up, what is proven, what is assumed, and exactly what to do next.</p>
-    <ul class="locked">
-      <li><i class="lock"></i><div><b>Your Encore Verdict</b><span>A clear recommendation on your next move, with a confidence level.</span></div></li>
-      <li><i class="lock"></i><div><b>All eight dimension scores</b><span>Including how much real evidence sits behind each one.</span></div></li>
-      <li><i class="lock"></i><div><b>Evidence versus assumption</b><span>What you know, what you're inferring, and what must be tested.</span></div></li>
-      <li><i class="lock"></i><div><b>The right business model</b><span>Consulting, fractional, advisory, productised or portfolio, and why.</span></div></li>
-      <li><i class="lock"></i><div><b>Your risk register</b><span>The three to five risks most likely to cost you time or money.</span></div></li>
-      <li><i class="lock"></i><div><b>Your 90-day priorities</b><span>Three phases with evidence targets, plus what not to do yet.</span></div></li>
-    </ul>
-    <div class="buy">
-      <div class="price">£397</div>
-      <a class="btn btn-red" href="/?src=${/^(webinar|workbook|nextmove)$/i.test(SOURCE)?"webinar":"encore-score"}" id="buy">Get my full diagnostic →</a>
-      <small>Founding places: your Encore Verdict arrives within 24 hours. Credited in full if you join The Encore Programme™ within 14 days.</small>
-    </div>
-        <div class="nav no-print" style="justify-content:flex-start;gap:12px;flex-wrap:wrap"><button class="btn btn-ghost" id="pdf">↓ Download my results (PDF)</button><button class="btn btn-ghost" id="again">↺ Retake the Encore Score</button></div>
-        <div class="print-foot">The Encore Score™ · The Encore Partnership™ · Experience wins<br>Retake it any time at diagnostic.theencorepartnership.com/score · Your full plan: diagnostic.theencorepartnership.com · jo@theencorepartnership.com</div>
+    ${EncoreNext.html({ diagUrl: "/?src=" + (/^(webinar|workbook|nextmove)$/i.test(SOURCE) ? "webinar" : "encore-score") })}
+        <div class="nav no-print" style="justify-content:flex-start;gap:12px;flex-wrap:wrap"><button class="btn btn-ghost" id="pdf">↓ Download my results (PDF)</button><button class="btn btn-ghost" id="again">↺ Retake the Idea Score</button></div>
+        <div class="print-foot">The Encore Score™: Idea · The Encore Partnership™ · Experience wins<br>Book onto The Encore Programme at theencorepartnership.com · Retake this score at diagnostic.theencorepartnership.com/score · Test yourself at diagnostic.theencorepartnership.com/mettle · jo@theencorepartnership.com</div>
   </div></section>`;
     document.getElementById('again').onclick=()=>{reset();render();};
-    document.getElementById('pdf').onclick=()=>{const t=document.title;document.title='Encore Score - '+(S.name||'my results');window.print();setTimeout(()=>{document.title=t;},1000);};
+    document.getElementById('pdf').onclick=()=>{const t=document.title;document.title='Encore Score Idea - '+(S.name||'my results');window.print();setTimeout(()=>{document.title=t;},1000);};
+    import('/engine/pdf.mjs').then(m=>m.wirePdfButton(document.getElementById('pdf'),()=>'Encore Score Idea - '+(S.name||'my results'))).catch(()=>{});
 }
 
 document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{

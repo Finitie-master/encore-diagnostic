@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="The Encore Score: Mettle. Twenty questions on whether you're built for working for yourself, and which route to your encore suits you best.">
+<meta name="robots" content="noindex">
+<title>The Encore Score: Mettle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: black dusk hero band, then a white panel with large rounded top corners (the site's signature), one question per screen. */
+/* Brand-faithful, single light theme by choice, matching theencorepartnership.com. */
+:root{
+  --ink:#000000;
+  --paper:#ffffff;
+  --red:#DD1D13;
+  --red-deep:#B8160E;
+  --stone:#5F5C57;
+  --mist:#EAEAE9;
+  --fog:#F7F7F7;
+  --char:#2B2B2B;
+  --line:#D9D8D5;
+  /* Production swaps these for Aperitif Serif / Neue Swiss (licensed) */
+  --f-display:"Instrument Serif","Aperitif Serif Regular",Georgia,"Times New Roman",serif;
+  --f-body:"Inter Tight","Neue Swiss Medium","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --radius-panel:56px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{background:var(--ink)}
+body{margin:0;font-family:var(--f-body);color:var(--ink);font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.inner{max-width:880px;margin:0 auto}
+.narrow{max-width:680px;margin:0 auto}
+
+/* Top bar */
+.topbar{background:var(--ink);color:var(--paper)}
+.topbar .inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:22px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--paper);text-decoration:none}
+.mark{display:block;fill:var(--red);height:26px;width:auto}
+.hero .mark{height:40px;margin:0 auto 16px}
+.brand span{font:700 12px/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase}
+.toplink{font:600 11px/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--paper);text-decoration:none;opacity:.8}
+.toplink:hover{opacity:1}
+
+/* Hero band */
+.hero{background:radial-gradient(120% 90% at 50% 0%,#6E5A43 0%,#3A2F25 38%,#0B0907 78%,#000 100%);color:var(--paper);text-align:center}
+.hero .inner{padding-block:40px 120px}
+.eyebrow{font:700 13px/1.4 var(--f-body);letter-spacing:.06em;text-transform:uppercase}
+.hero .eyebrow{color:var(--paper)}
+.display{font-family:var(--f-display);font-weight:400;text-transform:uppercase;line-height:.95;letter-spacing:-.005em;text-wrap:balance;margin:0}
+.hero h1{font-size:clamp(46px,9vw,96px);margin-top:14px}
+.hero p.lede{max-width:560px;margin:22px auto 0;font-size:18px;color:#F2EEE8}
+.meta{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 22px;margin-top:22px;font:400 13px/1.4 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:#E2D9CC}
+
+.btn{appearance:none;border:0;border-radius:0;cursor:pointer;font:400 16px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:14px 22px;display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;transition:background .15s}
+.btn-red{background:var(--red);color:var(--paper)}
+.btn-red:hover{background:var(--red-deep)}
+.btn-ghost{background:transparent;color:var(--ink);padding-left:0;padding-right:0}
+.btn-ghost:hover{color:var(--red)}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn:focus-visible,.opt:focus-visible,input:focus-visible,textarea:focus-visible,.chip:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.hero .btn{margin-top:30px}
+
+/* Panel */
+.panel{background:var(--paper);border-radius:var(--radius-panel) var(--radius-panel) 0 0;margin-top:calc(-1 * var(--radius-panel));position:relative}
+.panel>.inner{padding-block:64px 80px}
+.panel.grey{background:var(--fog)}
+
+/* Intro panel */
+.intro-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.intro-grid h3{font-family:var(--f-display);font-weight:400;font-size:30px;line-height:1.05;margin:8px 0 8px}
+.intro-grid p{margin:0;font-size:16px;color:var(--char)}
+.label-red{color:var(--red)}
+.intro-note{margin-top:44px;padding-top:24px;border-top:1px solid var(--line);font-size:15px;color:var(--stone);max-width:640px}
+
+/* Question screen */
+.progress{display:flex;align-items:center;gap:16px;margin-bottom:44px}
+.bar{flex:1;height:3px;background:var(--mist);position:relative;overflow:hidden}
+.bar i{position:absolute;inset:0 auto 0 0;background:var(--red);transition:width .35s ease}
+.count{font:400 13px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--stone);white-space:nowrap;font-variant-numeric:tabular-nums}
+.q-title{font-family:var(--f-display);font-weight:400;font-size:clamp(34px,5.2vw,52px);line-height:1.04;letter-spacing:-.01em;margin:12px 0 10px;text-wrap:balance}
+.q-help{color:var(--stone);font-size:16px;margin:0 0 30px}
+.opts{display:grid;gap:10px}
+.opt{display:grid;grid-template-columns:44px 1fr;align-items:center;gap:14px;width:100%;text-align:left;background:var(--paper);border:1px solid var(--line);padding:14px 18px 14px 14px;cursor:pointer;font:500 17px/1.35 var(--f-body);color:var(--ink);transition:border-color .12s,background .12s}
+.opt:hover{border-color:var(--ink)}
+.opt .k{font:400 13px/1 var(--f-mono);color:var(--stone);border:1px solid var(--line);height:30px;display:grid;place-items:center}
+.opt[aria-checked="true"]{border-color:var(--red);background:#FDF3F2}
+.opt[aria-checked="true"] .k{background:var(--red);border-color:var(--red);color:var(--paper)}
+.opt small{display:block;font:400 14px/1.4 var(--f-body);color:var(--stone);margin-top:2px}
+textarea,input[type=text],input[type=email]{width:100%;font:500 18px/1.45 var(--f-body);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:0;padding:14px 16px}
+textarea{min-height:120px;resize:vertical}
+textarea:focus,input:focus{border-color:var(--ink);outline:none}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:34px}
+.field{display:grid;gap:8px;margin-bottom:18px}
+.field label{font:700 12px/1 var(--f-body);letter-spacing:.06em;text-transform:uppercase}
+.check{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--char)}
+.check input{margin-top:4px;accent-color:var(--red);width:18px;height:18px}
+.err{color:var(--red);font-size:14px;min-height:20px}
+.proto-note{font:400 12px/1.5 var(--f-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--stone);background:var(--fog);padding:10px 12px;margin-top:8px}
+
+/* Results */
+.res-hero{background:var(--ink);color:var(--paper)}
+.res-hero .inner{padding-block:40px 120px}
+.res-top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end}
+.res-top .display{font-size:clamp(44px,8vw,88px);margin-top:14px}
+.res-top .for{font-size:17px;color:#D8D4CE;margin-top:16px;max-width:520px}
+.scorebox{text-align:right}
+.scorebox .num{font-family:var(--f-display);font-size:clamp(88px,14vw,150px);line-height:.85;font-variant-numeric:tabular-nums}
+.scorebox .num sup{font-size:.28em;vertical-align:top;margin-left:4px;color:#BDB7AE}
+.scorebox .band{font:400 13px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-top:12px}
+.scorebox .cap{font:700 11px/1.3 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:#BDB7AE;margin-top:8px}
+
+.scale{margin-top:44px}
+.scale-track{display:grid;grid-template-columns:25fr 20fr 20fr 15fr 21fr;gap:3px;position:relative}
+.scale-track div{height:6px;background:#3A3835}
+.scale-track div.on{background:var(--red)}
+.scale-labels{display:grid;grid-template-columns:25fr 20fr 20fr 15fr 21fr;gap:3px;margin-top:10px}
+.scale-labels span{font:400 11px/1.3 var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:#9C968D}
+.scale-labels span.on{color:var(--paper)}
+.marker{position:absolute;top:-7px;width:2px;height:20px;background:var(--paper);transform:translateX(-1px)}
+
+.quote{font-family:var(--f-display);font-style:italic;font-size:24px;line-height:1.25;color:var(--char);border-left:2px solid var(--red);padding-left:18px;margin:0 0 30px}
+.interp{font-size:19px;line-height:1.65;max-width:660px}
+.interp p{margin:0 0 1em}
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px;margin-top:44px;background:var(--line);border:1px solid var(--line)}
+.pair>div{background:var(--paper);padding:26px 26px 28px}
+.pair h4{font-family:var(--f-display);font-weight:400;font-size:30px;line-height:1.05;margin:10px 0 10px}
+.pair p{margin:0;font-size:16px;color:var(--char)}
+.pair .mini{font:400 13px/1 var(--f-mono);color:var(--stone);margin-top:16px;font-variant-numeric:tabular-nums}
+.action{margin-top:28px;background:var(--fog);padding:28px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:22px;align-items:start}
+.action .tag{font:400 12px/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;background:var(--red);color:var(--paper);padding:8px 10px;white-space:nowrap}
+.action p{margin:0;font-size:18px;font-weight:500}
+
+.teaser h2{font-size:clamp(38px,6vw,64px)}
+.teaser .lede{font-size:18px;color:var(--char);max-width:600px;margin:18px 0 0}
+.locked{list-style:none;padding:0;margin:36px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 36px}
+.locked li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;padding:16px 0;border-top:1px solid var(--line);font-size:16px}
+.locked li b{display:block;font-weight:700;font-size:16px}
+.locked li span{color:var(--stone);font-size:15px}
+.lock{width:14px;height:16px;margin-top:4px;position:relative}
+.lock::before{content:"";position:absolute;left:2px;top:0;width:10px;height:9px;border:2px solid var(--red);border-bottom:0;border-radius:6px 6px 0 0}
+.lock::after{content:"";position:absolute;left:0;bottom:0;width:14px;height:9px;background:var(--red)}
+.buy{margin-top:40px;display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px}
+.price{font-family:var(--f-display);font-size:56px;line-height:1}
+.buy small{display:block;color:var(--stone);font-size:14px;max-width:340px}
+.fine{margin-top:26px;font-size:14px;color:var(--stone);max-width:620px}
+
+/* Prototype tools */
+.proto{background:var(--char);color:#CFCAC2}
+.proto .inner{padding-block:22px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.proto b{font:500 12px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--paper);margin-right:6px}
+.chip{appearance:none;background:transparent;border:1px solid #57534E;color:#E6E1D9;font:400 12px/1 var(--f-mono);letter-spacing:.04em;padding:9px 11px;cursor:pointer;border-radius:0}
+.chip:hover{border-color:var(--red);color:var(--paper)}
+
+.hero-photo{background:url(/assets/dune.jpg) center 64%/cover no-repeat,#1b1512}
+.hero-photo .inner{padding-block:40px 300px}
+@media (max-width:760px){.hero-photo .inner{padding-block:32px 200px}}
+.res-inner{max-width:1080px!important}
+.res-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:56px;align-items:center}
+.res-photo{margin:0;aspect-ratio:4/5;max-width:100%;background:url(/assets/headlights.jpg) 50% 70%/cover no-repeat,#0B0907}
+.res-grid .scorebox{text-align:left;display:flex;align-items:flex-end;gap:22px;margin-top:34px;flex-wrap:wrap}
+.res-grid .scorebox .band{margin-top:0}
+@media (max-width:760px){.res-grid{grid-template-columns:minmax(0,1fr);gap:32px}.res-photo{aspect-ratio:4/3;background-position:center 40%}}
+.fade{animation:fade .35s ease both}
+@keyframes fade{from{opacity:.001;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.fade{animation:none}.bar i{transition:none}}
+
+@media (max-width:760px){
+  :root{--radius-panel:32px}
+  .intro-grid,.pair,.locked{grid-template-columns:minmax(0,1fr)}
+  .res-top{grid-template-columns:minmax(0,1fr)}
+  .scorebox{text-align:left}
+  .panel>.inner{padding-block:48px 64px}
+  .action{grid-template-columns:minmax(0,1fr)}
+  .action .tag{justify-self:start}
+  .scale-labels span{font-size:9px}
+}
+.privacy{margin-top:14px}.privacy a{color:inherit}
+.print-foot{display:none}
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .topbar,.no-print,#proto,.buy .btn{display:none!important}
+  .fade{animation:none!important;opacity:1!important;transform:none!important}
+  section{break-inside:avoid-page}
+  .print-foot{display:block;margin-top:28px;padding-top:14px;border-top:1px solid #ccc;font-size:12px;color:#555;line-height:1.6}
+  @page{margin:12mm}
+  html,body{background:#fff!important}
+}
+.hero-photo .lede,.hero-photo .meta,.hero-photo .eyebrow,.hero-photo h1{text-shadow:0 1px 12px rgba(0,0,0,.55)}
+
+/* Mettle additions */
+.q-title.long{font-size:clamp(28px,4vw,40px)}
+.display em,.q-title em{font-style:italic;text-transform:none;color:var(--red)}
+.hero h1 em{display:block;font-size:.62em;margin-top:.08em}
+.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;margin-top:44px;background:var(--line);border:1px solid var(--line)}
+.pillars>div{background:var(--paper);padding:24px 24px 26px}
+.pillars h4{font-family:var(--f-display);font-weight:400;font-size:34px;line-height:1;margin:8px 0 2px}
+.pillars .sub{font:400 12px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--stone)}
+.pillars .pnum{font-family:var(--f-display);font-size:48px;line-height:1;margin-top:16px;font-variant-numeric:tabular-nums}
+.pillars .pnum sup{font-size:.35em;vertical-align:top;color:var(--stone);margin-left:2px}
+.pillars p{margin:10px 0 0;font-size:15px;color:var(--char)}
+.meter{height:4px;background:var(--mist);margin-top:12px;position:relative}
+.meter i{position:absolute;inset:0 auto 0 0;background:var(--red)}
+.dims{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:8px}
+.dims li{display:grid;grid-template-columns:minmax(0,1fr) 34px;gap:4px 10px;font-size:14px;color:var(--char)}
+.dims li .meter{grid-column:1/-1;margin-top:0;height:3px}
+.dims li b{font:400 13px/1.4 var(--f-mono);text-align:right;font-variant-numeric:tabular-nums}
+.sect-h{font-size:clamp(36px,5.6vw,60px);margin-top:12px}
+.sect-lede{font-size:18px;color:var(--char);max-width:640px;margin:16px 0 0}
+.routes{margin-top:34px;display:grid;gap:3px;background:var(--line);border:1px solid var(--line)}
+.route{background:var(--paper);padding:22px 24px;display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:8px 28px;align-items:start}
+.route h4{font-family:var(--f-display);font-weight:400;font-size:28px;line-height:1.05;margin:0}
+.route p{margin:6px 0 0;font-size:15px;color:var(--char)}
+.route .fit{font:400 12px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--stone);text-align:right}
+.route .fit .meter{margin-top:8px}
+.route.top{background:#FDF3F2}
+.route.top .fit{color:var(--red)}
+.route .try{grid-column:1/-1;margin-top:8px;font-size:15px;border-top:1px solid var(--line);padding-top:12px}
+.route .try b{font:400 12px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-right:8px}
+.callout{margin-top:28px;font-family:var(--f-display);font-style:italic;font-size:26px;line-height:1.25;border-left:2px solid var(--red);padding-left:18px;max-width:700px}
+.qs{list-style:none;padding:0;margin:30px 0 0;counter-reset:q}
+.qs li{counter-increment:q;display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;padding:22px 0;border-top:1px solid var(--line)}
+.qs li::before{content:counter(q,decimal-leading-zero);font:400 14px/1.6 var(--f-mono);color:var(--red)}
+.qs li p{margin:0;font-family:var(--f-display);font-size:28px;line-height:1.15}
+.qs li small{display:block;font:700 12px/1.3 var(--f-body);letter-spacing:.06em;text-transform:uppercase;color:var(--stone);margin-top:10px}
+.flags{margin-top:28px;background:var(--fog);padding:24px 28px}
+.flags h4{margin:0 0 8px;font:700 13px/1.4 var(--f-body);letter-spacing:.06em;text-transform:uppercase;color:var(--red)}
+.flags p{margin:10px 0 0;font-size:16px;color:var(--char)}
+.next{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px;margin-top:36px;background:var(--line);border:1px solid var(--line)}
+.next>div{background:var(--paper);padding:28px;display:flex;flex-direction:column;gap:10px}
+.next h4{font-family:var(--f-display);font-weight:400;font-size:32px;line-height:1.05;margin:4px 0 0}
+.next p{margin:0;font-size:16px;color:var(--char);flex:1}
+.next .btn{align-self:flex-start;margin-top:10px}
+.next.solo{grid-template-columns:minmax(0,1fr)}.next.solo p{max-width:720px}
+.prog{margin-top:30px;font-size:16px;color:var(--char);max-width:680px}
+@media (max-width:760px){
+  .pillars,.next{grid-template-columns:minmax(0,1fr)}
+  .route{grid-template-columns:minmax(0,1fr)}
+  .route .fit{text-align:left}
+  .qs li{grid-template-columns:40px minmax(0,1fr)}
+  .qs li p{font-size:24px}
+}
+@media print{.route,.pillars>div,.next>div{break-inside:avoid}.next .btn{display:none}}
+</style>
+</head>
+<body>
+
+<header class="topbar wrap">
+  <div class="inner">
+    <a class="brand" href="https://theencorepartnership.com" target="_blank" rel="noopener"><svg class="mark" viewBox="0 0 930 1236" aria-hidden="true"><rect x="2" y="1" width="926" height="165"/><path d="M146 291h652v155H326v212h434v154H326v268h472v155H146z"/></svg><span>The Encore Partnership™</span></a>
+    <a class="toplink" href="https://theencorepartnership.com" target="_blank" rel="noopener">Back to site</a>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<!-- Netlify Forms: static copy so Netlify detects the form at deploy time -->
+<form name="encore-mettle" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input name="bot-field"><input name="first_name"><input name="email"><input name="consent">
+  <input name="stage"><input name="score"><input name="band"><input name="profile"><input name="route">
+  <input name="strongest"><input name="constraint"><input name="pillar_scores"><input name="dimension_scores">
+  <input name="routes"><input name="answers"><input name="source">
+</form>
+
+<section class="proto wrap" aria-label="Prototype tools" id="proto" hidden>
+  <div class="inner">
+    <b>Prototype · preview a result</b>
+    <button class="chip" data-p="A">David A</button>
+    <button class="chip" data-p="B">David B</button>
+    <button class="chip" data-p="C">David C</button>
+    <button class="chip" data-p="D">David D</button>
+    <button class="chip" data-p="E">David E</button>
+    <button class="chip" data-p="R">Restart</button>
+  </div>
+</section>
+
+<script src="/engine/nextsteps.js"></script>
+<script type="module">
+import { wirePdfButton } from "/engine/pdf.mjs";
+import { NAME, DIMS, PILLARS, SCALE, STAGES, Q, ROUTES, PROFILES, BANDS, SAMPLES, outcome } from "/engine/mettle.mjs";
+
+// Links for the close. Leave WEBINAR_URL empty to hide the webinar option.
+const CALL_URL = "https://calendar.app.google/BFMnsuQPBoSExbSV6";
+const WEBINAR_URL = "";
+const IDEA_URL = "/score?src=mettle";
+const DIAG_URL = "/?src=mettle-score";
+
+const TOTAL = Q.length;
+const SOURCE = (() => { try { const u = new URLSearchParams(location.search); return (u.get("utm_source") || u.get("src") || u.get("ref") || (document.referrer ? new URL(document.referrer).hostname : "direct")).slice(0, 60); } catch (e) { return "direct"; } })();
+const MARK = `<svg class="mark" viewBox="0 0 930 1236" aria-hidden="true"><rect x="2" y="1" width="926" height="165"/><path d="M146 291h652v155H326v212h434v154H326v268h472v155H146z"/></svg>`;
+const TITLE = `The Encore Score™ <em>${NAME}</em>`;
+let S;
+const reset = () => { S = { step: -1, ans: {}, name: "", email: "", consent: false }; };
+reset();
+const app = document.getElementById("app");
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const fitLabel = (n) => n >= 75 ? "Strong fit" : n >= 60 ? "Good fit" : n >= 45 ? "Worth a look" : "Less likely";
+
+function render() {
+  window.scrollTo({ top: 0 });
+  if (S.step < 0) return renderIntro();
+  if (S.step < TOTAL) return renderQ();
+  if (S.step === TOTAL) return renderDetails();
+  return renderResult();
+}
+
+const band2 = (label) => `<section class="hero wrap" style="text-align:left"><div class="inner" style="padding-block:28px 96px">
+    <div class="narrow"><div class="eyebrow" style="color:#E2D9CC">The Encore Score™ · ${NAME}</div></div></div></section>`;
+
+function renderIntro() {
+  app.innerHTML = `
+  <section class="hero hero-photo wrap"><div class="inner fade">
+    ${MARK}
+    <div class="eyebrow">Experience wins</div>
+    <h1 class="display">${TITLE}</h1>
+    <p class="lede">The Idea Score tests your idea. This one tests you. Twenty honest questions on whether you're built for working for yourself, and which route to your encore suits you best.</p>
+    <div class="meta"><span>20 questions</span><span>About 8 minutes</span><span>Instant result</span></div>
+    <button class="btn btn-red" id="start">Test your mettle →</button>
+  </div></section>
+  <section class="panel wrap"><div class="inner">
+    <div class="intro-grid">
+      <div><div class="eyebrow label-red">Aptitude</div><h3>How you're wired</h3><p>How you handle an empty diary and nobody telling you what to do next.</p></div>
+      <div><div class="eyebrow label-red">Ability</div><h3>What you can do</h3><p>Whether you can sell yourself, and how many people would take your call this week.</p></div>
+      <div><div class="eyebrow label-red">Tenacity</div><h3>What keeps you going</h3><p>What happens after a 'no', and who is in your corner in month seven.</p></div>
+    </div>
+    <p class="intro-note">You'll get a Mettle score, a named profile and five routes to your encore ranked for you, from your own business to fractional, interim, partnering up or a salary with something of your own alongside. Some questions are deliberately uncomfortable. Answer as you are on a wet Tuesday, not as you'd like to be on a good day.</p>
+    <p class="fine privacy"><b>Your answers are private.</b> They're used to work out your result and are seen only by Jo Eckersley at The Encore Partnership. They're never shared or sold, and you can ask for them to be deleted at any time by emailing <a href="mailto:jo@theencorepartnership.com">jo@theencorepartnership.com</a>.</p>
+  </div></section>`;
+  document.getElementById("start").onclick = () => { S.step = 0; render(); };
+}
+
+function renderQ() {
+  const q = Q[S.step], n = S.step + 1, pct = Math.round(S.step / TOTAL * 100);
+  const opts = q.type === "rate" ? SCALE.map((o) => ({ t: o[0], h: o[1] })) : q.opts.map((o) => ({ t: o.t }));
+  const body = `<div class="opts" role="radiogroup" aria-label="${esc(q.title)}">${opts.map((o, i) => `
+      <button class="opt" role="radio" aria-checked="${S.ans[q.id] === i}" data-v="${i}">
+        <span class="k">${q.type === "rate" ? i : String.fromCharCode(65 + i)}</span>
+        <span>${esc(o.t)}${o.h ? `<small>${esc(o.h)}</small>` : ""}</span>
+      </button>`).join("")}</div>`;
+  const help = q.help || (q.type === "rate" ? "How true is this of you today? Not the CV version." : "");
+  app.innerHTML = `${band2()}
+  <section class="panel wrap"><div class="inner"><div class="narrow fade">
+    <div class="progress"><div class="bar"><i style="width:${pct}%"></i></div><span class="count">${String(n).padStart(2, "0")} / ${TOTAL}</span></div>
+    <div class="eyebrow label-red">${esc(q.eyebrow)}</div>
+    <h2 class="q-title${q.title.length > 70 ? " long" : ""}">${esc(q.title)}</h2>
+    ${help ? `<p class="q-help">${esc(help)}</p>` : ""}
+    ${body}
+    <div class="nav">
+      <button class="btn btn-ghost" id="back">← Back</button>
+      <button class="btn btn-red" id="next" ${S.ans[q.id] === undefined ? "disabled" : ""}>${n === TOTAL ? "See my result" : "Next"} →</button>
+    </div>
+  </div></div></section>`;
+  document.getElementById("back").onclick = () => { S.step--; render(); };
+  document.getElementById("next").onclick = () => { S.step++; render(); };
+  app.querySelectorAll(".opt").forEach((b) => b.onclick = () => {
+    S.ans[q.id] = +b.dataset.v;
+    app.querySelectorAll(".opt").forEach((x) => x.setAttribute("aria-checked", x === b));
+    document.getElementById("next").disabled = false;
+    clearTimeout(S.t); S.t = setTimeout(() => { S.step++; render(); }, 260);
+  });
+}
+document.addEventListener("keydown", (e) => {
+  if (S.step < 0 || S.step >= TOTAL) return;
+  const q = Q[S.step];
+  const i = q.type === "rate" ? (/^[0-4]$/.test(e.key) ? +e.key : -1) : "abcde".indexOf(e.key.toLowerCase());
+  if (i >= 0) { const b = app.querySelector(`.opt[data-v="${i}"]`); if (b) b.click(); }
+});
+
+function renderDetails() {
+  app.innerHTML = `${band2()}
+  <section class="panel wrap"><div class="inner"><div class="narrow fade">
+    <div class="progress"><div class="bar"><i style="width:100%"></i></div><span class="count">Done</span></div>
+    <div class="eyebrow label-red">Your result is ready</div>
+    <h2 class="q-title">Where should we send your Mettle result?</h2>
+    <p class="q-help">You'll see it on the next screen, and we'll email you a copy.</p>
+    <form id="f" novalidate>
+      <div class="field"><label for="fn">First name</label><input type="text" id="fn" autocomplete="given-name" value="${esc(S.name)}"></div>
+      <div class="field"><label for="em">Email</label><input type="email" id="em" autocomplete="email" value="${esc(S.email)}"></div>
+      <label class="check"><input type="checkbox" id="cs" ${S.consent ? "checked" : ""}><span>Send me occasional emails from Jo about building an expertise-led business. Unsubscribe any time.</span></label>
+      <div class="err" id="err" role="alert"></div>
+      <p class="fine" style="margin-top:4px">We use your details to send your result and, if you tick the box, occasional emails from Jo. Your answers are seen only by Jo, never shared or sold, and deleted on request.</p>
+      <div class="nav"><button type="button" class="btn btn-ghost" id="back">← Back</button><button class="btn btn-red" type="submit">Show my result →</button></div>
+    </form>
+  </div></div></section>`;
+  document.getElementById("back").onclick = () => { S.step--; render(); };
+  document.getElementById("f").onsubmit = (e) => {
+    e.preventDefault();
+    const fn = document.getElementById("fn").value.trim(), em = document.getElementById("em").value.trim();
+    const err = document.getElementById("err");
+    if (!fn) { err.textContent = "Please add your first name so we can personalise your result."; return; }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) { err.textContent = "Please enter a valid email address, for example jo@example.com."; return; }
+    S.name = fn; S.email = em; S.consent = document.getElementById("cs").checked; saveLead(); S.step++; render();
+  };
+}
+
+function saveLead() {
+  try {
+    const o = outcome(S.ans);
+    const top = ROUTES[o.routes[0].key].name;
+    const f = { "form-name": "encore-mettle", "bot-field": "",
+      first_name: S.name, email: S.email, consent: S.consent ? "yes" : "no",
+      stage: STAGES[S.ans.stage] ?? "", score: String(o.overall), band: o.band, profile: PROFILES[o.pk].name, route: top,
+      strongest: DIMS[o.strongest].name, constraint: DIMS[o.constraint].name,
+      pillar_scores: Object.entries(PILLARS).map(([k, P]) => P.name + ": " + o.p[k]).join("; "),
+      dimension_scores: Object.keys(DIMS).map((k) => DIMS[k].name + ": " + o.d[k]).join("; "),
+      routes: o.routes.map((r) => ROUTES[r.key].name + ": " + r.fit).join("; "),
+      answers: Q.map((q) => q.id + "=" + (S.ans[q.id] ?? "")).join("; "), source: SOURCE };
+    fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(f).toString() }).catch(() => {});
+    fetch("/api/subscribe", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
+      quiz: "mettle", first_name: S.name, email: S.email, consent: !!S.consent, stage: f.stage,
+      score: o.overall, band: o.band, profile: f.profile, route: top, strongest: f.strongest, constraint: f.constraint,
+      action: PROFILES[o.pk].action, source: SOURCE }) }).catch(() => {});
+  } catch (e) {}
+}
+
+const meter = (n) => `<div class="meter"><i style="width:${n}%"></i></div>`;
+
+function renderResult() {
+  const o = outcome(S.ans), P = PROFILES[o.pk];
+  const name = S.name || "there";
+  const topKey = o.routes[0].key;
+  const stage = S.ans.stage;
+  const routeCallout = topKey === "solo"
+    ? "Your own business comes out on top. The next question is which business, and the Encore Score: Idea tests exactly that."
+    : `Going solo isn't your strongest route right now. ${esc(ROUTES[topKey].name)} is, and that may be the most useful thing this score tells you.`;
+  const stageLine = stage === 0 ? "You're still employed, which is the best time to test any of these. You can try a route before you need it."
+    : stage === 4 ? "You're already running something. If your top route isn't the shape you've built, that's worth a proper look rather than a quiet worry."
+    : "";
+  app.innerHTML = `
+  <section class="res-hero wrap"><div class="inner res-inner fade">
+    <div class="res-grid">
+      <div>
+        <div class="eyebrow label-red">${esc(name)}, your Mettle profile</div>
+        <h1 class="display" style="font-size:clamp(44px,7vw,84px);margin-top:14px">${esc(P.name)}</h1>
+        <p class="for" style="font-size:17px;color:#D8D4CE;margin-top:16px;max-width:520px">Best-fit route right now: ${esc(ROUTES[topKey].name.toLowerCase())}.</p>
+        <div class="scorebox">
+          <div class="num">${o.overall}<sup>/100</sup></div>
+          <div><div class="band">${esc(o.band)}</div><div class="cap">Mettle score for going solo</div></div>
+        </div>
+      </div>
+      <figure class="res-photo" role="img" aria-label="Car headlights in the dark"></figure>
+    </div>
+    <div class="scale" aria-hidden="true">
+      <div class="scale-track">${BANDS.map((x) => `<div class="${x[0] === o.band ? "on" : ""}"></div>`).join("")}<span class="marker" style="left:${o.overall}%"></span></div>
+      <div class="scale-labels">${BANDS.map((x) => `<span class="${x[0] === o.band ? "on" : ""}">${x[0]} ${x[1]}–${x[2]}</span>`).join("")}</div>
+    </div>
+  </div></section>
+
+  <section class="panel wrap"><div class="inner">
+    <div class="interp">${P.text.map((p) => `<p>${esc(p)}</p>`).join("")}</div>
+    <div class="pillars">${Object.entries(PILLARS).map(([k, PL]) => `
+      <div><div class="eyebrow label-red">${esc(PL.sub)}</div><h4>${esc(PL.name)}</h4>
+        <div class="pnum">${o.p[k]}<sup>/100</sup></div>${meter(o.p[k])}
+        <ul class="dims">${PL.dims.map((dk) => `<li><span>${esc(DIMS[dk].name)}</span><b>${o.d[dk]}</b>${meter(o.d[dk])}</li>`).join("")}</ul>
+        <p>${esc(PL.note)}</p></div>`).join("")}
+    </div>
+    <div class="pair">
+      <div><div class="eyebrow label-red">Your strongest area</div><h4>${esc(DIMS[o.strongest].name)}</h4><p>${esc(DIMS[o.strongest].strong)}</p></div>
+      <div><div class="eyebrow label-red">What to work on first</div><h4>${esc(DIMS[o.constraint].name)}</h4><p>${esc(DIMS[o.constraint].weak)}</p></div>
+    </div>
+    <div class="action"><span class="tag">Do this week</span><p>${esc(P.action)}</p></div>
+  </div></section>
+
+  <section class="panel grey wrap"><div class="inner">
+    <div class="eyebrow label-red">Routes to your encore</div>
+    <h2 class="display sect-h">Going solo is one route. <em>Here are five.</em></h2>
+    <p class="sect-lede">Ranked from your answers and from the working life you said you want. Each comes with one small test you can run this month, before you commit to anything.</p>
+    <div class="routes">${o.routes.map((r, i) => `
+      <div class="route${i === 0 ? " top" : ""}">
+        <div><h4>${esc(ROUTES[r.key].name)}</h4><p>${esc(ROUTES[r.key].what)}</p></div>
+        <div class="fit">${i === 0 ? "Best fit right now" : fitLabel(r.fit)}${meter(r.fit)}</div>
+        ${i < 2 ? `<div class="try"><b>Try it</b>${esc(ROUTES[r.key].test)}</div>` : ""}
+      </div>`).join("")}
+    </div>
+    <p class="callout">${routeCallout}</p>
+    ${stageLine ? `<p class="sect-lede">${stageLine}</p>` : ""}
+  </div></section>
+
+  <section class="panel wrap"><div class="inner">
+    <div class="eyebrow label-red">Questions to sit with</div>
+    <h2 class="display sect-h">The awkward bit. <em>Answer honestly.</em></h2>
+    <ol class="qs">${o.challenges.map((c) => `<li><div><p>${esc(c.q)}</p><small>${esc(DIMS[c.dim].name)} · ${o.d[c.dim]}/100</small></div></li>`).join("")}</ol>
+    ${o.flags.length ? `<div class="flags"><h4>Where your answers argued with each other</h4>${o.flags.map((f) => `<p>${esc(f)}</p>`).join("")}</div>` : ""}
+  </div></section>
+
+  <section class="panel grey wrap teaser"><div class="inner">
+    <div class="eyebrow label-red">Start here · free</div>
+    <h2 class="display">You've tested your mettle. <em>Now test the idea.</em></h2>
+    <div class="next${WEBINAR_URL ? "" : " solo"}">
+      <div><div class="eyebrow label-red">Free · 7 minutes</div><h4>The Encore Score: Idea</h4><p>Mettle tells you about you. The Idea Score tells you about the business you have in mind: fourteen questions on whether it stacks up, and the one constraint most likely to cost you time or money.</p><a class="btn btn-red" href="${IDEA_URL}">Score my idea →</a></div>
+      ${WEBINAR_URL ? `<div><div class="eyebrow label-red">Free webinar</div><h4>The Next Move™ webinar</h4><p>Six practical steps for setting up on your own, from finding what people already pay you for to getting found without shouting.</p><a class="btn btn-red" href="${WEBINAR_URL}" target="_blank" rel="noopener">Save my seat →</a></div>` : ""}
+    </div>
+  </div></section>
+
+  <section class="panel wrap"><div class="inner">
+    ${EncoreNext.html({ diagUrl: DIAG_URL })}
+    <div class="nav no-print" style="justify-content:flex-start;gap:12px;flex-wrap:wrap"><button class="btn btn-ghost" id="pdf">↓ Download my results (PDF)</button><button class="btn btn-ghost" id="again">↺ Retake the Mettle score</button></div>
+    <div class="print-foot">The Encore Score™: ${NAME} · The Encore Partnership™ · Experience wins<br>Book onto The Encore Programme at theencorepartnership.com · Retake this score at diagnostic.theencorepartnership.com/mettle · Test your idea at diagnostic.theencorepartnership.com/score · jo@theencorepartnership.com</div>
+  </div></section>`;
+  document.getElementById("again").onclick = () => { reset(); render(); };
+  wirePdfButton(document.getElementById("pdf"), () => "Encore Score Mettle - " + (S.name || "my results"));
+}
+
+document.querySelectorAll(".chip").forEach((c) => c.onclick = () => {
+  const k = c.dataset.p;
+  reset();
+  if (k === "R") { render(); return; }
+  const s = SAMPLES[k];
+  S.name = "David"; S.ans = { stage: s.stage, ...s.a };
+  S.step = TOTAL + 1; render();
+});
+
+if (location.hash === "#preview") document.getElementById("proto").hidden = false;
+render();
+</script>
+
+</body>
+</html>
