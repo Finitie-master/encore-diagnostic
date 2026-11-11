@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Two free Encore Scores | The Encore Partnership</title>
+<meta name="description" content="Two free Scores for experienced professionals working out their next move. Mettle tests whether working for yourself suits you. Idea tests whether your idea stacks up.">
+<meta property="og:title" content="Test the idea. Test yourself. | The Encore Partnership">
+<meta property="og:description" content="Two free Scores for experienced professionals working out their next move. Each takes under ten minutes and neither asks about your finances.">
+<meta property="og:image" content="https://diagnostic.theencorepartnership.com/assets/dune.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&display=swap">
+<style>
+/* Free Scores landing page: dark band with the dune photo (never tinted), white panel with rounded top, dark close. */
+:root{
+  --ink:#000;--paper:#fff;--red:#DD1D13;--red-deep:#B8160E;--stone:#5F5C57;--mist:#EAEAE9;--fog:#F7F7F7;--char:#2B2B2B;--line:#D9D8D5;
+  --f-display:"Instrument Serif","Aperitif Serif Regular",Georgia,serif;
+  --f-body:"Inter Tight","Neue Swiss Medium","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --radius-panel:56px;color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{background:var(--ink)}
+body{margin:0;font-family:var(--f-body);color:var(--ink);font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.inner{max-width:1080px;margin:0 auto}
+.topbar .inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:22px;color:var(--paper)}
+.brand{display:flex;align-items:center;gap:12px;color:var(--paper);text-decoration:none}
+.mark{display:block;fill:var(--red);height:26px;width:auto}
+.brand span{font:700 12px/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase}
+.toplink{font:400 12px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:#BDB7AE;text-decoration:none}
+.toplink:hover{color:var(--paper)}
+.eyebrow{font:700 13px/1.4 var(--f-body);letter-spacing:.06em;text-transform:uppercase}
+.red{color:var(--red)}
+.mono{font-family:var(--f-mono)}
+.display{font-family:var(--f-display);font-weight:400;text-transform:uppercase;line-height:.95;margin:14px 0 0;font-size:clamp(44px,7.4vw,84px);text-wrap:balance}
+.display em{font-style:italic;text-transform:none;color:var(--red)}
+.hero{color:var(--paper)}
+.hero .inner{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding-block:28px 120px}
+.lede{color:#E2DDD6;max-width:540px;margin:22px 0 0}
+.hero-photo{aspect-ratio:4/5;overflow:hidden}
+.hero-photo img{display:block;width:100%;height:100%;object-fit:cover}
+.btn{appearance:none;border:0;border-radius:0;cursor:pointer;font:400 16px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:15px 24px;display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;transition:background .15s,color .15s}
+.btn-red{background:var(--red);color:var(--paper)}.btn-red:hover{background:var(--red-deep)}
+.btn-white{background:var(--paper);color:var(--ink)}.btn-white:hover{background:var(--mist)}
+.hero .btn{margin-top:32px}
+.panel{background:var(--paper);border-radius:var(--radius-panel) var(--radius-panel) 0 0;margin-top:calc(-1*var(--radius-panel));position:relative}
+.panel>.inner{padding-block:72px 96px}
+.sec{font-family:var(--f-display);font-weight:400;font-size:clamp(34px,4.6vw,52px);line-height:1.02;margin:10px 0 0;text-wrap:balance}
+.sec-intro{color:var(--stone);max-width:620px;margin:16px 0 0}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:44px}
+.card{border:1px solid var(--line);padding:34px 32px 32px;display:flex;flex-direction:column}
+.card .num{font:500 13px/1 var(--f-mono);letter-spacing:.06em;color:var(--red)}
+.card h3{font-family:var(--f-display);font-weight:400;text-transform:uppercase;font-size:clamp(32px,3.6vw,42px);line-height:.98;margin:14px 0 0}
+.card h3 em{font-style:italic;text-transform:none;color:var(--red)}
+.card .ask{font:600 20px/1.3 var(--f-body);margin:18px 0 0}
+.card .meta{font:400 13px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--stone);margin:14px 0 0}
+.card p.body{color:var(--char);margin:18px 0 28px;flex:1}
+.card .btn{align-self:flex-start}
+.which{background:var(--fog);padding:28px 32px;margin-top:24px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start}
+.which b.mono{color:var(--red);font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding-top:3px}
+.which p{margin:0;color:var(--char)}
+.small{font-size:15px;color:var(--stone);margin:24px 0 0}
+.close{color:var(--paper)}
+.close .inner{padding-block:84px 88px;display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:end}
+.close .sec{color:var(--paper)}
+.close p{color:#D6D0C8;max-width:560px;margin:18px 0 0}
+.close .actions{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.close .quiet{font:400 14px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:#CFCAC2;text-decoration:underline;text-underline-offset:4px}
+.close .quiet:hover{color:var(--paper)}
+.foot{color:#8F8A83;font-size:13px;border-top:1px solid #222}
+.foot .inner{padding-block:28px 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+.foot a{color:#CFCAC2}
+@media (max-width:860px){
+  .hero .inner{grid-template-columns:1fr;gap:36px;padding-block:12px 110px}
+  .hero-photo{aspect-ratio:4/3}
+  .cards{grid-template-columns:1fr}
+  .close .inner{grid-template-columns:1fr;align-items:start;gap:32px}
+}
+@media (max-width:520px){
+  .card{padding:28px 22px 24px}
+  .which{grid-template-columns:1fr;gap:8px;padding:24px 22px}
+  .toplink{display:none}
+  :root{--radius-panel:40px}
+}
+</style>
+</head>
+<body>
+<header class="topbar wrap"><div class="inner">
+  <a class="brand" href="https://theencorepartnership.com"><svg class="mark" viewBox="0 0 930 1236" aria-hidden="true"><rect x="2" y="1" width="926" height="165"/><path d="M146 291h652v155H326v212h434v154H326v268h472v155H146z"/></svg><span>The Encore Partnership™</span></a>
+  <a class="toplink" data-main href="https://theencorepartnership.com">About the Programme →</a>
+</div></header>
+
+<section class="hero wrap"><div class="inner">
+  <div>
+    <div class="eyebrow red">Free from The Encore Partnership</div>
+    <h1 class="display">Test the idea. Test <em>yourself.</em></h1>
+    <p class="lede">You've got decades of experience and, if you're like most people I work with, more than one idea about what to do with it. These two free Scores help you work out which idea stacks up, and whether working for yourself suits you in the first place. Each takes under ten minutes, and neither asks about your money.</p>
+    <a class="btn btn-red" href="#scores">Choose your Score →</a>
+  </div>
+  <div class="hero-photo"><img src="/assets/dune.jpg" alt="A red dune at dusk under a crescent moon" width="1400" height="1858"></div>
+</div></section>
+
+<main class="panel wrap" id="scores"><div class="inner">
+  <div class="eyebrow red">Two Scores, both free</div>
+  <h2 class="sec">One tests your idea. The other tests you.</h2>
+  <p class="sec-intro">You'll see your result on screen straight away, with a PDF to keep. Take one, or take both and compare notes with yourself.</p>
+
+  <div class="cards">
+    <article class="card">
+      <span class="num">01</span>
+      <h3>The Encore Score™ <em>Mettle</em></h3>
+      <p class="ask">Are you built for working for yourself?</p>
+      <p class="meta">20 questions · about 8 minutes</p>
+      <p class="body">You'll get a Mettle score, a named profile and five routes to your encore ranked for you, from your own business to fractional work, interim roles, partnering up, or a salary with something of your own alongside. Some people find out they're built for it. Others find out which route would suit them better before they learn it the expensive way.</p>
+      <a class="btn btn-red" data-score="/mettle/" href="/mettle/?src=free-page">Test your Mettle →</a>
+    </article>
+    <article class="card">
+      <span class="num">02</span>
+      <h3>The Encore Score™ <em>Idea</em></h3>
+      <p class="ask">Does your next move stack up?</p>
+      <p class="meta">14 questions · about 7 minutes</p>
+      <p class="body">For when you can see several things you could do and want to know which one anyone would pay for. You'll get a readiness score out of 100, a named profile, your strongest area, the constraint that matters most, and one thing to do this week. It's honest, so have a biscuit to hand.</p>
+      <a class="btn btn-red" data-score="/score/" href="/score/?src=free-page">Score your idea →</a>
+    </article>
+  </div>
+
+  <div class="which">
+    <b class="mono">Not sure which?</b>
+    <p>Start with Mettle if you're still deciding whether to go it alone at all. Start with Idea if you already have something in mind and want to know whether it would sell. Plenty of people do both, usually with a cup of tea in between.</p>
+  </div>
+  <p class="small">Your answers are private. Neither Score asks for financial details, and you choose whether to hear from me afterwards.</p>
+</div></main>
+
+<section class="close wrap"><div class="inner">
+  <div>
+    <div class="eyebrow red">When you're ready for more than a score</div>
+    <h2 class="sec">The Encore Programme</h2>
+    <p>A private accelerator for experienced professionals who want to turn what they know into a business people pay for. Twelve weeks in a small cohort, with me beside you, testing a direction with real buyers before you build anything.</p>
+  </div>
+  <div class="actions">
+    <a class="btn btn-white" data-main href="https://theencorepartnership.com">About the Programme →</a>
+    <a class="quiet" href="https://calendar.app.google/BFMnsuQPBoSExbSV6">Or book a free half hour with Jo</a>
+  </div>
+</div></section>
+
+<footer class="foot wrap"><div class="inner">
+  <span>© The Encore Partnership™</span>
+  <a href="https://theencorepartnership.com">theencorepartnership.com</a>
+</div></footer>
+
+<script>
+// Where the "About the Programme" buttons go. Change this one line if the sales page moves.
+var PROGRAMME_URL = "https://theencorepartnership.com";
+// Pass on the source tag (?src=linkedin etc.) so MailerLite records where each Score taker came from.
+(function(){
+  var src = "free-page";
+  try { var q = new URLSearchParams(location.search).get("src") || new URLSearchParams(location.search).get("utm_source"); if (q) src = q.replace(/[^\w-]/g, "").slice(0, 40) || src; } catch (e) {}
+  document.querySelectorAll("[data-score]").forEach(function(a){ a.href = a.getAttribute("data-score") + "?src=" + encodeURIComponent(src); });
+  document.querySelectorAll("[data-main]").forEach(function(a){ a.href = PROGRAMME_URL; });
+})();
+</script>
+</body>
+</html>
