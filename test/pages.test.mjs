@@ -13,7 +13,7 @@ test("nextsteps.js parses and builds the block", () => {
 });
 
 test("inline scripts on every page parse", () => {
-  for (const page of ["score", "mettle", "start", "free"]) {
+  for (const page of ["score", "mettle", "start", "free", "plan"]) {
     const html = readFileSync(new URL(`../public/${page}/index.html`, import.meta.url), "utf8");
     const scripts = [...html.matchAll(/<script(?![^>]*src=)([^>]*)>([\s\S]*?)<\/script>/g)];
     assert.ok(scripts.length > 0, page);

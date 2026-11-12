@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Encore Plan | The Encore Partnership</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Work backwards from the income you want to the offers, clients, conversations and weekly marketing it takes, as a 12-month plan in four 90-day sections.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --ink:#000;--paper:#fff;--red:#DD1D13;--red-deep:#B8160E;--amber:#C98A1E;--stone:#5F5C57;--mist:#EAEAE9;--fog:#F7F7F7;--char:#2B2B2B;--line:#D9D8D5;
+  --f-display:"Instrument Serif","Aperitif Serif Regular",Georgia,serif;
+  --f-body:"Inter Tight","Neue Swiss Medium","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --radius-panel:56px;color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{background:var(--ink)}
+body{margin:0;font-family:var(--f-body);color:var(--ink);font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
+[hidden]{display:none!important}
+.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.inner{max-width:900px;margin:0 auto}
+.wide{max-width:1080px}
+.topbar .inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:22px;color:var(--paper);max-width:1080px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--paper);text-decoration:none}
+.mark{display:block;fill:var(--red);height:26px;width:auto}
+.brand span{font:700 12px/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase}
+.eyebrow{font:700 13px/1.4 var(--f-body);letter-spacing:.06em;text-transform:uppercase}
+.red{color:var(--red)}
+.mono{font-family:var(--f-mono);letter-spacing:.06em;text-transform:uppercase}
+.hero{color:var(--paper)}
+.hero .inner{padding-block:16px 110px;max-width:1080px}
+.display{font-family:var(--f-display);font-weight:400;text-transform:uppercase;line-height:.95;margin:14px 0 0;font-size:clamp(44px,7vw,80px);text-wrap:balance}
+.display em{font-style:italic;text-transform:none;color:var(--red)}
+.lede{color:#E2DDD6;max-width:640px;margin:20px 0 0}
+.panel{background:var(--paper);border-radius:var(--radius-panel) var(--radius-panel) 0 0;margin-top:calc(-1*var(--radius-panel));position:relative;min-height:60vh}
+.panel>.inner{padding-block:64px 96px}
+/* Questions */
+.progress{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.bar{flex:1;height:3px;background:var(--mist);position:relative;overflow:hidden}
+.bar i{position:absolute;inset:0 auto 0 0;background:var(--red);transition:width .3s}
+.count{font:400 13px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--stone);white-space:nowrap}
+.jump{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 32px}
+.jump button{appearance:none;border:1px solid var(--line);background:var(--paper);border-radius:0;font:500 12px/1 var(--f-mono);letter-spacing:.04em;padding:8px 10px;cursor:pointer;color:var(--stone)}
+.jump button:hover{border-color:var(--ink)}
+.jump button.done{color:var(--ink);border-color:var(--ink)}
+.jump button.now{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.jump button.go{background:var(--red);border-color:var(--red);color:#fff}
+h2.sec{font-family:var(--f-display);font-weight:400;font-size:clamp(34px,5vw,50px);line-height:1.04;margin:10px 0 8px;text-wrap:balance}
+.sec-intro{color:var(--stone);font-size:16px;margin:0 0 26px;max-width:680px}
+.q{padding:22px 0;border-top:1px solid var(--line)}
+.q .qt{display:block;font-weight:600;font-size:18px;margin-bottom:12px}
+.hint{display:block;font-weight:400;font-size:14px;color:var(--stone);margin-top:4px;line-height:1.45}
+.row2{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.row2.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.f label{display:block;font-weight:600;font-size:15px;margin-bottom:6px}
+textarea,input[type=text],input[type=number],input[type=month],select{width:100%;font:500 17px/1.45 var(--f-body);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:0;padding:11px 13px}
+textarea{min-height:84px;resize:vertical}
+textarea:focus,input:focus,select:focus{border-color:var(--ink);outline:none}
+input::placeholder,textarea::placeholder{color:#B5B0A8;opacity:1}
+.pre{display:flex;align-items:stretch;border:1px solid var(--line);background:var(--paper)}.pre span{display:grid;place-items:center;padding:0 12px;background:var(--fog);color:var(--stone);font-weight:600;white-space:nowrap}
+.pre input{border:0}.pre:focus-within{border-color:var(--ink)}
+.choices{display:flex;flex-wrap:wrap;gap:6px}
+.choices button{appearance:none;border:1px solid var(--line);background:var(--paper);border-radius:0;padding:9px 13px;min-width:44px;cursor:pointer;font:500 15px/1.3 var(--f-body);color:var(--ink)}
+.choices button:hover{border-color:var(--ink)}
+.choices button[aria-pressed="true"]{border-color:var(--red);background:#FDF3F2}
+.card{border:1px solid var(--line);padding:22px;margin-top:14px;display:grid;gap:14px}
+.card-h{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.card-h b{font:500 13px/1 var(--f-mono);letter-spacing:.06em;color:var(--red)}
+.link{appearance:none;background:none;border:0;padding:0;font:500 14px/1.3 var(--f-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--stone);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.link:hover{color:var(--ink)}
+.chan{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;padding:16px 0;border-top:1px solid var(--line)}
+.chan input[type=checkbox]{width:20px;height:20px;accent-color:var(--red);margin-top:3px}
+.chan .row2{margin-top:10px}
+.total{font:500 13px/1.4 var(--f-mono);letter-spacing:.04em;margin-top:12px;color:var(--stone)}
+.total.off{color:var(--red)}
+.btn{appearance:none;border:0;border-radius:0;cursor:pointer;font:400 16px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:14px 22px;display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+.btn-red{background:var(--red);color:var(--paper)}.btn-red:hover{background:var(--red-deep)}
+.btn-line{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+.btn-ghost{background:transparent;color:var(--ink);padding-left:0;padding-right:0}
+.btn:focus-visible,.choices button:focus-visible,.jump button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:32px;flex-wrap:wrap}
+.err{color:var(--red);font-size:15px;min-height:22px;margin-top:12px}
+.todo{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.todo button{appearance:none;border:1px solid var(--red);background:#FDF3F2;color:var(--ink);border-radius:0;font:500 14px/1.3 var(--f-body);padding:8px 12px;cursor:pointer;text-align:left}
+.note{background:var(--fog);padding:16px 18px;font-size:15px;color:var(--char);margin-top:14px}
+.welcome .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:8px 0 28px}
+.welcome .grid3>div{border-top:2px solid var(--ink);padding-top:14px}
+.welcome .grid3 h3{font-family:var(--f-display);font-weight:400;font-size:26px;line-height:1.05;margin:10px 0 8px}
+.welcome .grid3 p{margin:0;font-size:15px;color:var(--char)}
+/* Results */
+.tabs{display:inline-flex;border:1px solid var(--ink);margin:18px 0 6px}
+.tabs button{appearance:none;border:0;background:var(--paper);font:500 14px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:11px 16px;cursor:pointer;color:var(--ink)}
+.tabs button+button{border-left:1px solid var(--ink)}
+.tabs button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;background:var(--line);border:1px solid var(--line);margin-top:22px}
+.tile{background:var(--paper);padding:20px 18px}
+.tile b{display:block;font-family:var(--f-display);font-weight:400;font-size:clamp(34px,4vw,46px);line-height:1;font-variant-numeric:tabular-nums}
+.tile span{display:block;font-size:14px;color:var(--char);margin-top:8px;line-height:1.4}
+.tile small{display:block;font:400 12px/1.4 var(--f-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--stone);margin-top:8px}
+.rsec{margin-top:56px}
+.rsec>h3{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,4vw,40px);line-height:1.05;margin:8px 0 6px}
+.rsec>p.sub{color:var(--stone);font-size:16px;margin:0 0 18px;max-width:700px}
+.legend{display:flex;flex-wrap:wrap;gap:18px;font-size:14px;color:var(--char);margin:4px 0 8px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:7px;vertical-align:-1px}
+.legend .dash{width:18px;height:0;border-top:2px dashed var(--ink);border-radius:0;vertical-align:3px}
+.chart{position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart .hit{fill:transparent;cursor:default}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--paper);font-size:13px;line-height:1.45;padding:9px 11px;min-width:170px;transform:translate(-50%,-100%);margin-top:-10px;z-index:3}
+.tip b{display:block;font:500 12px/1.2 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;color:#E2DDD6}
+.flags{display:grid;gap:12px}
+.flag{border-left:4px solid var(--stone);background:var(--fog);padding:16px 18px}
+.flag.serious{border-color:var(--red)}.flag.warning{border-color:var(--amber)}
+.flag b{display:flex;gap:10px;align-items:baseline;font-size:17px}
+.flag b em{font:600 11px/1 var(--f-mono);font-style:normal;letter-spacing:.08em;text-transform:uppercase;padding:4px 6px;background:var(--stone);color:#fff;white-space:nowrap}
+.flag.serious b em{background:var(--red)}.flag.warning b em{background:#8A5D10}
+.flag p{margin:6px 0 0;font-size:15px;color:var(--char)}
+.allclear{background:var(--fog);padding:16px 18px;font-size:16px}
+.qgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.qcard{border:1px solid var(--line);padding:24px;display:flex;flex-direction:column;gap:12px}
+.qcard .qh{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.qcard .qh b{font:500 13px/1 var(--f-mono);letter-spacing:.06em;color:var(--red)}
+.qcard .qh span{font:400 12px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--stone)}
+.qcard h4{font-family:var(--f-display);font-weight:400;font-size:28px;line-height:1.05;margin:0}
+.qcard p{margin:0;font-size:15px;color:var(--char)}
+.qcard dl{margin:4px 0 0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0;font-size:15px}
+.qcard dt,.qcard dd{padding:8px 0;border-top:1px solid var(--line);margin:0}
+.qcard dd{text-align:right;font-weight:600;font-variant-numeric:tabular-nums;padding-left:12px}
+.qcard .wk{background:var(--ink);color:var(--paper);padding:14px 16px;font-size:15px}
+.qcard .wk b{display:block;font:500 12px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:#E2DDD6;margin-bottom:8px}
+.qcard .wk ul{margin:0;padding:0;list-style:none;display:grid;gap:4px}
+.qcard .wk li strong{color:#fff}
+.qcard .qnote{font-size:14px;color:var(--stone)}
+table.t{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+table.t th,table.t td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+table.t th:first-child,table.t td:first-child{text-align:left}
+table.t th{white-space:normal;min-width:64px;font:500 12px/1.3 var(--f-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--stone);vertical-align:bottom}
+table.t td.over{color:var(--red);font-weight:700}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.whatif{background:var(--ink);color:var(--paper);padding:28px}
+.whatif h3{color:var(--paper)}
+.wi-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:8px}
+.wi-grid label{display:block;font-size:15px;color:#E2DDD6;margin-bottom:8px}
+.wi-grid label b{color:#fff}
+.wi-grid input[type=range]{width:100%;accent-color:var(--red)}
+.wi-out{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;background:#333;margin-top:22px}
+.wi-out div{background:#111;padding:14px}
+.wi-out b{display:block;font-family:var(--f-display);font-weight:400;font-size:30px;line-height:1}
+.wi-out span{display:block;font-size:13px;color:#CFCAC2;margin-top:6px}
+.wi-out .chg{font:500 12px/1 var(--f-mono);margin-top:6px;display:block}
+.up{color:#9FD39E}.down{color:#FF8A82}
+.ans{columns:2;column-gap:32px;font-size:14px;color:var(--char)}
+.ans p{margin:0 0 10px;break-inside:avoid}
+.ans b{display:block;font:500 11px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--stone)}
+.small{font-size:14px;color:var(--stone)}
+.foot{color:#8F8A83;font-size:13px;border-top:1px solid #222}
+.foot .inner{padding-block:28px 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;max-width:1080px}
+.foot a{color:#CFCAC2}
+@media (max-width:860px){
+  .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .qgrid{grid-template-columns:minmax(0,1fr)}
+  .wi-grid{grid-template-columns:minmax(0,1fr)}
+  .wi-out{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .welcome .grid3{grid-template-columns:minmax(0,1fr)}
+  .ans{columns:1}
+}
+@media (max-width:600px){
+  :root{--radius-panel:32px}
+  .row2,.row2.two{grid-template-columns:minmax(0,1fr)}
+  .panel>.inner{padding-block:44px 72px}
+  .whatif{padding:22px 18px}
+}
+@media print{.no-print,.topbar{display:none!important}html,body{background:#fff}}
+</style>
+</head>
+<body>
+<header class="topbar wrap"><div class="inner">
+  <a class="brand" href="https://theencorepartnership.com"><svg class="mark" viewBox="0 0 930 1236" aria-hidden="true"><rect x="2" y="1" width="926" height="165"/><path d="M146 291h652v155H326v212h434v154H326v268h472v155H146z"/></svg><span>The Encore Partnership™</span></a>
+</div></header>
+
+<section class="hero wrap"><div class="inner">
+  <div class="eyebrow red">The Encore Programme™ · planning tool</div>
+  <h1 class="display">Work back from <em>your number</em></h1>
+  <p class="lede">Start with the income you want. Finish with the offers, clients, conversations and weekly marketing it takes to get there, laid out as a 12-month plan in four 90-day sections.</p>
+</div></section>
+
+<main class="panel wrap"><div class="inner" id="app"></div></main>
+
+<footer class="foot wrap"><div class="inner">
+  <span>© The Encore Partnership™ · The Encore Plan</span>
+  <a href="https://theencorepartnership.com">theencorepartnership.com</a>
+</div></footer>
+
+<script type="module">
+import { plan, compareTiers, missing, defaults, TIERS, OFFER_TYPES, CHANNELS, MONTHS, SAMPLE, gbp, round1, whole, HOURS_PER_CONVERSATION } from "/engine/plan.mjs";
+import { wirePdfButton } from "/engine/pdf.mjs";
+
+const KEY = "encore-plan-v1";
+const app = document.getElementById("app");
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+let A, step = -1, wi = null;
+try { const saved = JSON.parse(localStorage.getItem(KEY) || "null"); A = saved && saved.A ? saved.A : defaults(); step = saved && Number.isInteger(saved.step) ? saved.step : -1; } catch (e) { A = defaults(); }
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify({ A, step })); } catch (e) {} };
+
+// ---------- field helpers ----------
+const val = k => A[k] ?? "";
+const money = (k, label, hint, ph = "") => `<div class="f"><label for="f-${k}">${label}</label><div class="pre"><span>£</span><input id="f-${k}" type="text" inputmode="decimal" data-k="${k}" value="${esc(val(k))}" placeholder="${ph}"></div>${hint ? `<span class="hint">${hint}</span>` : ""}</div>`;
+const numf = (k, label, hint, suffix = "", ph = "") => `<div class="f"><label for="f-${k}">${label}</label><div class="pre"><input id="f-${k}" type="text" inputmode="decimal" data-k="${k}" value="${esc(val(k))}" placeholder="${ph}">${suffix ? `<span>${suffix}</span>` : ""}</div>${hint ? `<span class="hint">${hint}</span>` : ""}</div>`;
+const textf = (k, label, hint, area = false, ph = "") => `<div class="f"><label for="f-${k}">${label}</label>${area ? `<textarea id="f-${k}" data-k="${k}" placeholder="${ph}">${esc(val(k))}</textarea>` : `<input id="f-${k}" type="text" data-k="${k}" value="${esc(val(k))}" placeholder="${ph}">`}${hint ? `<span class="hint">${hint}</span>` : ""}</div>`;
+const choose = (k, opts, fmt = x => x) => `<div class="choices" role="group">${opts.map(o => `<button type="button" data-choose="${k}" data-v="${o}" aria-pressed="${String(A[k]) === String(o)}">${fmt(o)}</button>`).join("")}</div>`;
+const q = (title, hint, body) => `<div class="q"><span class="qt">${title}${hint ? `<span class="hint">${hint}</span>` : ""}</span>${body}</div>`;
+
+const monthName = i => { const [y, m] = String(A.start || "").split("-").map(Number); const k = (Number.isFinite(m) ? m - 1 : new Date().getMonth()) + i - 1; return `${MONTHS[k % 12]} ${(Number.isFinite(y) ? y : new Date().getFullYear()) + Math.floor(k / 12)}`; };
+
+// ---------- the seven steps ----------
+const STEPS = [
+  { title: "Your number", intro: "Three figures for what you want the business to pay you each year, before tax. The plan is built on the middle one, and you can switch between all three on your results.", render: () =>
+    q("Your first name", "So the plan is yours. Optional.", textf("name", "First name", "", false, "e.g. Sam")) +
+    q("What do you want the business to pay you a year, before tax?", "Once it's up and running. Tax comes out of these figures, so check what to set aside with your accountant.",
+      `<div class="row2">${money("goalMin", "The minimum you need", "", "e.g. 40,000")}${money("goalHappy", "What you'd be happy with", "", "e.g. 70,000")}${money("goalStretch", "Your stretch figure", "", "e.g. 100,000")}</div>`) +
+    q("By which month do you want to be earning at the “happy” pace?", "Month 1 is the month you start.", `<div class="row2 two"><div class="f"><label for="f-start">Month 1 is</label><input id="f-start" type="month" data-k="start" value="${esc(A.start)}"></div><div class="f"><label for="f-targetMonth">Full pace by</label><select id="f-targetMonth" data-k="targetMonth">${Array.from({ length: 12 }, (_, i) => `<option value="${i + 1}" ${Number(A.targetMonth) === i + 1 ? "selected" : ""}>Month ${i + 1} (${monthName(i + 1)})</option>`).join("")}</select></div></div>`) +
+    q("Anything else coming in, and what will the business cost to run?", "Other income lowers what the business has to earn; costs raise it.",
+      `<div class="row2 two">${money("otherIncome", "Other income a year", "Fractional work, part-time role, pension.", "0")}${money("costs", "Business costs a month", "Tools, insurance, accountant, travel.", "0")}</div>`) },
+  { title: "Your time", intro: "This is where most plans come unstuck, so be honest. The plan checks your goal fits the week you actually want.", render: () =>
+    q("How many days a week do you want to work?", "", choose("daysPerWeek", [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5])) +
+    q("How many weeks a year?", "Take off holidays, family time and the Christmas break.", numf("weeksPerYear", "Working weeks", "", "weeks", "44")) +
+    q("How much of each week goes on admin?", "Invoicing, email, bookkeeping, learning. Finding clients comes later.", choose("adminDays", [0, 0.5, 1, 1.5], x => x + (x === 1 ? " day" : " days"))) +
+    q("Anything fixed that work has to fit around?", "Optional.", textf("fixed", "Fixed in my week", "", true, "e.g. school run, Fridays with the grandchildren")) },
+  { title: "Your offers", intro: "Up to three things you'll sell. If you're not sure yet, put in your best guess: changing it later takes seconds.", render: renderOffers },
+  { title: "Where you're starting", intro: "Nobody starts from zero. Work already agreed shortens the climb, and the people who already ask your advice are your first evidence of demand.", render: () =>
+    q("Paid work you already have lined up", "Leave at 0 if none.", `<div class="row2 two">${money("securedMonthly", "Worth a month", "", "0")}${numf("securedMonths", "For how many months", "", "months", "0")}</div>`) +
+    q("Your starting network", "Rough numbers are fine.", `<div class="row2 two">${numf("network", "People who could buy or introduce you to a buyer", "", "", "e.g. 60")}${numf("advisees", "People who already come to you for advice on this", "", "", "e.g. 8")}${numf("audience", "Email list or LinkedIn followers", "", "", "e.g. 1,500")}${numf("partners", "Referral partners", "Accountants, lawyers, other consultants who could send work your way.", "", "e.g. 2")}</div>`) },
+  { title: "How you sell", intro: "These numbers turn clients into conversations. If you don't know them yet, the starting figures are cautious placeholders. Replace them with your own as soon as you have real ones.", render: () =>
+    q("How long from first conversation to signed client?", "", choose("cycleWeeks", [1, 2, 4, 6, 8, 12, 16], x => x + (x === 1 ? " week" : " weeks"))) +
+    q("Out of 10 serious conversations, how many lead to a proposal or a clear offer?", "", choose("propRate", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])) +
+    q("Out of 10 proposals, how many say yes?", "", choose("winRate", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])) +
+    q("How comfortable are you selling yourself?", "1 is “I'd rather do my tax return”, 5 is “I love it”. Your Mettle result has this if you've done it.", choose("comfort", [1, 2, 3, 4, 5])) },
+  { title: "How you'll find clients", intro: "Choose the routes you'll use and roughly how much each will bring. The plan turns that into weekly activity.", render: renderChannels },
+  { title: "Your risks", intro: "Last one. These make the plan safer rather than bigger.", render: () =>
+    q("Any quiet months in your world?", "Tap any that apply. The plan will warn you to fill the diary before them.", `<div class="choices" role="group">${MONTHS.map((m, i) => `<button type="button" data-quiet="${i}" aria-pressed="${(A.quiet || []).includes(i)}">${m}</button>`).join("")}</div>`) +
+    q("Anything you won't do, however well it pays?", "Optional. It goes on your plan as a reminder.", textf("wontDo", "I won't", "", true, "e.g. weekly travel to London")) },
+];
+
+function renderOffers() {
+  const offers = A.offers && A.offers.length ? A.offers : (A.offers = [{ name: "", type: "oneoff", price: "", days: "", stay: 6, share: 100 }]);
+  const total = offers.reduce((s, o) => s + (parseFloat(o.share) || 0), 0);
+  return offers.map((o, i) => { const t = OFFER_TYPES[o.type] || OFFER_TYPES.oneoff; return `<div class="card">
+    <div class="card-h"><b>Offer ${String(i + 1).padStart(2, "0")}</b>${offers.length > 1 ? `<button type="button" class="link" data-del="${i}">Remove</button>` : ""}</div>
+    <div class="row2 two"><div class="f"><label>What is it?</label><input type="text" data-o="${i}" data-ok="name" value="${esc(o.name)}" placeholder="e.g. Operations review"></div>
+    <div class="f"><label>What kind?</label><select data-o="${i}" data-ok="type">${Object.entries(OFFER_TYPES).map(([k, v]) => `<option value="${k}" ${o.type === k ? "selected" : ""}>${v.label}</option>`).join("")}</select></div></div>
+    <div class="row2"><div class="f"><label>${t.price}</label><div class="pre"><span>£</span><input type="text" inputmode="decimal" data-o="${i}" data-ok="price" value="${esc(o.price)}" placeholder="e.g. 3,000"></div></div>
+    <div class="f"><label>${t.days}</label><div class="pre"><input type="text" inputmode="decimal" data-o="${i}" data-ok="days" value="${esc(o.days)}" placeholder="e.g. 4"><span>days</span></div></div>
+    <div class="f"><label>Share of your income</label><div class="pre"><input type="text" inputmode="decimal" data-o="${i}" data-ok="share" value="${esc(o.share)}"><span>%</span></div></div></div>
+    ${o.type === "retainer" ? `<div class="row2"><div class="f"><label>How many months does a client usually stay?</label><div class="pre"><input type="text" inputmode="decimal" data-o="${i}" data-ok="stay" value="${esc(o.stay)}"><span>months</span></div></div></div>` : ""}
+    ${o.type === "product" ? `<p class="hint">Products usually sell without a sales conversation, so the plan counts the sales but not conversations for them. They need an audience to sell to.</p>` : ""}
+  </div>`; }).join("") +
+  `<p class="total ${Math.round(total) === 100 ? "" : "off"}">Shares add up to ${Math.round(total)}%${Math.round(total) === 100 ? "" : ". The plan will scale them to 100%."}</p>` +
+  (offers.length < 3 ? `<button type="button" class="btn btn-line" id="add-offer">+ Add another offer</button>` : "") +
+  `<p class="note">“Your days” means delivery time only. Finding clients and admin are counted separately.</p>`;
+}
+
+function renderChannels() {
+  A.channels = A.channels || {};
+  const on = CHANNELS.filter(c => A.channels[c.id] && A.channels[c.id].on);
+  const total = on.reduce((s, c) => s + (parseFloat(A.channels[c.id].share) || 0), 0);
+  return q("How many hours a week can you give to finding clients?", "Including sales conversations.", numf("marketingHours", "Hours a week", "", "hours", "6")) +
+    q("Any marketing budget a month?", "Optional.", money("budget", "Budget a month", "", "0")) +
+    `<div class="q"><span class="qt">Which routes will you use?<span class="hint">For each, the share of your conversations you expect from it, and how many of that activity it takes to get one sales conversation. The starting figures are rough placeholders, so change them to match your experience.</span></span>` +
+    CHANNELS.map(c => { const s = A.channels[c.id] || {}; return `<div class="chan"><input type="checkbox" id="ch-${c.id}" data-ch="${c.id}" ${s.on ? "checked" : ""}><div><label for="ch-${c.id}"><b>${c.label}</b></label>${s.on ? `<div class="row2 two"><div class="f"><label>Share of conversations</label><div class="pre"><input type="text" inputmode="decimal" data-chk="${c.id}" data-f="share" value="${esc(s.share ?? "")}"><span>%</span></div></div><div class="f"><label>${esc(c.unit)} per conversation</label><div class="pre"><input type="text" inputmode="decimal" data-chk="${c.id}" data-f="perConv" value="${esc(s.perConv ?? c.perConv)}"></div></div></div>` : ""}</div></div>`; }).join("") +
+    (on.length ? `<p class="total ${Math.round(total) === 100 ? "" : "off"}">Shares add up to ${Math.round(total)}%${Math.round(total) === 100 ? "" : ". The plan will scale them to 100%."}</p>` : "") + `</div>`;
+}
+
+// ---------- rendering ----------
+const N = STEPS.length;
+function stepDone(i) { const m = missing(A); return !m.some(x => x.step === i); }
+
+function render() {
+  app.className = step >= N ? "inner wide" : "inner";
+  if (step < 0) return renderWelcome();
+  if (step >= N) return renderResults();
+  const S = STEPS[step];
+  app.innerHTML = `<div class="progress"><div class="bar"><i style="width:${(step + 1) / (N + 1) * 100}%"></i></div><span class="count">Step ${step + 1} of ${N}</span></div>
+  <nav class="jump" aria-label="Jump to a step">${STEPS.map((x, i) => `<button type="button" data-jump="${i}" class="${i === step ? "now" : (stepDone(i) && visited.has(i) ? "done" : "")}" ${i === step ? 'aria-current="step"' : ""} title="${esc(x.title)}">${String(i + 1).padStart(2, "0")} ${esc(x.title)}</button>`).join("")}<button type="button" class="go" data-jump="${N}">See my plan →</button></nav>
+  <div class="eyebrow red">Step ${step + 1}</div><h2 class="sec">${S.title}</h2><p class="sec-intro">${S.intro}</p>
+  ${S.render()}
+  <div class="nav"><button class="btn btn-ghost" id="back">← Back</button><button class="btn btn-red" id="next">${step === N - 1 ? "See my plan →" : "Next →"}</button></div><div class="err" id="err" role="alert"></div>`;
+  visited.add(step); bind();
+  window.scrollTo({ top: 0 });
+}
+const visited = new Set();
+
+const hasAnswers = () => !!(String(A.goalHappy ?? "").trim() || (A.offers || []).some(o => String(o.price ?? "").trim()));
+function renderWelcome() {
+  app.innerHTML = `<div class="welcome"><div class="eyebrow red">About 15 minutes</div><h2 class="sec">From the income you want to what you do on Monday</h2>
+  <p class="sec-intro">Seven short steps. Your answers save on this device as you go and aren't sent anywhere, so have a rough go now and refine it as you learn. You can jump between steps in any order.</p>
+  <div class="grid3"><div><span class="mono red">01</span><h3>Your number and your week</h3><p>What you want to earn, and the time you actually want to give it.</p></div>
+  <div><span class="mono red">02</span><h3>Your offers and how you sell</h3><p>What you'll sell, at what price, and how conversations turn into clients.</p></div>
+  <div><span class="mono red">03</span><h3>Your plan</h3><p>Twelve months, four 90-day sections, weekly activity, and honest reality checks.</p></div></div>
+  <div class="nav" style="justify-content:flex-start"><button class="btn btn-red" id="begin">${hasAnswers() ? "Carry on →" : "Start →"}</button><button class="btn btn-line" id="sample">See a sample plan</button></div></div>`;
+  document.getElementById("begin").onclick = () => { step = 0; save(); render(); };
+  document.getElementById("sample").onclick = () => { if (hasAnswers() && !confirm("Replace your answers with the sample?")) return; A = JSON.parse(JSON.stringify(SAMPLE)); step = N; save(); render(); };
+}
+
+function bind() {
+  app.querySelectorAll("[data-k]").forEach(el => el.addEventListener("input", () => { A[el.dataset.k] = el.value; save(); if (el.dataset.k === "start") rerenderKeepFocus(); }));
+  app.querySelectorAll("[data-choose]").forEach(b => b.onclick = () => { A[b.dataset.choose] = Number(b.dataset.v); save(); app.querySelectorAll(`[data-choose="${b.dataset.choose}"]`).forEach(x => x.setAttribute("aria-pressed", String(x === b))); });
+  app.querySelectorAll("[data-quiet]").forEach(b => b.onclick = () => { const i = Number(b.dataset.quiet); A.quiet = A.quiet || []; A.quiet = A.quiet.includes(i) ? A.quiet.filter(x => x !== i) : [...A.quiet, i]; save(); b.setAttribute("aria-pressed", String(A.quiet.includes(i))); });
+  app.querySelectorAll("[data-o]").forEach(el => el.addEventListener(el.tagName === "SELECT" ? "change" : "input", () => { A.offers[+el.dataset.o][el.dataset.ok] = el.value; save(); if (el.dataset.ok === "type" || el.dataset.ok === "share") rerenderKeepFocus(); }));
+  app.querySelectorAll("[data-del]").forEach(b => b.onclick = () => { A.offers.splice(+b.dataset.del, 1); save(); render(); });
+  const add = document.getElementById("add-offer"); if (add) add.onclick = () => { A.offers.push({ name: "", type: "oneoff", price: "", days: "", stay: 6, share: 0 }); save(); render(); };
+  app.querySelectorAll("[data-ch]").forEach(el => el.onchange = () => { const id = el.dataset.ch, c = CHANNELS.find(x => x.id === id); A.channels[id] = { ...(A.channels[id] || { share: 0, perConv: c.perConv }), on: el.checked }; save(); render(); });
+  app.querySelectorAll("[data-chk]").forEach(el => el.addEventListener("input", () => { A.channels[el.dataset.chk][el.dataset.f] = el.value; save(); if (el.dataset.f === "share") rerenderKeepFocus(); }));
+  app.querySelectorAll("[data-jump]").forEach(b => b.onclick = () => go(+b.dataset.jump));
+  const back = document.getElementById("back"); if (back) back.onclick = () => { step--; save(); render(); };
+  const next = document.getElementById("next"); if (next) next.onclick = () => go(step + 1);
+}
+// Re-render after a change that alters the form (e.g. offer type), keeping the cursor where it was.
+function rerenderKeepFocus() {
+  const a = document.activeElement, sel = a && (a.dataset.k ? `[data-k="${a.dataset.k}"]` : a.dataset.o ? `[data-o="${a.dataset.o}"][data-ok="${a.dataset.ok}"]` : a.dataset.chk ? `[data-chk="${a.dataset.chk}"][data-f="${a.dataset.f}"]` : null);
+  const pos = a && a.selectionStart; const y = window.scrollY;
+  render(); window.scrollTo({ top: y });
+  if (sel) { const el = app.querySelector(sel); if (el) { el.focus(); try { if (pos != null) el.setSelectionRange(pos, pos); } catch (e) {} } }
+}
+function go(i) {
+  if (i >= N) {
+    const m = missing(A);
+    if (m.length) {
+      if (step < 0 || step >= N) { step = m[0].step; save(); render(); }
+      const err = document.getElementById("err");
+      err.innerHTML = `A few answers are needed before the plan can be worked out:<div class="todo">${m.map(x => `<button type="button" data-todo="${x.step}">Step ${x.step + 1}: ${esc(x.text)} →</button>`).join("")}</div>`;
+      err.querySelectorAll("[data-todo]").forEach(b => b.onclick = () => { step = +b.dataset.todo; save(); render(); });
+      return;
+    }
+  }
+  step = i; save(); render();
+}
+
+// ---------- results ----------
+function renderResults() {
+  const p = plan(A, A.tier || "happy");
+  const tiers = compareTiers(A);
+  const name = (A.name || "").trim();
+  const tierLong = TIERS.find(t => t.id === p.tier).long;
+  const fullLabel = p.months[Math.min(11, p.full.month - 1)].label;
+  const over = p.full.days > p.deliveryAvail + 0.05;
+  app.className = "inner wide";
+  app.innerHTML = `<div class="eyebrow red">The Encore Plan${name ? ` · ${esc(name)}` : ""}</div>
+  <h2 class="sec">${name ? `${esc(name)}, here's` : "Here's"} what paying yourself ${gbp(goalFor(p.tier))} a year takes</h2>
+  <p class="sec-intro">Built on ${tierLong}. Switch to see the other two. Figures are before tax, and rounded up, because nobody wins 0.6 of a client.</p>
+  <div class="tabs no-print" role="group" aria-label="Income tier">${TIERS.map(t => `<button type="button" data-tier="${t.id}" aria-pressed="${t.id === p.tier}">${t.label}</button>`).join("")}</div>
+
+  <div class="tiles">
+    <div class="tile"><b>${gbp(p.R)}</b><span>revenue a month at full pace</span><small>From ${esc(fullLabel)}</small></div>
+    <div class="tile"><b>${whole(p.yearClients)}</b><span>new clients or sales this year</span><small>${p.offers.map(o => `${whole(o.yearNew)} × ${esc(o.name)}`).join(" · ")}</small></div>
+    <div class="tile"><b>${round1(p.full.convPerWeek)}</b><span>sales conversations a week at full pace</span><small>${Math.round(p.close * 100)} in 100 become clients</small></div>
+    <div class="tile"><b>${round1(p.full.days)}<span style="display:inline;font-size:22px;color:var(--stone)"> / ${round1(p.deliveryAvail)}</span></b><span>delivery days a month needed, against what you have</span><small style="color:${over ? "var(--red)" : "inherit"}">${over ? "Doesn't fit your week" : "Fits your week"}</small></div>
+  </div>
+
+  <section class="rsec"><div class="eyebrow red">Your 12 months</div><h3>The climb to full pace</h3>
+  <p class="sub">Revenue each month. New income starts once your first conversations have had time to land${p.lag ? ` (about ${p.lag} month${p.lag > 1 ? "s" : ""} on your figures)` : ""}.</p>
+  <div class="legend"><span><i style="background:var(--amber)"></i>Work already lined up</span><span><i style="background:var(--red)"></i>New work from this plan</span><span><i class="dash"></i>Full pace (${gbp(p.R)})</span></div>
+  <div class="chart" id="chart">${chartSVG(p)}<div class="tip" id="tip" hidden></div></div></section>
+
+  <section class="rsec"><div class="eyebrow red">Reality checks</div><h3>What to watch</h3>
+  ${p.flags.length ? `<div class="flags">${p.flags.map(f => `<div class="flag ${f.level}"><b><em>${f.level === "serious" ? "Fix first" : f.level === "warning" ? "Watch" : "Worth knowing"}</em>${esc(f.title)}</b><p>${esc(f.text)}</p></div>`).join("")}</div>` : `<div class="allclear"><b>Nothing major.</b> On your figures the goal fits your week and your selling time. The main risk now is the conversion figures, so check them against real conversations in the first quarter.</div>`}
+  ${p.floorMonth ? `<p class="small" style="margin-top:14px">You cover your minimum (${gbp(p.floor)} a month in revenue) from month ${p.floorMonth} (${esc(p.months[p.floorMonth - 1].label)}).</p>` : ""}</section>
+
+  <section class="rsec"><div class="eyebrow red">Four 90-day sections</div><h3>What each quarter asks of you</h3>
+  <p class="sub">The targets and the weekly rhythm for each 90 days. Conversations come before the income they create, so early quarters are busier than their revenue suggests.</p>
+  <div class="qgrid">${p.quarters.map((qq, i) => quarterCard(qq, p.focus[i], p)).join("")}</div></section>
+
+  <section class="rsec no-print"><div class="whatif"><div class="eyebrow red">What if?</div><h3 class="sec" style="font-size:clamp(28px,4vw,38px);margin:8px 0 4px">Try a change before you make it</h3>
+  <p style="color:#CFCAC2;font-size:15px;margin:0">These don't change your answers. Use them to see which lever moves the plan most.</p>
+  <div class="wi-grid">
+    <div><label for="wi-price">Prices: <b id="wi-price-v">no change</b></label><input type="range" id="wi-price" min="-30" max="60" step="5" value="0"></div>
+    <div><label for="wi-close">Out of 10 conversations, clients won: <b id="wi-close-v"></b></label><input type="range" id="wi-close" min="0.5" max="6" step="0.5" value="${Math.max(0.5, Math.round(p.close * 20) / 2)}"></div>
+    <div><label for="wi-days">Days a week: <b id="wi-days-v"></b></label><input type="range" id="wi-days" min="1" max="5" step="0.5" value="${Number(A.daysPerWeek) || 4}"></div>
+  </div><div class="wi-out" id="wi-out"></div></div></section>
+
+  <section class="rsec"><div class="eyebrow red">Month by month</div><h3>The detail</h3>
+  <div class="scroll"><table class="t"><thead><tr><th>Month</th><th>Revenue</th><th>Already lined up</th>${p.offers.map(o => `<th>${esc(o.name)}<br>${o.type === "retainer" ? "active clients" : "new sales"}</th>`).join("")}<th>Conversations to have</th><th>Delivery days, new work (of ${round1(p.deliveryAvail)})</th></tr></thead>
+  <tbody>${p.months.map(r => `<tr><td>${esc(r.label)}${r.quiet ? " · quiet" : ""}</td><td>${gbp(r.revenue)}</td><td>${r.secured ? gbp(r.secured) : "–"}</td>${r.byOffer.map((b, i) => `<td>${p.offers[i].type === "retainer" ? round1(b.clients) : round1(b.newClients)}</td>`).join("")}<td>${whole(r.conversations)}</td><td class="${r.days > p.deliveryAvail + 0.05 ? "over" : ""}">${round1(r.days)}</td></tr>`).join("")}
+  <tr><td><b>Year</b></td><td><b>${gbp(p.yearRevenue)}</b></td><td>${gbp(p.months.reduce((s, r) => s + r.secured, 0))}</td>${p.offers.map(o => `<td><b>${whole(o.yearNew)}</b>${o.type === "retainer" ? " signed" : ""}</td>`).join("")}<td><b>${whole(p.yearConversations)}</b></td><td></td></tr></tbody></table></div>
+  <p class="small">Monthly figures show decimals so the year adds up. ${p.offers.some(o => o.type === "retainer") ? "Retainer columns show clients active that month; “signed” in the year row counts new sign-ups, including replacing those who leave." : ""}</p></section>
+
+  <section class="rsec"><div class="eyebrow red">Three versions</div><h3>Minimum, happy and stretch side by side</h3>
+  <div class="scroll"><table class="t"><thead><tr><th></th>${tiers.map(t => `<th>${t.label}</th>`).join("")}</tr></thead><tbody>
+  <tr><td>Pay yourself a year (before tax)</td>${tiers.map(t => `<td>${gbp(goalFor(t.id))}</td>`).join("")}</tr>
+  <tr><td>Revenue a month at full pace</td>${tiers.map(t => `<td>${gbp(t.R)}</td>`).join("")}</tr>
+  <tr><td>New clients or sales this year</td>${tiers.map(t => `<td>${whole(t.yearClients)}</td>`).join("")}</tr>
+  <tr><td>Conversations a week at full pace</td>${tiers.map(t => `<td>${round1(t.convPerWeek)}</td>`).join("")}</tr>
+  <tr><td>Delivery days a month (of ${round1(p.deliveryAvail)})</td>${tiers.map(t => `<td class="${t.fits ? "" : "over"}">${round1(t.days)}</td>`).join("")}</tr>
+  </tbody></table></div></section>
+
+  <section class="rsec"><div class="eyebrow red">Your answers</div><h3>What this plan is built on</h3>
+  <div class="ans">${answersList(p)}</div>
+  <p class="small" style="margin-top:16px">This plan is a model built from your answers, not a forecast, and it isn't financial or tax advice. The routes-to-clients figures start as rough placeholders: the plan is only as good as the numbers you replace them with, so update it after every ten conversations.</p></section>
+
+  <div class="nav no-print" style="justify-content:flex-start;margin-top:40px"><button class="btn btn-red" id="pdf">↓ Download my plan (PDF)</button><button class="btn btn-line" id="edit">Change my answers</button><button class="btn btn-ghost" id="restart">Start again</button></div>`;
+
+  app.querySelectorAll("[data-tier]").forEach(b => b.onclick = () => { A.tier = b.dataset.tier; save(); const y = window.scrollY; render(); window.scrollTo({ top: y }); });
+  document.getElementById("edit").onclick = () => { app.className = "inner"; step = 0; save(); render(); };
+  document.getElementById("restart").onclick = () => { if (!confirm("Clear all your answers and start again?")) return; A = defaults(); step = -1; app.className = "inner"; save(); render(); };
+  wirePdfButton(document.getElementById("pdf"), () => "The Encore Plan - " + (name || "my plan"));
+  wireChart(p); wireWhatIf(p);
+  window.scrollTo({ top: 0 });
+}
+function goalFor(id) { const v = { min: A.goalMin, happy: A.goalHappy, stretch: A.goalStretch }[id]; const n = parseFloat(String(v ?? "").replace(/[£,\s]/g, "")); return Number.isFinite(n) && n > 0 ? n : parseFloat(String(A.goalHappy).replace(/[£,\s]/g, "")); }
+
+function quarterCard(qq, focus, p) {
+  const sells = qq.byOffer.filter(o => o.newClients > 0.01);
+  return `<article class="qcard"><div class="qh"><b>Days ${(qq.q - 1) * 90 + 1}–${qq.q * 90}</b><span>${esc(qq.from)} to ${esc(qq.to)}</span></div>
+  <h4>${esc(focus.title)}</h4><p>${esc(focus.text)}</p>
+  <dl><dt>Revenue this quarter</dt><dd>${gbp(qq.revenue)}</dd>
+  <dt>Monthly pace by the end</dt><dd>${gbp(qq.endPace)}</dd>
+  ${sells.map(o => `<dt>${esc(o.name)}: ${o.type === "retainer" ? "new sign-ups" : "sales to win"}</dt><dd>${whole(o.newClients)}${o.activeEnd != null ? ` <span class="small">(${round1(o.activeEnd)} active)</span>` : ""}</dd>`).join("")}
+  <dt>Sales conversations to have</dt><dd>${whole(qq.conversations)}</dd>
+  <dt>Delivery days a month for new work</dt><dd style="${qq.daysPerMonth > p.deliveryAvail + 0.05 ? "color:var(--red)" : ""}">${round1(qq.daysPerMonth)} of ${round1(p.deliveryAvail)}</dd></dl>
+  <div class="wk"><b>Every week this quarter</b><ul><li><strong>${round1(qq.convPerWeek)}</strong> sales conversations</li>${qq.activity.filter(a => a.perWeek > 0.05).map(a => `<li><strong>${round1(a.perWeek)}</strong> ${esc(a.unit)} <span style="color:#A9A39B">(${esc(shortLabel(a.label))})</span></li>`).join("") || (p.channels.length ? "" : "<li>Choose your routes to clients to see weekly activity</li>")}</ul></div>
+  ${qq.quietMonths.length ? `<p class="qnote">Quiet month: ${qq.quietMonths.map(esc).join(", ")}. Book conversations in the weeks before it.</p>` : ""}
+  ${qq.q === 1 && A.wontDo ? `<p class="qnote">What you said you won't do: “${esc(A.wontDo)}”. Hold to it when the first offers come in.</p>` : ""}</article>`;
+}
+const shortLabel = l => l.split(" ").slice(0, 3).join(" ").replace(/ (to|and)$/, "");
+
+function answersList(p) {
+  const tierRow = t => { const v = goalFor(t); return gbp(v); };
+  const items = [
+    ["Pay yourself a year", `Minimum ${tierRow("min")} · Happy ${tierRow("happy")} · Stretch ${tierRow("stretch")}`],
+    ["Start and full pace", `Month 1 is ${monthName(1)}; full pace by month ${p.T}`],
+    ["Other income and costs", `${gbp(+String(A.otherIncome).replace(/[£,]/g, "") || 0)} a year other income · ${gbp(+String(A.costs).replace(/[£,]/g, "") || 0)} a month costs`],
+    ["Your week", `${A.daysPerWeek} days a week, ${A.weeksPerYear} weeks a year, ${A.adminDays} days admin, ${A.marketingHours} hours finding clients${A.fixed ? ` · around: ${esc(A.fixed)}` : ""}`],
+    ...p.offers.map(o => [o.name, `${OFFER_TYPES[o.type].label}: ${gbp(o.price)}${o.type === "retainer" ? " a month" : ""}, ${round1(o.days)} days${o.type === "retainer" ? " a month" : " each"}, ${Math.round(o.weight * 100)}% of income`]),
+    ["Already lined up", +A.securedMonthly ? `${gbp(+A.securedMonthly)} a month for ${A.securedMonths} months` : "Nothing yet"],
+    ["Starting network", [A.network && `${A.network} who could buy or introduce`, A.advisees && `${A.advisees} who ask your advice`, A.audience && `${A.audience} audience`, A.partners && `${A.partners} referral partners`].filter(Boolean).map(esc).join(" · ") || "Not given"],
+    ["Selling", `${A.cycleWeeks}-week sales cycle · ${A.propRate} in 10 conversations get a proposal · ${A.winRate} in 10 proposals say yes · comfort ${A.comfort}/5`],
+    ["Routes to clients", p.channels.length ? p.channels.map(c => `${esc(shortLabel(c.label))} ${Math.round(c.weight * 100)}% (${round1(c.perConv)} ${esc(c.unit)} per conversation)`).join(" · ") : "None chosen"],
+    ["Built-in assumptions", `About ${HOURS_PER_CONVERSATION} hours per sales conversation including preparation; revenue counted in the month a sale is won; new income ramps evenly to full pace; delivery days count new work only, not work already lined up`],
+  ];
+  return items.map(([k, v]) => `<p><b>${esc(k)}</b>${v}</p>`).join("");
+}
+
+// SVG bar chart: secured (amber) under new (red), 2px gap, square at the baseline, rounded top.
+function chartSVG(p) {
+  const W = 1000, H = 300, L = 64, Rm = 10, T = 16, B = 34;
+  const max = Math.max(p.R * 1.12, ...p.months.map(r => r.revenue), 1);
+  const nice = niceMax(max), y = v => T + (H - T - B) * (1 - v / nice);
+  const bw = (W - L - Rm) / 12, barW = Math.min(46, bw * 0.62);
+  const ticks = [0, 0.25, 0.5, 0.75, 1].map(f => f * nice);
+  const bar = (x, y0, y1, round) => { const h = y0 - y1; if (h <= 0.5) return ""; const r = round ? Math.min(4, h) : 0; return `M${x},${y0}V${y1 + r}${r ? `Q${x},${y1} ${x + r},${y1}` : ""}H${x + barW - r}${r ? `Q${x + barW},${y1} ${x + barW},${y1 + r}` : ""}V${y0}Z`; };
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Planned revenue each month for 12 months, rising to ${gbp(p.R)} a month at full pace">`;
+  ticks.forEach(t => s += `<line x1="${L}" x2="${W - Rm}" y1="${y(t)}" y2="${y(t)}" stroke="${t ? "#ECEBE8" : "#BDB9B2"}" stroke-width="1"/><text x="${L - 10}" y="${y(t) + 4}" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="12" fill="#5F5C57">${t >= 1000 ? "£" + Math.round(t / 1000) + "k" : "£" + Math.round(t)}</text>`);
+  p.months.forEach((r, i) => {
+    const x = L + i * bw + (bw - barW) / 2, base = y(0), ySec = y(r.secured), yTop = y(r.revenue);
+    if (r.secured > 0) s += `<path d="${bar(x, base, ySec, r.fresh <= 0.5)}" fill="#C98A1E"/>`;
+    if (r.fresh > 0.5) s += `<path d="${bar(x, r.secured > 0 ? ySec - 2 : base, yTop, true)}" fill="#DD1D13"/>`;
+    s += `<text x="${L + i * bw + bw / 2}" y="${H - 12}" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#5F5C57">${r.label.split(" ")[0]}</text>`;
+    s += `<rect class="hit" data-i="${i}" x="${L + i * bw}" y="${T}" width="${bw}" height="${H - T - B}"/>`;
+  });
+  s += `<line x1="${L}" x2="${W - Rm}" y1="${y(p.R)}" y2="${y(p.R)}" stroke="#000" stroke-width="2" stroke-dasharray="6 5"/>`;
+  return s + `</svg>`;
+}
+function niceMax(v) { const e = Math.pow(10, Math.floor(Math.log10(v))); for (const m of [1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10]) if (m * e >= v) return m * e; return 10 * e; }
+function wireChart(p) {
+  const box = document.getElementById("chart"), tip = document.getElementById("tip"), svg = box.querySelector("svg");
+  svg.querySelectorAll(".hit").forEach(h => {
+    const show = () => { const r = p.months[+h.dataset.i], bb = h.getBoundingClientRect(), cb = box.getBoundingClientRect();
+      tip.innerHTML = `<b>${esc(r.label)}${r.quiet ? " · quiet month" : ""}</b>Revenue ${gbp(r.revenue)}${r.secured ? `<br>Already lined up ${gbp(r.secured)}` : ""}<br>New clients ${round1(r.newClients)}<br>Conversations ${whole(r.conversations)}`;
+      tip.hidden = false; tip.style.left = (bb.left - cb.left + bb.width / 2) + "px"; tip.style.top = (bb.top - cb.top + 20) + "px"; };
+    h.addEventListener("mouseenter", show); h.addEventListener("click", show); h.addEventListener("mouseleave", () => tip.hidden = true);
+  });
+}
+function wireWhatIf(base) {
+  const pr = document.getElementById("wi-price"), cl = document.getElementById("wi-close"), dy = document.getElementById("wi-days"), out = document.getElementById("wi-out");
+  const upd = () => {
+    const pct = +pr.value, c = +cl.value, d = +dy.value;
+    document.getElementById("wi-price-v").textContent = pct ? (pct > 0 ? "+" : "") + pct + "%" : "no change";
+    document.getElementById("wi-close-v").textContent = String(c).replace(".5", "½");
+    document.getElementById("wi-days-v").textContent = String(d).replace(".5", "½");
+    const B = { ...A, offers: A.offers.map(o => ({ ...o, price: (parseFloat(String(o.price).replace(/[£,]/g, "")) || 0) * (1 + pct / 100) })), propRate: 10, winRate: c, daysPerWeek: d };
+    const p = plan(B, A.tier || "happy");
+    const cell = (v, b, label, fmt, better) => { const diff = v - b; const good = better === "down" ? diff < -0.05 : diff > 0.05; const bad = better === "down" ? diff > 0.05 : diff < -0.05; return `<div><b>${fmt(v)}</b><span>${label}</span><span class="chg ${good ? "up" : bad ? "down" : ""}">${Math.abs(diff) < 0.05 ? "same as your plan" : (diff > 0 ? "+" : "−") + fmt(Math.abs(diff)) + " vs your plan"}</span></div>`; };
+    out.innerHTML = cell(p.yearClients, base.yearClients, "new clients or sales this year", whole, "down") +
+      cell(p.full.convPerWeek, base.full.convPerWeek, "conversations a week at full pace", round1, "down") +
+      cell(p.full.days, base.full.days, "delivery days a month needed", round1, "down") +
+      cell(p.deliveryAvail, base.deliveryAvail, "delivery days a month you have", round1, "up");
+  };
+  [pr, cl, dy].forEach(el => el.addEventListener("input", upd)); upd();
+}
+
+if (step >= N && missing(A).length) step = 0;
+render();
+</script>
+</body>
+</html>
