@@ -18,9 +18,10 @@ const NEXT_PX = Math.floor((MM_H - FOOT_MM - TOP_MM) * PX_PER_MM); // later page
 
 // Places it's tidy to start a new page.
 const BREAKS = "section, .topbar, .interp p, .pillars, .pair, .action, .routes .route, .callout, .qs li, .flags, .next, .prog, " +
-  ".dims-grid, .dim, .grid > *, .cards > *, .teaser ul, .teaser li, .res-grid, .scale, .sect-lede, .eyebrow, .print-foot, .nx-wrap";
+  ".dims-grid, .dim, .grid > *, .cards > *, .teaser ul, .teaser li, .res-grid, .scale, .sect-lede, .eyebrow, .print-foot, .nx-wrap, " +
+  ".qcard, .flag, .tiles, .rsec, table.t tr";
 // Blocks that should never be split across two pages.
-const KEEP = ".nx-wrap, .action, .route, .pair, .pillars, .next, .scorebox, .qs li, .flags, .res-grid, .callout";
+const KEEP = ".nx-wrap, .action, .route, .pair, .pillars, .next, .scorebox, .qs li, .flags, .res-grid, .callout, .qcard, .flag, .tiles";
 
 function loadScript(src) {
   return new Promise((ok, fail) => {
