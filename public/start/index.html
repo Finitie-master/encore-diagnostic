@@ -133,7 +133,7 @@ body.is-demo{padding-bottom:72px}
 <section class="panel wrap"><div class="inner" id="app"></div></section>
 
 <form name="encore-diagnostic" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
-  <input name="bot-field"><input name="name"><input name="email"><input name="proposed_business">
+  <input name="bot-field"><input name="subject"><input name="name"><input name="email"><input name="proposed_business">
   <input name="verdict"><input name="overall"><input name="dimension_scores"><input name="gates"><input name="patterns">
   <input name="economics"><input name="evidence_summary"><input name="model_fit">
   <textarea name="answers_json"></textarea><textarea name="context_answers"></textarea><textarea name="evidence_log"></textarea>
@@ -326,7 +326,7 @@ function computeAll(){
   const econText=econ.complete?`${econ.salesNeeded} sales a year at ${fmt(+A.econ_price)}; ${econ.deliveryDaysNeeded} of ${econ.deliveryDaysAvailable} delivery days (${econ.capacityPct}%); ${econ.status}; price that fits ≈ ${fmt(econ.priceThatFits)}`:"Not estimated";
   const context={}; SECTIONS.forEach(S=>S.items.forEach(it=>{if(it.c) context[it.c]=A[it.c];}));
   Object.assign(context,{econ_income:A.econ_income,econ_costs:A.econ_costs,econ_price:A.econ_price,econ_days:A.econ_days,econ_unknown:!!A.econ_unknown});
-  const f={"form-name":FORM_NAME,"bot-field":"",name:A.name,email:A.email,proposed_business:A.building||"",
+  const f={"form-name":FORM_NAME,"bot-field":"",subject:"New Encore Diagnostic: "+(A.name||"")+" ("+r.verdict.label+")",name:A.name,email:A.email,proposed_business:A.building||"",
     verdict:r.verdict.label,overall:String(r.overall),
     dimension_scores:Object.keys(DIMENSIONS).map(k=>DIMENSIONS[k].name+": "+r.dimensions[k]).join("; "),
     gates:r.gates.join(", "),patterns:r.patterns.map(k=>k+" "+r.patternDetail[k].name).join("; "),
