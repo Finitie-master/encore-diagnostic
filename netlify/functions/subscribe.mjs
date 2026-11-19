@@ -63,8 +63,9 @@ const QUIZZES = {
 };
 
 // Where the Toolkit download lives (e.g. a Google Drive link). Set TOOLKIT_DOWNLOAD_URL in Netlify
-// to change it without a code change; empty means the page tells members Jo will share the link.
-const TOOLKIT_DOWNLOAD_URL = process.env.TOOLKIT_DOWNLOAD_URL || "";
+// to change it without a code change. Without it, the Week 2 toolkit zip on Google Drive is used.
+const TOOLKIT_DOWNLOAD_URL =
+  process.env.TOOLKIT_DOWNLOAD_URL || "https://drive.google.com/uc?export=download&id=1tDUpnUyz9JjNE-GfHTRwNj4L0oLBRGET";
 
 const cache = {}; // group ids per quiz, kept while the function stays warm
 
