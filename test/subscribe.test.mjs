@@ -49,3 +49,25 @@ test("Mettle payload goes to its own group with mettle fields", async () => {
   const made = log.filter((l) => l.path === "/fields" && l.method === "POST").map((l) => l.body.name);
   assert.ok(made.includes("mettle_route") && !made.includes("encore_building"));
 });
+
+test("Toolkit Licence payload joins its own group, never the Newsletter, and returns the download link", async () => {
+  process.env.TOOLKIT_DOWNLOAD_URL = "https://example.com/toolkit.zip";
+  const { res, log } = await call({ quiz: "licence", version: "1.0", email: "A@B.co", full_name: "Ann Example", company: "Ann Ltd", agree: true, consent: true });
+  delete process.env.TOOLKIT_DOWNLOAD_URL;
+  assert.equal(res.ok, true);
+  assert.equal(res.download, "https://example.com/toolkit.zip");
+  const sub = log.find((l) => l.path === "/subscribers").body;
+  assert.equal(sub.email, "a@b.co");
+  assert.equal(sub.fields.name, "Ann Example");
+  assert.equal(sub.fields.company, "Ann Ltd");
+  assert.match(sub.fields.licence_agreed, /^v1\.0 agreed \d{4}-\d\d-\d\dT.* by "Ann Example"$/);
+  assert.equal(sub.groups.length, 1, "licence acceptance never adds the Newsletter");
+});
+
+test("Toolkit Licence is refused without the tick or a name", async () => {
+  const a = await call({ quiz: "licence", email: "a@b.co", full_name: "Ann", agree: false });
+  assert.equal(a.res.ok, false);
+  assert.equal(a.log.length, 0);
+  const b = await call({ quiz: "licence", email: "a@b.co", full_name: "  ", agree: true });
+  assert.equal(b.res.ok, false);
+});

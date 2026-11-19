@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your Encore Toolkit | The Encore Partnership</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="For members of The Encore Programme: accept the Toolkit Licence and download your toolkit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&display=swap">
+<style>
+/* Toolkit Licence page for Programme members: dark band, white panel with rounded top, form, dark footer. */
+:root{
+  --ink:#000;--paper:#fff;--red:#DD1D13;--red-deep:#B8160E;--stone:#5F5C57;--mist:#EAEAE9;--fog:#F7F7F7;--char:#2B2B2B;--line:#D9D8D5;
+  --f-display:"Instrument Serif","Aperitif Serif Regular",Georgia,serif;
+  --f-body:"Inter Tight","Neue Swiss Medium","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --radius-panel:56px;color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{background:var(--ink)}
+body{margin:0;font-family:var(--f-body);color:var(--ink);font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.inner{max-width:880px;margin:0 auto}
+.topbar .inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:22px;color:var(--paper)}
+.brand{display:flex;align-items:center;gap:12px;color:var(--paper);text-decoration:none}
+.mark{display:block;fill:var(--red);height:26px;width:auto}
+.brand span{font:700 12px/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase}
+.tag{font:400 12px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:#BDB7AE}
+.eyebrow{font:700 13px/1.4 var(--f-body);letter-spacing:.06em;text-transform:uppercase}
+.red{color:var(--red)}
+.display{font-family:var(--f-display);font-weight:400;text-transform:uppercase;line-height:.95;margin:14px 0 0;font-size:clamp(44px,7.4vw,80px);text-wrap:balance}
+.display em{font-style:italic;text-transform:none;color:var(--red)}
+.hero{color:var(--paper)}
+.hero .inner{padding-block:28px 120px}
+.lede{color:#E2DDD6;max-width:620px;margin:22px 0 0}
+.panel{background:var(--paper);border-radius:var(--radius-panel) var(--radius-panel) 0 0;margin-top:calc(-1*var(--radius-panel));position:relative}
+.panel>.inner{padding-block:72px 96px}
+.sec{font-family:var(--f-display);font-weight:400;font-size:clamp(32px,4.4vw,48px);line-height:1.02;margin:10px 0 0;text-wrap:balance}
+.sec em{font-style:italic;color:var(--red)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
+.box{border:1px solid var(--line);padding:26px 26px 22px}
+.box h3{font:500 13px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;margin:0;color:var(--red)}
+.box ul{margin:14px 0 0;padding-left:20px;color:var(--char);font-size:16px}
+.box li{margin:6px 0}
+details{margin-top:24px;background:var(--fog);padding:20px 26px}
+summary{cursor:pointer;font:500 14px/1.4 var(--f-mono);letter-spacing:.06em;text-transform:uppercase}
+.licence{font-size:15px;color:var(--char);max-height:460px;overflow:auto;margin-top:16px;padding-right:8px}
+.licence h4{font:600 16px/1.3 var(--f-body);margin:20px 0 6px}
+.licence p,.licence ul{margin:6px 0}
+form{margin-top:48px;border-top:1px solid var(--line);padding-top:40px}
+label.f{display:block;font:600 15px/1.3 var(--f-body);margin:22px 0 8px}
+label.f small{font-weight:400;color:var(--stone)}
+input[type=text],input[type=email]{width:100%;font:400 18px/1.4 var(--f-body);padding:14px 16px;border:1px solid #BDBAB5;border-radius:0;background:var(--paper);color:var(--ink)}
+input:focus-visible,.btn:focus-visible,summary:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.agree{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;margin-top:28px;background:var(--fog);padding:20px 22px}
+.agree input{width:22px;height:22px;margin-top:3px;accent-color:var(--red)}
+.agree span{font-size:16px;color:var(--char)}
+.hp{position:absolute;left:-9999px}
+.btn{appearance:none;border:0;border-radius:0;cursor:pointer;font:400 16px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:16px 26px;display:inline-flex;align-items:center;gap:10px;text-decoration:none;transition:background .15s}
+.btn-red{background:var(--red);color:var(--paper)}.btn-red:hover{background:var(--red-deep)}
+.btn[disabled]{opacity:.6;cursor:wait}
+form .btn{margin-top:28px}
+.msg{margin-top:18px;font-size:16px;color:var(--red-deep);min-height:1em}
+.done{display:none;margin-top:48px;border-top:1px solid var(--line);padding-top:40px}
+.done .btn{margin-top:24px}
+.done p{color:var(--char);max-width:620px}
+.foot{color:#8F8A83;font-size:13px}
+.foot .inner{padding-block:28px 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+.foot a{color:#CFCAC2}
+@media (max-width:720px){.cols{grid-template-columns:1fr}:root{--radius-panel:40px}.tag{display:none}}
+</style>
+</head>
+<body>
+<header class="topbar wrap"><div class="inner">
+  <a class="brand" href="https://theencorepartnership.com"><svg class="mark" viewBox="0 0 930 1236" aria-hidden="true"><rect x="2" y="1" width="926" height="165"/><path d="M146 291h652v155H326v212h434v154H326v268h472v155H146z"/></svg><span>The Encore Partnership™</span></a>
+  <span class="tag">Members only</span>
+</div></header>
+
+<section class="hero wrap"><div class="inner">
+  <div class="eyebrow red">The Encore Programme™ · AI Advantage Toolkit™</div>
+  <h1 class="display">Your toolkit. <em>Yours to keep.</em></h1>
+  <p class="lede">Everything in it is built to help you run your own business, and it stays yours after the twelve weeks. One quick thing first: please read and accept the Toolkit Licence. It takes a minute, and then your download appears right here.</p>
+</div></section>
+
+<main class="panel wrap"><div class="inner">
+  <div class="eyebrow red">The Toolkit Licence, in plain English</div>
+  <h2 class="sec">Use it, adapt it, keep it. <em>Just don't pass it on.</em></h2>
+
+  <div class="cols">
+    <div class="box">
+      <h3>You can</h3>
+      <ul>
+        <li>Use the toolkit in your own business, on your own accounts</li>
+        <li>Adapt it for your own use</li>
+        <li>Keep using it after the Programme ends</li>
+        <li>Use it while you work with your own clients</li>
+        <li>Own everything you create with it</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>You can't</h3>
+      <ul>
+        <li>Copy, share, give away or resell the files, free or paid</li>
+        <li>Upload them anywhere others can get them</li>
+        <li>Share your Project or login with people outside your business</li>
+        <li>Use them to build a competing course or toolkit</li>
+        <li>Share recordings, or what other members say</li>
+      </ul>
+    </div>
+  </div>
+
+  <details>
+    <summary>Read the full Toolkit Licence (version 1.0)</summary>
+    <div class="licence">
+      <p>This agreement is between The Encore Partnership Ltd ("we", "us") and the person named in the form below ("you"). It covers the tools and materials you receive as a member of The Encore Programme™.</p>
+      <h4>1. What this covers</h4>
+      <p>"The Materials" means everything we give you through the Programme, including: the AI Advantage Toolkit™ (AI skills, agents, plugins, Project instructions, prompts and the files that come with them); The Encore Library™ (templates, worksheets, workbooks, guides and checklists); session recordings, slides and handouts; The Encore Method™ and its named frameworks and module content; and any updated versions we give you during the Programme.</p>
+      <h4>2. What you can do</h4>
+      <p>We give you a personal, non-exclusive, non-transferable licence to install and use the Materials in your own business, on your own accounts; adapt them for your own use; keep using them after the Programme ends, as long as you keep to this agreement; and use them while you work with your own clients, as long as you don't hand over the Materials themselves. What you make is yours: the documents, posts, plans, profiles and other outputs you create with the Materials belong to you.</p>
+      <h4>3. What you can't do</h4>
+      <p>You must not, whether for payment or free: copy, share, give away, sell, resell, sublicense or publish the Materials, or any adapted version of them; upload them anywhere other people can access or download them, including GPT stores, skill or prompt marketplaces, shared drives and community groups; share your Claude Project, accounts or login so that someone outside your business can use the Materials; use the Materials to create, teach or sell a course, programme, toolkit or product that competes with The Encore Programme or the AI Advantage A-Team; present the Materials, or a version of them, as your own work; remove or change credits, licence notices or copyright notices; or share session recordings, or anything other members say or share in sessions or the group chat. If you want to use the Materials with a team, or for any purpose not covered here, ask us first: jo@theencorepartnership.com.</p>
+      <h4>4. Ownership</h4>
+      <p>We (or the people we license from) own the Materials and all intellectual property in them. This agreement gives you permission to use them; it doesn't transfer ownership.</p>
+      <h4>5. Third-party material</h4>
+      <p>Some Materials are based on other people's work and keep their own licences, listed in the credits file that comes with them. In particular, the skills marked "based on the GTM Strategist methodology" are adapted from material by Maja Voje, used under the MIT licence. Where a third-party licence gives you wider rights over that part, those rights still apply to that part. Nothing here suggests that any third party endorses The Encore Partnership.</p>
+      <h4>6. Other members</h4>
+      <p>What other members share in sessions, breakout rooms and the group chat is confidential. Don't repeat it outside the cohort or use it for your own business without their permission.</p>
+      <h4>7. If you leave the Programme or get a refund</h4>
+      <p>If you take up the 15-day money-back guarantee or leave the Programme with a refund, this licence ends and you must delete all copies of the Materials, including from your Claude Projects and any drives.</p>
+      <h4>8. If this agreement is broken</h4>
+      <p>If you break this agreement, your licence ends straight away and you must delete all copies of the Materials. We may also take further action to protect our rights.</p>
+      <h4>9. Using AI tools</h4>
+      <p>The Materials give guidance, not professional advice. AI can be wrong and sound confident. Check anything important before you rely on it, and take qualified advice on legal, tax, financial and similar decisions. You're responsible for how you use the outputs, including handling any client or customer data lawfully under UK GDPR.</p>
+      <h4>10. Updates</h4>
+      <p>We may improve the Materials during the Programme. We're not obliged to provide updates after it ends.</p>
+      <h4>11. General</h4>
+      <p>This agreement sits alongside the Programme terms and our privacy notice. If any part is found unenforceable, the rest still applies. This agreement is governed by the law of England and Wales.</p>
+    </div>
+  </details>
+
+  <form id="licence-form" novalidate>
+    <div class="eyebrow red">Accept and download</div>
+    <h2 class="sec">Two details and a tick.</h2>
+    <label class="f" for="full_name">Your full name</label>
+    <input type="text" id="full_name" name="full_name" autocomplete="name" required>
+    <label class="f" for="email">Your email <small>(the one you use for the Programme)</small></label>
+    <input type="email" id="email" name="email" autocomplete="email" required>
+    <label class="f" for="company">Business name <small>(optional)</small></label>
+    <input type="text" id="company" name="company" autocomplete="organization">
+    <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <label class="agree"><input type="checkbox" id="agree" name="agree" required><span>I have read and agree to the Encore Toolkit Licence, version 1.0. Typing my name above counts as my signature.</span></label>
+    <button class="btn btn-red" type="submit">Agree and get my toolkit →</button>
+    <p class="msg" id="msg" role="alert"></p>
+  </form>
+
+  <div class="done" id="done" tabindex="-1">
+    <div class="eyebrow red">Thank you</div>
+    <h2 class="sec">You're all set, <em id="done-name">friend</em>.</h2>
+    <p id="done-text">Your agreement is saved. Here's your toolkit.</p>
+    <a class="btn btn-red" id="download" href="#" style="display:none">Download your toolkit →</a>
+  </div>
+</div></main>
+
+<footer class="foot wrap"><div class="inner">
+  <span>© The Encore Partnership Ltd. Experience wins.</span>
+  <a href="https://theencorepartnership.com">theencorepartnership.com</a>
+</div></footer>
+
+<script>
+(function () {
+  var VERSION = "1.0";
+  var form = document.getElementById("licence-form");
+  var msg = document.getElementById("msg");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    msg.textContent = "";
+    var name = form.full_name.value.trim();
+    var email = form.email.value.trim();
+    if (!name) { msg.textContent = "Please type your full name."; form.full_name.focus(); return; }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = "Please check your email address."; form.email.focus(); return; }
+    if (!form.agree.checked) { msg.textContent = "Please tick the box to accept the licence."; form.agree.focus(); return; }
+    var btn = form.querySelector("button");
+    btn.disabled = true; btn.textContent = "Saving…";
+    fetch("/api/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ quiz: "licence", version: VERSION, full_name: name, email: email,
+        company: form.company.value.trim(), agree: true, bot: form.website.value || undefined })
+    }).then(function (r) { return r.json().catch(function () { return {}; }); })
+      .then(function (d) {
+        if (!d || !d.ok) throw new Error((d && d.error) || "failed");
+        form.style.display = "none";
+        var done = document.getElementById("done");
+        document.getElementById("done-name").textContent = name.split(/\s+/)[0];
+        var dl = document.getElementById("download");
+        if (d.download) { dl.href = d.download; dl.style.display = "inline-flex"; }
+        else { document.getElementById("done-text").textContent = "Your agreement is saved. Jo will share the download link with you in the session chat."; }
+        done.style.display = "block"; done.focus();
+      })
+      .catch(function () {
+        btn.disabled = false; btn.textContent = "Agree and get my toolkit →";
+        msg.textContent = "Sorry, that didn't save. Please try again, or tell Jo in the chat.";
+      });
+  });
+})();
+</script>
+</body>
+</html>
