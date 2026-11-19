@@ -1,7 +1,9 @@
 // Adds an Encore Score respondent to MailerLite. Handles both scores:
 //  - The Encore Score: Idea (/score, the default when no "quiz" is sent): joins "Encore Score results".
 //  - The Encore Score: Mettle (/mettle, sends quiz: "mettle"): joins "Encore Mettle Score results".
-// Each results group triggers its own result email (set up as an automation in MailerLite).
+//  - The Toolkit Licence (/toolkit, sends quiz: "licence"): joins "Encore Toolkit Licence accepted"
+//    and returns the toolkit download link. Records the version, time and typed name in licence_agreed.
+// Each Score results group triggers its own result email (set up as an automation in MailerLite).
 // Only people who ticked the consent box also go into the "Newsletter" group.
 // Needs the MAILERLITE_API_KEY environment variable in Netlify.
 
@@ -48,7 +50,21 @@ const QUIZZES = {
       encore_source: clip(d.source, 60),
     }),
   },
+  // Programme members accepting the Toolkit Licence (/toolkit, sends quiz: "licence").
+  // Never joins the Newsletter. The reply carries the download link, so it isn't in the page source.
+  licence: {
+    group: "Encore Toolkit Licence accepted",
+    fields: { licence_agreed: "text", company: "text" },
+    map: (d) => ({
+      licence_agreed: `v${clip(d.version, 10)} agreed ${new Date().toISOString()} by "${clip(d.full_name, 100)}"`,
+      company: clip(d.company, 120),
+    }),
+  },
 };
+
+// Where the Toolkit download lives (e.g. a Google Drive link). Set TOOLKIT_DOWNLOAD_URL in Netlify
+// to change it without a code change; empty means the page tells members Jo will share the link.
+const TOOLKIT_DOWNLOAD_URL = process.env.TOOLKIT_DOWNLOAD_URL || "";
 
 const cache = {}; // group ids per quiz, kept while the function stays warm
 
@@ -94,16 +110,24 @@ export default async (req) => {
   if (d.bot) return Response.json({ ok: true }); // honeypot
   const email = String(d.email || "").trim().toLowerCase();
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return Response.json({ ok: false, error: "bad_email" }, { status: 400 });
-  const quiz = d.quiz === "mettle" ? "mettle" : "idea";
+  const quiz = d.quiz === "mettle" ? "mettle" : d.quiz === "licence" ? "licence" : "idea";
+
+  if (quiz === "licence") {
+    if (d.agree !== true || !String(d.full_name || "").trim()) {
+      return Response.json({ ok: false, error: "not_agreed" }, { status: 400 });
+    }
+  }
 
   try {
     const ids = await setup(quiz, key);
     const groups = [ids.results];
-    if (d.consent === true) groups.push(ids.newsletter);
+    if (quiz !== "licence" && d.consent === true) groups.push(ids.newsletter);
+    const name = quiz === "licence" ? clip(d.full_name, 100) : clip(d.first_name, 100);
     await ml("/subscribers", key, {
       method: "POST",
-      body: JSON.stringify({ email, fields: { name: clip(d.first_name, 100), ...QUIZZES[quiz].map(d) }, groups }),
+      body: JSON.stringify({ email, fields: { name, ...QUIZZES[quiz].map(d) }, groups }),
     });
+    if (quiz === "licence") return Response.json({ ok: true, download: TOOLKIT_DOWNLOAD_URL });
     return Response.json({ ok: true });
   } catch (e) {
     console.error(e);
